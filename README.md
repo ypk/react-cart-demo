@@ -109,7 +109,7 @@ Often it's the caching in the browser. Try hard refreshing the browser. In chrom
 
 
 #### Something is not working in the build
-Try to find a way to fix it, but if you're really stuck � contact the person that set up the test for you.
+Try to find a way to fix it, but if you're really stuck, contact the person that set up the test for you.
 
 
 #### Shall I create branches?

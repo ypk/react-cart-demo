@@ -15,7 +15,7 @@ import '@styles/styles.scss'
  * Here's an example of importing an image (so webpack processes it)
  * This (as it's an image) will end up in the assets/images directory.
  */
-import trump from '@images/trump.jpg'
+import cat from '@images/floof.jpg'
 
 
 /**

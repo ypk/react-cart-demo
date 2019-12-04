@@ -1,6 +1,6 @@
 # MMT Digital Front-end Test
 
-Welcome to the MMT Digital Front-end test. This test will hopefully give you a chance to showcase your skills as a developer. You get **1.5 hours** to complete the test. After the test, we will ask you to talk through your code and decisions. Alright, let's do this!
+Welcome to the MMT Digital Front-end test. This test will hopefully give you a chance to showcase your skills as a developer. You have **24 hours** to complete the test. After the test, we will ask you to talk through your code and decisions. Alright, let's do this!
 
 ## The challenge
 
@@ -56,9 +56,9 @@ Here are some rough user stories for you to work to:
 
 ## Things we love
 
-* Non-jquery implementations
-* Tip-top styling, using mixins and modern techniques
-* Well linted, consistent code
+* Use of modern JS frameworks (e.g. React)
+* Tip-top styling, using modern techniques beyond plain CSS
+* Well-linted, consistent code
 * A fully working non-perfect solution, over a beautiful broken one
 * Frequent Git use with clear commit messages
 
@@ -68,48 +68,21 @@ Here are some rough user stories for you to work to:
 * Unit testing
 * Progressive enhancement considerations
 * Next gen JavaScript, ES6+
+* Use of types
 
 ## Getting started
 
-The easiest way to start the project is using Docker. You can install it here, if you don't already have it: https://www.docker.com/community-edition.
+You can use any boilerplate you're used to for getting started. A simple and recommended way is to use [Create React App (CRA)](https://github.com/facebook/create-react-app).
 
-* `docker-compose build`
-* `docker-compose up`
-* Open up a browser and browse to http://localhost:8080
-
-If you don't want to use Docker or have a particularly old machine (pre-2010 Mac or pre-Windows 10 PC), you can manually run the project:
-
-* Install Node, if you don't have it: https://nodejs.org/en
-* `npm install`
-* `npm start`
-* Open up a browser and browse to http://localhost:8080
-
-## Available Tech
-
-The project is compiled with webpack, and out the box, you should be able to use:
-
-* SCSS
-* ES6+
-* SVG icons
-* React
-* jQuery (we recommend not using this, but it's available as a last resort)
-
-If you would like to use another technology, such as Angular, feel free to tweak the config to allow it. Just remember that we are more interested in seeing a working solution at the end of the test.
-
-Note: Any variables or mixins you define globally should also be available throughout your styles. You can thank webpack's magic for that :)
+To use this:
+- `npx create-react-app app`
+- `cd app`
+- `npm start`
 
 ## FAQs
 
 #### Am I allowed to Google stuff
 It goes without saying. Please work as you normally would during the day.
-
-
-#### My js/styles/html doesn't seem to update
-Often it's the caching in the browser. Try hard refreshing the browser. In chrome, open the dev tools, right click on the refresh button and select *Empty Cache and Hard Reload*
-
-
-#### Something is not working in the build
-Try to find a way to fix it, but if you're really stuck, contact the person that set up the test for you.
 
 
 #### Shall I create branches?

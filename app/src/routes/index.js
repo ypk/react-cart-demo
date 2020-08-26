@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
+import NotFound from "../pages/NotFound";
 
 const TempComponent = () => {
     const location = useLocation();
@@ -7,13 +8,15 @@ const TempComponent = () => {
 }
 
 const Routes = () => {
-return (    <BrowserRouter>
-    <Switch>
-        <Route path="*" component={TempComponent}/>
-        <Route path="/" component={TempComponent}/>
-        <Route path="cart" component={TempComponent}/>
-    </Switch>
-</BrowserRouter>) 
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" component={TempComponent}/>
+                <Route exact path="cart" component={TempComponent}/>
+                <Route path="*" component={NotFound}/>
+            </Switch>
+        </BrowserRouter>
+    ) 
 }
 
 export default Routes;

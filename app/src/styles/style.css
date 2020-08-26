@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&Playfair+Display:wght@600;700&Poppins:wght@200;300;400&display=swap');
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -580,7 +580,7 @@ video {
 }
 
 * {
-  font-family: Playfair Display, serif;
+  font-family: Poppins, sans-serif;
   font-size: 1.125rem;
 }
 
@@ -10936,6 +10936,10 @@ li.custom-styled:after {
 
 .font-playfair{
   font-family: Playfair Display, serif;
+}
+
+.font-poppins{
+  font-family: Poppins, sans-serif;
 }
 
 .font-hairline{
@@ -30142,6 +30146,10 @@ li.custom-styled:after {
     font-family: Playfair Display, serif;
   }
 
+  .sm\:font-poppins{
+    font-family: Poppins, sans-serif;
+  }
+
   .sm\:font-hairline{
     font-weight: 100;
   }
@@ -49314,6 +49322,10 @@ li.custom-styled:after {
 
   .md\:font-playfair{
     font-family: Playfair Display, serif;
+  }
+
+  .md\:font-poppins{
+    font-family: Poppins, sans-serif;
   }
 
   .md\:font-hairline{
@@ -68490,6 +68502,10 @@ li.custom-styled:after {
     font-family: Playfair Display, serif;
   }
 
+  .lg\:font-poppins{
+    font-family: Poppins, sans-serif;
+  }
+
   .lg\:font-hairline{
     font-weight: 100;
   }
@@ -87662,6 +87678,10 @@ li.custom-styled:after {
 
   .xl\:font-playfair{
     font-family: Playfair Display, serif;
+  }
+
+  .xl\:font-poppins{
+    font-family: Poppins, sans-serif;
   }
 
   .xl\:font-hairline{

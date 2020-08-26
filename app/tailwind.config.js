@@ -2,7 +2,8 @@ module.exports = {
     theme: {
         fontFamily: {
             cinzel: ['Cinzel', 'serif'],
-            playfair: ['Playfair Display', 'serif']
+            playfair: ['Playfair Display', 'serif'],
+            poppins: ['Poppins', 'sans-serif']
         },
         extend: {
             colors: {

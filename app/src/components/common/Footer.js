@@ -4,23 +4,21 @@ const Footer = () => {
   const date = new Date();
   const currentYear = date.getFullYear();
   return (
-    <footer className="container mx-auto pt-8 md:py-8 border-t border-gray-400">
-      <div className="container flex px-3 py-4 md:py-8">
+    <footer className="container mx-auto pt-4 md:py-4 border-t border-gray-400">
+      <div className="container flex px-3 py-4">
         <div className="w-full mx-auto flex flex-wrap">
           <div className="flex w-full lg:w-1/2 ">
             <div className="px-3 md:px-0">
-              <h3 className="font-bold text-gray-900">About</h3>
-              <p className="py-4">
+              <p className="pb-4">
                 This website is a mock store built for the sole purpose of testing
                 the front-end development skills of <a className="hover:underline font-bold hover:text-blue-400" href="http://www.github.com/ypk">@ypk</a>.
               </p>
-              <p>&copy;&nbsp;{currentYear}. Everything is opensourced.</p>
+              <p>&copy;&nbsp;{currentYear}. Everything is open-sourced.</p>
             </div>
           </div>
           <div className="flex w-full lg:w-1/2 py-8 md:py-auto lg:justify-end lg:text-right">
             <div className="px-3 md:px-0">
-              <h3 className="font-bold text-gray-900">Social</h3>
-              <ul className="list-reset items-center pt-3">
+              <ul className="list-reset items-center">
                 <li>
                   <a
                     className="inline-block no-underline hover:text-blue-400 hover:underline py-1 mx-2"

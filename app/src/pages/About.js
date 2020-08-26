@@ -3,7 +3,7 @@ import Loading from "../components/common/Loading";
 import Layout from "../components/Layout";
 import { v4 as uuidv4 } from "uuid";
 
-const NotFound = () => {
+const About = () => {
   const [catFacts, setCatFacts] = useState([]);
   const [hasFacts, setHasFacts] = useState(false);
   const [failedLoading, setFailedLoading] = useState(false);
@@ -35,7 +35,7 @@ const NotFound = () => {
 
   return (
     <Layout>
-      <section className="bg-mmt-500 pt-8 pb-2">
+      <section className="bg-mmt-500 md:pt-8 md:pb-2">
         <div className="container py-8 px-6 mx-auto">
           <h2 className="uppercase tracking-wide font-bold font-cinzel text-gray-800 text-xl mb-8">
             About
@@ -59,7 +59,7 @@ const NotFound = () => {
         </div>
       </section>
       <section className="bg-mmt-500">
-        <div className="container py-8 px-6 mx-auto">
+        <div className="container md:py-8 px-6 mx-auto">
           <h2 className="uppercase tracking-wide font-bold font-cinzel text-gray-800 text-xl mb-8">
             Another Section
           </h2>
@@ -142,4 +142,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default About;

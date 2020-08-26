@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from "./routes";
+import ProductsContextProvider from "./providers/Products";
+
 import * as serviceWorker from './serviceWorker';
 
 import './styles/style.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routes />
+    <ProductsContextProvider>
+      <Routes />
+    </ProductsContextProvider>
   </React.StrictMode>,
   document.getElementById('app-root')
 );

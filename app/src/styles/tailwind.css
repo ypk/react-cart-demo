@@ -7,6 +7,25 @@
     @apply text-lg;
 }
 
+li.custom-styled {
+    margin: 0;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+    position: relative;
+}
+
+li.custom-styled:after {
+    content: '';
+    height: 0.5rem;
+    width: 0.5rem;
+    background: black;
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 0.66rem;
+    left: 0.5rem;
+}
+
 
 #menu-toggle:checked + #menu {
     display: block;

@@ -1,11 +1,12 @@
 import React from "react";
+import { Header, Footer } from "./common";
 
 const Layout = ({children}) => {
     return (
         <>
-            <div className="header"> -- Header -- </div>
-            <div className="main">  {children} </div>
-            <div className="footer"> -- Footer -- </div>
+            <Header />
+            <div>  {children} </div>
+            <Footer />
         </>
     )
 };

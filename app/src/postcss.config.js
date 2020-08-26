@@ -1,8 +1,13 @@
-const tailwindcss = require('tailwindcss');
-
 module.exports = {
+    purge: [
+        'src/**/*.js',
+        'src/**/*.jsx',
+        'src/**/*.ts',
+        'src/**/*.tsx',
+        'public/**/*.html',
+      ],
     plugins: [
-        tailwindcss('./tailwind.js'),
+        require('tailwindcss')('./tailwind.config.js'),
         require('autoprefixer'),
     ],
 };

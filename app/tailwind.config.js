@@ -1,5 +1,9 @@
 module.exports = {
     theme: {
+        fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            playfair: ['Playfair Display', 'serif']
+        },
         extend: {
             colors: {
                 mmt: {

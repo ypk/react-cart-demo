@@ -1,4 +1,3 @@
-import hash from 'object-hash';
 
 const ProductMockData = [
   {

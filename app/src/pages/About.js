@@ -1,27 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../components/common/Loading";
 import Layout from "../components/Layout";
+import APIService from "../services/api-service";
+
 import { v4 as uuidv4 } from "uuid";
 
 const About = () => {
   const [catFacts, setCatFacts] = useState([]);
   const [hasFacts, setHasFacts] = useState(false);
   const [failedLoading, setFailedLoading] = useState(false);
-
-  const fetchAPI = async (apiUrl) => {
-    try {
-      const response = await fetch(apiUrl);
-      return await response.json();
-    } catch (e) {
-      setFailedLoading(true);
-      return;
-    }
-  };
+  const APIUrl = "https://catfact.ninja/facts?limit=5";
+  APIService.init(APIUrl);
 
   useEffect(() => {
-    const APIUrl = "https://catfact.ninja/facts?limit=5";
-    const data = fetchAPI(APIUrl);
-    data.then((d) => {
+    const content = APIService.get((e)=> {
+      setFailedLoading(true);
+    });
+    content.then((d) => {
       if (d && d.data && d.data.length > 0) {
         const serializedData = d.data.map((factObj) => {
           const uuid = uuidv4();

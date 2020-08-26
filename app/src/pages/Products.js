@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Loading from "../components/common/Loading";
 import Layout from "../components/Layout";
 import { ProductContext, CurrencyContext } from "../contexts";
 import { NormalizeSlug } from "../helpers";

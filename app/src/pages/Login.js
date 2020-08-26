@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Loading, PasswordIcons } from "../components/common";
+import React, { useState } from "react";
+import { PasswordIcons } from "../components/common";
 import Layout from "../components/Layout";
 
 const Login = () => {
@@ -133,9 +133,9 @@ const Login = () => {
             <div className="text-center pt-12 pb-12">
               <p>
                 Don't have an account?&nbsp;
-                <a className="underline cursor-pointer font-semibold hover:underline hover:text-blue-400">
+                <button className="underline cursor-pointer font-semibold hover:underline hover:text-blue-400">
                   Register here
-                </a>.
+                </button>.
               </p>
             </div>
           </div>

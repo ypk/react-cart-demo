@@ -131,7 +131,7 @@ const NotFound = () => {
             <div className="w-full md:w-1/4 pl-3">
               <img
                 className="shadow-lg"
-                alt="A picture of cat"
+                alt="A sneaky cat"
                 src="https://images.unsplash.com/photo-1549545931-59bf067af9ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80"
               />
             </div>

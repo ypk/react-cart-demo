@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import Routes from "./routes";
-import ProductsContextProvider from "./providers/Products";
+import { ProductContextProvider, CurrencyContextProvider } from "./providers";
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 
-import './styles/style.css';
+import "./styles/style.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductsContextProvider>
-      <Routes />
-    </ProductsContextProvider>
+    <ProductContextProvider>
+      <CurrencyContextProvider>
+        <Routes />
+      </CurrencyContextProvider>
+    </ProductContextProvider>
   </React.StrictMode>,
-  document.getElementById('app-root')
+  document.getElementById("app-root")
 );
 
 // If you want your app to work offline and load faster, you can change

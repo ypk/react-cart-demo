@@ -4,7 +4,8 @@
 
 * {
     @apply font-poppins;
-    @apply text-lg;
+    @apply antialiased;
+    @apply subpixel-antialiased;
 }
 
 li.custom-styled {
@@ -22,7 +23,7 @@ li.custom-styled:after {
     display: block;
     position: absolute;
     transform: rotate(45deg);
-    top: 0.66rem;
+    top: 0.5rem;
     left: 0.5rem;
 }
 

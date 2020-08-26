@@ -55,6 +55,9 @@ const About = () => {
               need this string to be as big as the one above or it will break
               the appearance of the paragraph. Is this enough? I don't know.
             </p>
+            <p className="my-4">
+              Oh yeah! <kbd>mála</kbd> in Gaelic means Basket/Cart/Bag.
+            </p>
           </div>
         </div>
       </section>
@@ -81,17 +84,17 @@ const About = () => {
         <div className="container pb-8 px-6 mx-auto">
           <div className="flex md:flex-row flex-wrap">
             <div className="w-full md:w-3/4 pr-3">
-              <h3 className="pb-3 font-bold font-cinzel">A cat</h3>
+              <h3 className="pb-3 font-bold font-cinzel text-2xl">A cat</h3>
               <p className="py-3">Meet our C.E.O.</p>
               <p>
                 blah blah blah blah, I've ran out of things to write. I've got
                 that.. what you'd say... Ah! a writer's block.
               </p>
-              <p>
+              <p className="mb-6">
                 Anyways, here's a list of cat facts I've pulled from the
                 internet for your enjoyment.
               </p>
-              <h4 className="py-3 underline">Cat Facts</h4>
+              <h4 className="my-8 underline font-bold">Cat Facts</h4>
               {!hasFacts && !failedLoading ? <Loading /> : null}
               <ul>
                 {hasFacts &&

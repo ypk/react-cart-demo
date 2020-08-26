@@ -3,11 +3,15 @@ import Cart from "./Cart";
 import Home from "./Home";
 import Login from "./Login";
 import NotFound from "./NotFound";
+import Product from "./Product";
+import Products from "./Products";
 
 export {
     About,
     Cart,
     Home,
     Login,
-    NotFound
+    NotFound,
+    Product,
+    Products
 };

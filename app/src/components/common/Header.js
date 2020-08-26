@@ -31,10 +31,18 @@ const Header = () => {
               <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                 <li>
                   <a
-                    className="inline-block no-underline hover:text-black py-2 px-4 hover:text-blue-400"
-                    href="about"
+                    className="inline-block no-underline hover:text-black py-2 pr-4 text-black hover:text-blue-400 focus:text-blue-400"
+                    href="/about"
                   >
                     About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="inline-block no-underline hover:text-black py-2 pl-4 text-black hover:text-blue-400 focus:text-blue-400"
+                    href="/products"
+                  >
+                    Products
                   </a>
                 </li>
               </ul>
@@ -43,7 +51,7 @@ const Header = () => {
 
           <div className="order-1 md:order-2">
             <a
-              className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 font-cinzel text-xl "
+              className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 font-cinzel text-2xl"
               href="/"
             >
               <svg

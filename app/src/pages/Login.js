@@ -83,9 +83,9 @@ const Login = () => {
               onSubmit={handleFormSubmit}
               noValidate
             >
-              <p className="text-center w-full mb-6">Log into your account</p>
-              <div className="flex flex-col pt-4">
-                <label htmlFor="email" className="text-lg">
+              <p className="text-center w-full mb-6 text-3xl font-poppins">Log into your account</p>
+              <div className="flex flex-col mb-4 pt-4">
+                <label htmlFor="email" className="text-lg text-gray-600">
                   Email
                 </label>
                 <input
@@ -98,8 +98,8 @@ const Login = () => {
                   />
                   {userEmailError && <p className="text-red-500">{userEmailError}</p>}
               </div>
-              <div className="flex flex-col pt-4">
-                <label htmlFor="password" className="text-lg">
+              <div className="flex flex-col mb-4 pt-4">
+                <label htmlFor="password" className="text-lg text-gray-600">
                   Password
                 </label>
 
@@ -126,7 +126,7 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="bg-black text-white font-bold font-cinzel text-lg cursor-pointer hover:bg-blue-400 p-2 mt-8"
+                className="bg-black text-white font-bold font-poppins text-lg cursor-pointer hover:bg-blue-400 p-2 mt-8"
               >Log In
               </button>
             </form>

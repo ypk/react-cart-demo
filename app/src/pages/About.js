@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../components/common/Loading";
 import Layout from "../components/Layout";
+import { Breadcrumb } from "../components/common";
 import APIService from "../services/api-service";
 
 import { v4 as uuidv4 } from "uuid";
@@ -10,6 +11,9 @@ const About = () => {
   const [hasFacts, setHasFacts] = useState(false);
   const [failedLoading, setFailedLoading] = useState(false);
   const APIUrl = "https://catfact.ninja/facts?limit=5";
+
+  const currPage = "About";
+
   APIService.init(APIUrl);
 
   useEffect(() => {
@@ -32,28 +36,28 @@ const About = () => {
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2">
         <div className="container py-8 px-6 mx-auto">
-          <h2 className="uppercase tracking-wide font-bold font-cinzel text-gray-800 text-xl mb-8">
-            About
-          </h2>
-          <div className="mt-8 mb-8 text-xl">
-            <p>
-              The page informs the user about the store. It may include
-              information such as when the store was started, How has the store
-              grown until now, and how many people are working behind the scenes
-              to make it happen. How has the store grown until now, and how many
-              people are working behind the scenes to make it happen.
-            </p>
-            <p className="my-4">
-              This is another long line of string to go with the one written
-              above. Does it match the length of the afforementioned string?
-              maybe or maybe not. But I certainly hope that it will because I
-              need this string to be as big as the one above or it will break
-              the appearance of the paragraph. Is this enough? I don't know.
-            </p>
-            <p className="my-4">
-              Oh yeah! <kbd>mála</kbd> in Gaelic means Basket/Cart/Bag.
-            </p>
-          </div>
+          <Breadcrumb currPage={currPage} />
+          <main className="my-8">
+            <div className="mt-8 mb-8 text-xl">
+              <p>
+                The page informs the user about the store. It may include
+                information such as when the store was started, How has the store
+                grown until now, and how many people are working behind the scenes
+                to make it happen. How has the store grown until now, and how many
+                people are working behind the scenes to make it happen.
+              </p>
+              <p className="my-4">
+                This is another long line of string to go with the one written
+                above. Does it match the length of the afforementioned string?
+                maybe or maybe not. But I certainly hope that it will because I
+                need this string to be as big as the one above or it will break
+                the appearance of the paragraph. Is this enough? I don't know.
+              </p>
+              <p className="my-4">
+                Oh yeah! <kbd>mála</kbd> in Gaelic means Basket/Cart/Bag.
+              </p>
+            </div>
+          </main>
         </div>
       </section>
       <section className="bg-mmt-500">

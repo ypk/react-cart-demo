@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
@@ -18,7 +19,7 @@ const NotFound = () => {
           </p>
 
           </div>
-          <a className="font-bold hover:underline hover:text-blue-400" href="/">Return to home</a>
+          <Link className="font-bold hover:underline hover:text-blue-400" to="/">Return to home</Link>
         </div>
       </section>
     </Layout>

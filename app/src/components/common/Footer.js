@@ -23,6 +23,7 @@ const Footer = () => {
                   <a
                     className="inline-block no-underline hover:text-blue-400 hover:underline py-1 mx-2"
                     href="https://www.facebook.com/"
+                    title="Facebook"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +39,7 @@ const Footer = () => {
                   <a
                     className="inline-block no-underline hover:text-blue-400 hover:underline py-1 mx-2"
                     href="https://www.twitter.com/"
+                    title="Twitter"
                   >
                     <svg
                     className="fill-current hover:text-blue-400 inline-block h-8 w-8"
@@ -53,6 +55,7 @@ const Footer = () => {
                   <a
                     className="inline-block no-underline hover:text-blue-400 hover:underline py-1 mx-2"
                     href="https://www.instagram.com/"
+                    title="Instagram"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -70,6 +73,7 @@ const Footer = () => {
                   <a
                     className="inline-block no-underline hover:text-blue-400 hover:underline py-1 mx-2"
                     href="https://www.pintrest.com/"
+                    title="Pintrest"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

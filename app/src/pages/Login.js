@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { PasswordIcons } from "../components/common";
+import { Icons } from "../components/common";
 import Layout from "../components/Layout";
 
 const Login = () => {
 
-  const {HidePasswordIcon, ShowPasswordIcon} = PasswordIcons; 
+  const {HidePasswordIcon, ShowPasswordIcon} = Icons; 
 
   const [controlType, setControlType] = useState({
     type: "password",

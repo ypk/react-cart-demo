@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Layout from "../components/Layout";
+import { Link } from "react-router-dom";
 import { ProductContext, CurrencyContext } from "../contexts";
 import { NormalizeSlug } from "../helpers";
 
@@ -24,22 +25,22 @@ const Home = () => {
             const { id, productName, productPrice, imgUrl } = product;
             return (
               <div className="w-full max-w-sm mx-auto bg-white rounded-md shadow-md  cursor-pointer overflow-hidden hover:shadow-lg" key={id}>
-                <a href={`/product/${NormalizeSlug(id)}`}>
+                <Link to={`/product/${NormalizeSlug(id)}`}>
                   <div className="flex items-end justify-end h-56 w-full bg-cover bg-no-repeat bg-center" style={{backgroundImage: `url(${imgUrl})` }} />
                   <div className="px-5 py-3">
                       <h3 className="text-gray-700 uppercase">{productName}</h3>
                       <span className="text-gray-500 mt-2">{currencyObject.symbol}{productPrice}</span>
                   </div>
-                </a>
+                </Link>
               </div>
             );
           })}
         </div>
 
           <div className="flex justify-end mt-8">
-            <a className="font-bold hover:underline hover:text-blue-400" href="/products">
+            <Link className="font-bold hover:underline hover:text-blue-400" to="/products">
               View all products
-            </a>
+            </Link>
           </div>
         </div>
       </section>

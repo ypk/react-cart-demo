@@ -2,13 +2,19 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import { Breadcrumb, Button, ItemCounter } from "../components/common";
-import { CartContext } from "../contexts";
+import { CurrencyContext, CartContext } from "../contexts";
+import { FormatPrice } from "../helpers";
 
 const Cart = () => {
   const currPage = "Cart";
-  const { incrementProductCount, decrementProductCount, items } = useContext(
+  const DEFAULT_CURRENCY = "GBP";
+  const { incrementProductCount, decrementProductCount, items, removeProduct } = useContext(
     CartContext
   );
+  const { currency } = useContext(CurrencyContext);
+  const currencyObject = currency.reduce(function (prev, curr) {
+    return curr.code === DEFAULT_CURRENCY ? curr : prev;
+  }, null);
   const [quantitySelected, setQuantitySelected] = useState();
 
   const handleCartItemDecrement = (item) => {
@@ -17,6 +23,10 @@ const Cart = () => {
   const handleCartItemIncrement = (item) => {
     incrementProductCount(item);
   };
+
+  const handleDelete = (item) => {
+    removeProduct(item);
+  }
 
   return (
     <Layout>
@@ -40,9 +50,9 @@ const Cart = () => {
                         return (
                           <div
                             key={id}
-                            className="grid grid-flow-row grid-cols-5  pb-4 border-gray-500 border-b-1"
+                            className="grid grid-flow-row grid-cols-5 p-4 my-4 border-gray-500 border-b border-gray-100"
                           >
-                            <div className="col-span-auto">
+                            <div className="col-span-2 md:col-auto">
                               <Link to={"/product"}>
                                 <img
                                   width="100"
@@ -53,30 +63,47 @@ const Cart = () => {
                               </Link>
                             </div>
                             <div className="col-span-3">
-                              <Link to={`/product/${id}`}>{productName}</Link>
-                              <div className="product-quantity-pricing">
-                                <div className="product-quantity">
-                                  <div className="quantity-wrap  qty-show">
-                                    <ItemCounter
-                                      labelClass="text-sm"
-                                      defaultValue={quantity}
-                                      inCart={true}
-                                      onIncrement={() =>
-                                        handleCartItemIncrement(item)
-                                      }
-                                      onDecrement={() =>
-                                        handleCartItemDecrement(item)
-                                      }
-                                    />
-                                  </div>
+                              <div className="flex flex-col justify-between h-full flex-wrap">
+                                <Link
+                                  className="font-bold text-xl"
+                                  to={`/product/${id}`}
+                                >
+                                  {productName}
+                                </Link>
+                                <div className="flex flex-col md:flex-row">
+                                  <ItemCounter
+                                    labelClass="text-md md:my-5 md:mr-3"
+                                    defaultValue={quantity}
+                                    inCart={true}
+                                    onIncrement={() =>
+                                      handleCartItemIncrement(item)
+                                    }
+                                    onDecrement={() =>
+                                      handleCartItemDecrement(item)
+                                    }
+                                  />
                                 </div>
                               </div>
                             </div>
-                            <div className="col-span-1">
-                              <span className="amount">
-                                <span className="currency-symbol">GBP</span>
-                                {productPrice}
-                              </span>
+                            <div className="col-span-5 md:col-auto">
+                              <div className="flex flex-row flex-row-reverse py-6 md:py-0 md:flex-col justify-between h-full items-end flex-wrap">
+                                <Button
+                                  icon="DeleteIcon"
+                                  buttonStyle="silent"
+                                  onClick={() => handleDelete(item)}
+                                  className="py-0 md:py-3 flex flex-row w-26 flex-end justify-end"
+                                >
+                                  <span className="ml-2 md:hidden text-xl font-normal">
+                                    Delete
+                                  </span>
+                                </Button>
+                                <div className="flex text-xl md:mb-4 pb-3 md:pb-0 flex-row">
+                                  <span className="mr-1">
+                                    {currencyObject.symbol}
+                                  </span>
+                                  <span>{FormatPrice(productPrice)}</span>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         );

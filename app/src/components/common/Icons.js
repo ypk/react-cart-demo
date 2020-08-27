@@ -3,6 +3,25 @@ import React from "react";
 const iconHeight = "20pt";
 const iconWidth = "20pt";
 
+
+const DeleteIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
+  return (
+    <svg
+      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width={iconWidth}
+      height={iconHeight}
+      viewBox={`0 0 ${iconWidth} ${iconHeight}`}
+      version="1.1"
+    >
+      <g id="surface1">
+        <path d="M 11.179688 10 L 19.753906 1.421875 C 20.082031 1.097656 20.082031 0.570312 19.753906 0.246094 C 19.429688 -0.0820312 18.902344 -0.0820312 18.578125 0.246094 L 10 8.820312 L 1.421875 0.246094 C 1.097656 -0.0820312 0.570312 -0.0820312 0.246094 0.246094 C -0.0820312 0.570312 -0.0820312 1.097656 0.246094 1.421875 L 8.820312 10 L 0.246094 18.578125 C -0.0820312 18.902344 -0.0820312 19.429688 0.246094 19.753906 C 0.40625 19.917969 0.621094 20 0.832031 20 C 1.046875 20 1.261719 19.917969 1.421875 19.753906 L 10 11.179688 L 18.578125 19.753906 C 18.738281 19.917969 18.953125 20 19.167969 20 C 19.378906 20 19.59375 19.917969 19.753906 19.753906 C 20.082031 19.429688 20.082031 18.902344 19.753906 18.578125 Z M 11.179688 10 "/>
+      </g>
+  </svg>
+  );
+};
+
 const IncreaseIcon = ({disabled}) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
@@ -129,6 +148,7 @@ const Icons = {
   CartIcon,
   IncreaseIcon,
   DecreaseIcon,
+  DeleteIcon,
   ChevronIcon,
   HidePasswordIcon,
   ShowPasswordIcon,

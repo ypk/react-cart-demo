@@ -59,7 +59,7 @@ const Product = () => {
                       itemsCount < quantityAvailable ? (
                         <>
                           <div className="my-12">
-                            <ItemCounter maxLimit={quantityAvailable} onChange={(value) => {
+                            <ItemCounter maxAllowedLimit={quantityAvailable} onChange={(value) => {
                               setQuantitySelected(value)
                             }}/>
                           </div>

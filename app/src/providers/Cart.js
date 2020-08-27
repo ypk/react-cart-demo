@@ -25,17 +25,17 @@ const CartContextProvider = ({ children }) => {
 
   const incrementProductCount = (data) => {
     console.info("Product quantity increased in Cart");
-    dispatch({ action: "incrementItem" });
+    dispatch({ action: "incrementItem", data });
   };
 
   const decrementProductCount = (data) => {
     console.info("Product quantity decreased in Cart");
-    dispatch({ action: "decrementItem" });
+    dispatch({ action: "decrementItem", data });
   };
 
   const checkout = () => {
     console.info("Checking out witt cart");
-    dispatch({ action: "checkOut" });
+    dispatch({ action: "checkOut", state });
   };
 
   const clearCart = () => {

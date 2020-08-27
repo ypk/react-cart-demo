@@ -6,9 +6,17 @@ import { CartContext } from "../contexts";
 
 const Cart = () => {
   const currPage = "Cart";
-  const { items } = useContext(CartContext);
+  const { incrementProductCount, decrementProductCount, items } = useContext(
+    CartContext
+  );
+  const [quantitySelected, setQuantitySelected] = useState();
 
-  const [quantitySelected, setQuantitySelected] = useState(1);
+  const handleCartItemDecrement = (item) => {
+    decrementProductCount(item);
+  };
+  const handleCartItemIncrement = (item) => {
+    incrementProductCount(item);
+  };
 
   return (
     <Layout>
@@ -51,9 +59,14 @@ const Cart = () => {
                                   <div className="quantity-wrap  qty-show">
                                     <ItemCounter
                                       labelClass="text-sm"
-                                      onChange={(value) => {
-                                        setQuantitySelected(value);
-                                      }}
+                                      defaultValue={quantity}
+                                      inCart={true}
+                                      onIncrement={() =>
+                                        handleCartItemIncrement(item)
+                                      }
+                                      onDecrement={() =>
+                                        handleCartItemDecrement(item)
+                                      }
                                     />
                                   </div>
                                 </div>

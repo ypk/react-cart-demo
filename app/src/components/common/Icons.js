@@ -28,7 +28,6 @@ const DecreaseIcon = ({disabled}) => {
     <svg
       className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
       xmlns="http://www.w3.org/2000/svg"
-      xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
       viewBox={`0 0 ${iconWidth} ${iconHeight}`}

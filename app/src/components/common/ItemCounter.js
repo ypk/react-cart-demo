@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "./index";
 
-const ItemCounter = ({ onChange, maxLimit, defaultValue = 1 }) => {
+const ItemCounter = ({ labelClass = null, onChange, maxLimit, defaultValue = 1 }) => {
   let [counterValue, setCounterValue] = useState(defaultValue);
   const updateParentState = () => {
     onChange(counterValue);
@@ -25,7 +25,7 @@ const ItemCounter = ({ onChange, maxLimit, defaultValue = 1 }) => {
   };
   return (
     <>
-      <label className="text-xl text-sm">Quantity:</label>
+      <label className={`${labelClass ? labelClass : "text-xl"}`}>Quantity:</label>
       <div className="flex items-center my-2">
         <Button
           icon="DecreaseIcon"

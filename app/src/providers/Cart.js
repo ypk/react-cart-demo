@@ -2,7 +2,26 @@ import React, { useState } from "react";
 import { CartContext } from "../contexts";
 
 const CartContextProvider = ({ children }) => {
-    //TODO: implement feature to get cartData
+    const initialState = {items: [], checkout: false};
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const addProduct = () => {}
+    const removeProduct = () => {}
+    const incrementProductCount = () => {}
+    const decrementProductCount = () => {}
+    const checkout = () => {}
+    const clearCart = () => {}
+
+    const cartData = {
+        addProduct,
+        removeProduct,
+        incrementProductCount,
+        decrementProductCount,
+        checkout,
+        clearCart,
+        ...state
+    };
+
     return (
     <CartContext.Provider value={{ cartData }}>
       {children}

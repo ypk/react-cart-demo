@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import Icons from "./Icons";
 import Breadcrumb from "./Breadcrumb";
 import Button from "./Button";
-
+import ItemCounter from "./ItemCounter";
 
 export {
     Button,
@@ -12,5 +12,6 @@ export {
     Header,
     Footer,
     Icons,
+    ItemCounter,
     Loading
 };

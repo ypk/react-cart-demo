@@ -3,10 +3,55 @@ import React from "react";
 const iconHeight = "20pt";
 const iconWidth = "20pt";
 
-const CartIcon = () => {
+const IncreaseIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className="h-5 w-5 mr-4"
+      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      xmlns="http://www.w3.org/2000/svg"
+      width={iconWidth}
+      height={iconHeight}
+      viewBox={`0 0 ${iconWidth} ${iconHeight}`}
+      version="1.1"
+    >
+      <g id="surface1">
+        <path d="M 12.5 0 C 5.605469 0 0 5.605469 0 12.5 C 0 19.394531 5.605469 25 12.5 25 C 19.394531 25 25 19.390625 25 12.5 C 25 5.609375 19.394531 0 12.5 0 Z M 12.5 23.0625 C 6.675781 23.0625 1.9375 18.324219 1.9375 12.5 C 1.9375 6.675781 6.675781 1.9375 12.5 1.9375 C 18.324219 1.9375 23.0625 6.675781 23.0625 12.5 C 23.0625 18.324219 18.324219 23.0625 12.5 23.0625 Z M 12.5 23.0625 " />
+        <path d="M 17.339844 11.445312 L 13.46875 11.445312 L 13.46875 7.570312 C 13.46875 7.039062 13.035156 6.601562 12.5 6.601562 C 11.964844 6.601562 11.53125 7.039062 11.53125 7.570312 L 11.53125 11.445312 L 7.660156 11.445312 C 7.125 11.445312 6.691406 11.878906 6.691406 12.414062 C 6.691406 12.949219 7.125 13.382812 7.660156 13.382812 L 11.53125 13.382812 L 11.53125 17.253906 C 11.53125 17.789062 11.964844 18.222656 12.5 18.222656 C 13.035156 18.222656 13.46875 17.789062 13.46875 17.253906 L 13.46875 13.382812 L 17.339844 13.382812 C 17.875 13.382812 18.308594 12.949219 18.308594 12.414062 C 18.308594 11.878906 17.875 11.445312 17.339844 11.445312 Z M 17.339844 11.445312 " />
+      </g>
+    </svg>
+  );
+};
+
+const DecreaseIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
+  return (
+    <svg
+      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns="http://www.w3.org/2000/svg"
+      width={iconWidth}
+      height={iconHeight}
+      viewBox={`0 0 ${iconWidth} ${iconHeight}`}
+      version="1.1"
+    >
+      <g id="surface1">
+        <path
+          d="M 12.5 0 C 5.609375 0 0 5.605469 0 12.5 C 0 19.394531 5.609375 25 12.5 25 C 19.394531 25 25 19.394531 25 12.5 C 25 5.605469 19.390625 0 12.5 0 Z M 12.5 23.0625 C 6.675781 23.0625 1.9375 18.324219 1.9375 12.5 C 1.9375 6.675781 6.675781 1.9375 12.5 1.9375 C 18.324219 1.9375 23.0625 6.675781 23.0625 12.5 C 23.0625 18.324219 18.324219 23.0625 12.5 23.0625 Z M 12.5 23.0625 "
+        />
+        <path
+          d="M 17.339844 11.445312 L 7.660156 11.445312 C 7.125 11.445312 6.691406 11.878906 6.691406 12.414062 C 6.691406 12.949219 7.125 13.382812 7.660156 13.382812 L 17.339844 13.382812 C 17.875 13.382812 18.308594 12.949219 18.308594 12.414062 C 18.308594 11.878906 17.875 11.445312 17.339844 11.445312 Z M 17.339844 11.445312 "
+        />
+      </g>
+    </svg>
+  );
+};
+
+const CartIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
+  return (
+    <svg
+      className={`h-5 w-5 mr-4 ${disabled ? disabledStyles : ""}`}
+      xmlns="http://www.w3.org/2000/svg"
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -19,10 +64,11 @@ const CartIcon = () => {
   );
 };
 
-const ChevronIcon = () => {
+const ChevronIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className="fill-current mx-1"
+      className={`fill-current mx-1 ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
       xmlns="http://www.w3.org/2000/svg"
       width="15pt"
       height="25pt"
@@ -36,10 +82,11 @@ const ChevronIcon = () => {
   );
 };
 
-const HidePasswordIcon = () => {
+const HidePasswordIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className="fill-current text-gray-500 hover:text-blue-400"
+      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400 "}`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -57,10 +104,11 @@ const HidePasswordIcon = () => {
   );
 };
 
-const ShowPasswordIcon = () => {
+const ShowPasswordIcon = ({disabled}) => {
+  const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className="fill-current text-gray-500 hover:text-blue-400"
+      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -80,9 +128,11 @@ const ShowPasswordIcon = () => {
 
 const Icons = {
   CartIcon,
+  IncreaseIcon,
+  DecreaseIcon,
   ChevronIcon,
   HidePasswordIcon,
-  ShowPasswordIcon
+  ShowPasswordIcon,
 };
 
 export default Icons;

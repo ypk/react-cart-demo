@@ -11,14 +11,14 @@ const CartContextProvider = ({ children }) => {
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addProduct = (data) => {
+  const addProduct = (data, quantity=1) => {
     console.info("Product added to Cart");
-    dispatch({ action: "addItem", data });
+    dispatch({ action: "addItem", data, quantity });
   };
 
-  const removeProduct = (data) => {
+  const removeProduct = (data, quantity=1) => {
     console.info("Product removed from Cart");
-    dispatch({ action: "removeItem", data });
+    dispatch({ action: "removeItem", data, quantity });
   };
 
   const incrementProductCount = (data) => {

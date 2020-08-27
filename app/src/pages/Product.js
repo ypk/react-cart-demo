@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
-import { Breadcrumb, Button, Icons } from "../components/common";
+import { Breadcrumb, Button, ItemCounter } from "../components/common";
 import { ProductContext, CurrencyContext, CartContext } from "../contexts";
 import { NormalizeSlug } from "../helpers";
 import { useParams } from "react-router-dom";
@@ -9,6 +9,7 @@ const Product = () => {
   let params = useParams();
   const DEFAULT_CURRENCY = "GBP";
 
+  const [quantitySelected, setQuantitySelected] = useState(1);
   const { products } = useContext(ProductContext);
   const { currency } = useContext(CurrencyContext);
   const { addProduct, itemsCount } = useContext(CartContext);
@@ -19,13 +20,12 @@ const Product = () => {
   const currencyObject = currency.reduce(function (prev, curr) {
     return curr.code === DEFAULT_CURRENCY ? curr : prev;
   }, null);
-  const { productName, productPrice, productDescription, imgUrl } = product;
+  const { productName, productPrice, quantityAvailable, productDescription, imgUrl } = product;
 
   const prevPage = {
     link: "/products",
     title: "Products",
   };
-  const {ChevronIcon} = Icons;
   const currPage = productName;
 
   return (
@@ -38,7 +38,7 @@ const Product = () => {
               <div className="md:flex md:items-center">
                 <div className="w-full mr-6 md:w-1/2">
                   <img
-                    className="w-1/2 max-h-1/2 rounded-md shadow-md object-cover mx-auto"
+                    className="w-3/4 max-h-1/2 rounded-md shadow-md object-cover mx-auto"
                     src={`/${imgUrl}`}
                     alt={productName}
                   />
@@ -51,56 +51,36 @@ const Product = () => {
                     {currencyObject.symbol}
                     {productPrice}
                   </span>
+
                   <div className="my-12">{productDescription}</div>
+
                   <div className="my-12">
-                    <label className="text-xl  text-sm" htmlFor="count">
-                      Quantity:
-                    </label>
-                    <div className="flex items-center my-4">
-                      <button className="text-gray-500 focus:outline-none focus:text-gray-600">
-                        <svg
-                          className="h-5 w-5"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                      </button>
-                      <span className="text-gray-700 text-lg mx-2">20</span>
-                      <button className="text-gray-500 focus:outline-none focus:text-gray-600">
-                        <svg
-                          className="h-5 w-5"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  {product.quantityAvailable > 0 ? (
-                    itemsCount < product.quantityAvailable ? (
-                      <Button
-                        icon="CartIcon"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          addProduct(product);
-                        }}
-                      >Add to cart</Button>
+                    {quantityAvailable > 0 ? (
+                      itemsCount < quantityAvailable ? (
+                        <>
+                          <div className="my-12">
+                            <ItemCounter maxLimit={quantityAvailable} onChange={(value) => {
+                              setQuantitySelected(value)
+                            }}/>
+                          </div>
+
+                          <Button
+                            icon="CartIcon"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              addProduct(product, quantitySelected);
+                            }}
+                          >
+                            Add to cart
+                          </Button>
+                        </>
+                      ) : (
+                        <p className="text-gray-500">Sorry, Item out of stock</p>
+                      )
                     ) : (
-                      <Button className="pointer-events-none" silent={true}>Sorry, Item out of stock</Button>
-                    )
-                  ) : (
-                    <Button className="pointer-events-none" silent={true}>Sorry, Item out of stock</Button>
-                  )}
+                      <p className="text-gray-500">Sorry, Item out of stock</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

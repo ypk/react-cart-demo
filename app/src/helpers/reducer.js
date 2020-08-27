@@ -1,13 +1,13 @@
 import { CartItemsCount, CartTotalPrice } from "../helpers/cart-items";
 
 const reducer = (state, trigger) => {
-    const {action, data} = trigger;
+    const {action, data, quantity} = trigger;
     switch(action) {
         case "addItem":
             if(!state.items.find(item => item.id === data)) {
                 state.items.push({
                     ...data,
-                    quantity: 1
+                    quantity
                 });
             }
             return {

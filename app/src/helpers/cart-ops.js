@@ -1,3 +1,5 @@
+import { LocalStorage } from "./index";
+
 const CartItemsCount = (items) => {
   const itemsCount = items.reduce(
     (total, product) => total + product.quantity,
@@ -17,4 +19,14 @@ const CartTotalPrice = (items, VAT = null) => {
   return cartTotal.toFixed(2);
 };
 
-export { CartItemsCount, CartTotalPrice };
+const GetCartItemsCountAndTotal = (items) => {
+    LocalStorage.SetItem(items);
+    let itemsCount = CartItemsCount(items);
+    let totalPrice = CartTotalPrice(items);
+    return {
+        itemsCount,
+        totalPrice
+    };
+}
+
+export default GetCartItemsCountAndTotal;

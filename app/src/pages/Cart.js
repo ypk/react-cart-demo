@@ -8,6 +8,8 @@ const Cart = () => {
   const currPage = "Cart";
   const { items } = useContext(CartContext);
 
+  const [quantitySelected, setQuantitySelected] = useState(1);
+
   return (
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2 md:mb-20">
@@ -48,8 +50,10 @@ const Cart = () => {
                                 <div className="product-quantity">
                                   <div className="quantity-wrap  qty-show">
                                     <ItemCounter
-                                      defaultValue={quantity}
                                       labelClass="text-sm"
+                                      onChange={(value) => {
+                                        setQuantitySelected(value);
+                                      }}
                                     />
                                   </div>
                                 </div>

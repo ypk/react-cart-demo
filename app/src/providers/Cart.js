@@ -1,15 +1,17 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import { CartContext } from "../contexts";
-import reducer from "../helpers/reducer";
+import { CartReducer, LocalStorage, GetCartItemsCountAndTotal } from "../helpers";
 
 const CartContextProvider = ({ children }) => {
+  const storedItems = LocalStorage.GetItems();
+
   const initialState = {
-    items: [],
-    itemsCount: 0,
-    cartTotal: 0.0,
-    checkout: false,
+    items: storedItems,
+    ...GetCartItemsCountAndTotal(storedItems),
+    checkout: false
   };
-  const [state, dispatch] = useReducer(reducer, initialState);
+  
+  const [state, dispatch] = useReducer(CartReducer, initialState);
 
   const addProduct = (data, quantity=1) => {
     console.info("Product added to Cart");

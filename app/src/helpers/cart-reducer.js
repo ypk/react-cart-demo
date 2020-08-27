@@ -1,6 +1,6 @@
-import { CartItemsCount, CartTotalPrice } from "../helpers/cart-items";
+import { GetCartItemsCountAndTotal } from "./index";
 
-const reducer = (state, trigger) => {
+const CartReducer = (state, trigger) => {
     const {action, data, quantity} = trigger;
     switch(action) {
         case "addItem":
@@ -12,25 +12,22 @@ const reducer = (state, trigger) => {
             }
             return {
                 ...state,
-                itemsCount: CartItemsCount(state.items),
-                cartTotal: CartTotalPrice(state.items),
+                ...GetCartItemsCountAndTotal(state.items),
                 items: [...state.items]
             }
         case "removeItem": 
             const removedItem = [...state.items.filter(item => item.id !== data)];
             return {
                 ...state,
-                itemsCount: CartItemsCount(removedItem),
-                cartTotal: CartTotalPrice(removedItem),
+                ...GetCartItemsCountAndTotal(removedItem),
                 items: [...removedItem]
             }
         case "incrementItem": 
             let itemToIncrement = [state.items.findIndex(item => item.id === data)]
             state.items[itemToIncrement].quantity++;
             return {
-                ...state,
-                itemsCount: CartItemsCount(itemToIncrement),
-                cartTotal: CartTotalPrice(itemToIncrement),
+                ...state,                
+                ...GetCartItemsCountAndTotal(state.items),
                 items: [...state.items]
             } 
         case "decrementItem": 
@@ -38,27 +35,24 @@ const reducer = (state, trigger) => {
             state.items[itemToDecrement].quantity--;
             return {
                 ...state,
-                itemsCount: CartItemsCount(itemToDecrement),
-                cartTotal: CartTotalPrice(itemToDecrement),
+                ...GetCartItemsCountAndTotal(state.items),
                 items: [...state.items]
             } 
         case "checkOut": 
             return {
                 items: [],
                 checkout: true,
-                itemsCount: CartItemsCount([]),
-                cartTotal: CartTotalPrice([]),
+                ...GetCartItemsCountAndTotal([])
                 
             } 
         case "emptyCart": 
             return {
                 items: [],
-                itemsCount: CartItemsCount([]),
-                cartTotal: CartTotalPrice([]),
+                ...GetCartItemsCountAndTotal([])
             };
         default:
             return state; 
     }
 }
 
-export default reducer;
+export default CartReducer;

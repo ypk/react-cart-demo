@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Routes from "./routes";
-import { ProductContextProvider, CurrencyContextProvider } from "./providers";
+import {
+  ProductContextProvider,
+  CurrencyContextProvider,
+  VATContextProvider,
+  CartContextProvider,
+} from "./providers";
 
 import * as serviceWorker from "./serviceWorker";
 
@@ -10,9 +15,13 @@ import "./styles/style.css";
 ReactDOM.render(
   <React.StrictMode>
     <ProductContextProvider>
-      <CurrencyContextProvider>
-        <Routes />
-      </CurrencyContextProvider>
+      <CartContextProvider>
+        <CurrencyContextProvider>
+          <VATContextProvider>
+            <Routes />
+          </VATContextProvider>
+        </CurrencyContextProvider>
+      </CartContextProvider>
     </ProductContextProvider>
   </React.StrictMode>,
   document.getElementById("app-root")

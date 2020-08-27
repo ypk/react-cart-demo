@@ -1,33 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { CartContext } from "../contexts";
+import reducer from "../helpers/reducer";
 
 const CartContextProvider = ({ children }) => {
     const initialState = {items: [], checkout: false};
-    const reducer = () => {};
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const addProduct = () => {
-        console.log("Product added to Cart");
+    const addProduct = data => {
+        console.info("Product added to Cart");
+        dispatch({type: 'addItem', data})
     }
     
-    const removeProduct = () => {
-        console.log("Product removed from Cart");
+    const removeProduct  = data  => {
+        console.info("Product removed from Cart");
+        dispatch({type: 'removeItem', data})
     }
     
-    const incrementProductCount = () => {
-        console.log("Product quantity increased in Cart");
+    const incrementProductCount = data  => {
+        console.info("Product quantity increased in Cart");
+        dispatch({action: 'incrementItem'});
     }
     
-    const decrementProductCount = () => {
-        console.log("Product quantity decreased in Cart");
+    const decrementProductCount  = data  => {
+        console.info("Product quantity decreased in Cart");
+        dispatch({action: 'decrementItem'});
     }
     
     const checkout = () => {
-        console.log("Checking out witt cart");
+        console.info("Checking out witt cart");
+        dispatch({action: 'checkOut'});
     }
 
     const clearCart = () => {
-        console.log("Emptying Cart");
+        console.info("Emptying Cart");
+        dispatch({action: 'emptyCart'});
     }
 
     const cartData = {

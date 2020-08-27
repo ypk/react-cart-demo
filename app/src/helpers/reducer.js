@@ -1,8 +1,8 @@
 const reducer = (state, trigger) => {
-    const {type, data} = trigger;
-    switch(type) {
+    const {action, data} = trigger;
+    switch(action) {
         case "addItem": 
-            if(!state.items.find(item => item.id === data) {
+            if(!state.items.find(item => item.id === data)) {
                 state.items.push({
                     ...data,
                     quantity: 1
@@ -13,21 +13,21 @@ const reducer = (state, trigger) => {
                 items: [...state.items]
             } 
         case "removeItem": 
-            const filteredItems = [...state.items.filter(item => item.id !== data)];
+            const removedItem = [...state.items.filter(item => item.id !== data)];
             return {
                 ...state,
-                items: [...filteredItems]
+                items: [...removedItem]
             }
         case "incrementItem": 
-            const item = [state.items.findIndex(item => item.id === data)]
-            state.items[item].quantity++;
+            let itemToIncrement = [state.items.findIndex(item => item.id === data)]
+            state.items[itemToIncrement].quantity++;
             return {
                 ...state,
                 items: [...state.items]
             } 
         case "decrementItem": 
-            const item = [state.items.findIndex(item => item.id === data)]
-            state.items[item].quantity--;
+            const itemToDecrement = [state.items.findIndex(item => item.id === data)]
+            state.items[itemToDecrement].quantity--;
             return {
                 ...state,
                 items: [...state.items]

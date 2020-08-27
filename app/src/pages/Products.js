@@ -62,17 +62,21 @@ const Products = () => {
                     className="w-full max-w-sm mx-auto bg-white rounded-md shadow-md cursor-pointer overflow-hidden hover:shadow-lg"
                     key={id}
                   >
-                    <Link href={`/product/${NormalizeSlug(id)}`}>
+                    <Link to={`/product/${NormalizeSlug(id)}`}>
                       <div
                         className="flex items-end justify-end h-56 w-full bg-cover bg-no-repeat bg-center"
                         style={{ backgroundImage: `url(${imgUrl})` }}
                       />
-                      <div className="px-5 py-3">
-                        <h3 className="text-gray-700 uppercase">{productName}</h3>
+                      <div className="product-info justify-center items-stretch">
+                        <div className="px-5 py-3 h-20">
+                          <h3 className="text-gray-700 uppercase">{productName}</h3>
+                        </div>
+                        <div className="px-5 py-3">
                         <span className="text-gray-500 mt-2">
                           {currencyObject.symbol}
                           {productPrice}
                         </span>
+                        </div>
                       </div>
                     </Link>
                   </div>

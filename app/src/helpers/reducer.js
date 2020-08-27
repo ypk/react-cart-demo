@@ -1,7 +1,9 @@
+import { CartItemsCount, CartTotalPrice } from "../helpers/cart-items";
+
 const reducer = (state, trigger) => {
     const {action, data} = trigger;
     switch(action) {
-        case "addItem": 
+        case "addItem":
             if(!state.items.find(item => item.id === data)) {
                 state.items.push({
                     ...data,
@@ -10,12 +12,16 @@ const reducer = (state, trigger) => {
             }
             return {
                 ...state,
+                itemsCount: CartItemsCount(state.items),
+                cartTotal: CartTotalPrice(state.items),
                 items: [...state.items]
-            } 
+            }
         case "removeItem": 
             const removedItem = [...state.items.filter(item => item.id !== data)];
             return {
                 ...state,
+                itemsCount: CartItemsCount(removedItem),
+                cartTotal: CartTotalPrice(removedItem),
                 items: [...removedItem]
             }
         case "incrementItem": 
@@ -23,6 +29,8 @@ const reducer = (state, trigger) => {
             state.items[itemToIncrement].quantity++;
             return {
                 ...state,
+                itemsCount: CartItemsCount(itemToIncrement),
+                cartTotal: CartTotalPrice(itemToIncrement),
                 items: [...state.items]
             } 
         case "decrementItem": 
@@ -30,16 +38,23 @@ const reducer = (state, trigger) => {
             state.items[itemToDecrement].quantity--;
             return {
                 ...state,
+                itemsCount: CartItemsCount(itemToDecrement),
+                cartTotal: CartTotalPrice(itemToDecrement),
                 items: [...state.items]
             } 
         case "checkOut": 
             return {
                 items: [],
-                checkout: true
+                checkout: true,
+                itemsCount: CartItemsCount([]),
+                cartTotal: CartTotalPrice([]),
+                
             } 
         case "emptyCart": 
             return {
-                items: []
+                items: [],
+                itemsCount: CartItemsCount([]),
+                cartTotal: CartTotalPrice([]),
             };
         default:
             return state; 

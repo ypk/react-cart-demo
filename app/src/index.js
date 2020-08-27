@@ -13,7 +13,6 @@ import * as serviceWorker from "./serviceWorker";
 import "./styles/style.css";
 
 ReactDOM.render(
-  <React.StrictMode>
     <ProductContextProvider>
       <CartContextProvider>
         <CurrencyContextProvider>
@@ -22,8 +21,7 @@ ReactDOM.render(
           </VATContextProvider>
         </CurrencyContextProvider>
       </CartContextProvider>
-    </ProductContextProvider>
-  </React.StrictMode>,
+    </ProductContextProvider>,
   document.getElementById("app-root")
 );
 

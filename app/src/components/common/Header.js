@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../contexts";
 
 const Header = () => {
   const [isMenuHidden, setIsMenuHidden] = useState(true);
+
+  const {itemsCount} = useContext(CartContext);
+
   const toggleMenu = (e) => {
     e.preventDefault();
     setIsMenuHidden(!isMenuHidden);
   };
+
   return (
     <header>
       <nav id="header" className="w-full z-30 top-0 py-1">
@@ -83,7 +88,7 @@ const Header = () => {
             id="nav-content"
           >
             <Link
-              className="inline-block no-underline hover:text-blue-400 px-2"
+              className="no-underline hover:text-blue-400 px-2"
               to="/login"
               title="Login"
             >
@@ -101,10 +106,9 @@ const Header = () => {
 
             <Link
               title="Cart"
-              className="inline-block no-underline hover:text-blue-400  px-2"
+              className="flex flex-row no-underline hover:text-blue-400 px-2"
               to="/cart"
             >
-              {" "}
               <svg
                 className="fill-current hover:text-blue-400"
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,6 +120,7 @@ const Header = () => {
                 <circle cx="10.5" cy="18.5" r="1.5" />
                 <circle cx="17.5" cy="18.5" r="1.5" />
               </svg>
+          {itemsCount > 0 ? <div className="tracking-wide text-white text-sm rounded-full font-semibold bg-black hover:bg-blue-400 px-2 ml-2"><span className="mx-1">{itemsCount}</span>{ itemsCount < 2 ? "Item" : "Items"} in cart</div> : null }
             </Link>
           </div>
         </div>

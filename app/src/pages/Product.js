@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Layout from "../components/Layout";
-import { Breadcrumb, Button } from "../components/common";
+import { Breadcrumb, Button, Icons } from "../components/common";
 import { ProductContext, CurrencyContext, CartContext } from "../contexts";
 import { NormalizeSlug } from "../helpers";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ const Product = () => {
 
   const { products } = useContext(ProductContext);
   const { currency } = useContext(CurrencyContext);
-  const { addProduct } = useContext(CartContext);
+  const { addProduct, itemsCount } = useContext(CartContext);
 
   const product = products.reduce(function (prev, curr) {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
@@ -25,6 +25,7 @@ const Product = () => {
     link: "/products",
     title: "Products",
   };
+  const {ChevronIcon} = Icons;
   const currPage = productName;
 
   return (
@@ -85,13 +86,21 @@ const Product = () => {
                       </button>
                     </div>
                   </div>
-                  <Button
-                    icon="CartIcon"
-                    title="Add to cart"
-                    event={() => {
-                      addProduct(product);
-                    }}
-                  ></Button>
+                  {product.quantityAvailable > 0 ? (
+                    itemsCount < product.quantityAvailable ? (
+                      <Button
+                        icon="CartIcon"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addProduct(product);
+                        }}
+                      >Add to cart</Button>
+                    ) : (
+                      <Button className="pointer-events-none" silent={true}>Sorry, Item out of stock</Button>
+                    )
+                  ) : (
+                    <Button className="pointer-events-none" silent={true}>Sorry, Item out of stock</Button>
+                  )}
                 </div>
               </div>
             </div>

@@ -33,8 +33,8 @@ const CartContextProvider = ({ children }) => {
     dispatch({ action: "decrementItem", data });
   };
 
-  const checkout = () => {
-    console.info("Checking out witt cart");
+  const checkOut = () => {
+    console.info("Checking out with cart");
     dispatch({ action: "checkOut", state });
   };
 
@@ -48,7 +48,7 @@ const CartContextProvider = ({ children }) => {
     removeProduct,
     incrementProductCount,
     decrementProductCount,
-    checkout,
+    checkOut,
     clearCart,
     ...state,
   };

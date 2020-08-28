@@ -43,7 +43,6 @@ const CartReducer = (state, trigger) => {
                 items: [],
                 checkout: true,
                 ...GetCartItemsCountAndTotal([])
-                
             } 
         case "emptyCart": 
             return {

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
 import { Breadcrumb, Button, ItemCounter } from "../components/common";
 import { CurrencyContext, CartContext } from "../contexts";
@@ -8,9 +8,16 @@ import { FormatPrice } from "../helpers";
 const Cart = () => {
   const currPage = "Cart";
   const DEFAULT_CURRENCY = "GBP";
-  const { incrementProductCount, decrementProductCount, items, removeProduct } = useContext(
-    CartContext
-  );
+  const history = useHistory();
+
+  const {
+    incrementProductCount,
+    decrementProductCount,
+    items,
+    removeProduct,
+    checkOut,
+    clearCart,
+  } = useContext(CartContext);
   const { currency } = useContext(CurrencyContext);
   const currencyObject = currency.reduce(function (prev, curr) {
     return curr.code === DEFAULT_CURRENCY ? curr : prev;
@@ -24,9 +31,27 @@ const Cart = () => {
     incrementProductCount(item);
   };
 
-  const handleDelete = (item) => {
+  const handleDeleteItemClick = (item) => {
     removeProduct(item);
-  }
+  };
+
+  const handleEmptyCartBtnClick = () => {
+    alert(`This will clear the cart now`);
+    clearCart();
+  };
+
+  const handleCheckoutCartBtnClick = () => {
+    let purchased = "";
+    items.reduce((curr, prev) => {
+      purchased += `> ${prev.productName} - Qty: ${prev.quantity}\n`;
+    }, 0);
+    alert(`Checkout Initiated.\n\nProducts purchased:\n\n${purchased}`);
+    checkOut();
+  };
+
+  const handleContinueShoppingBtnClick = () => {
+    history.push("/products");
+  };
 
   return (
     <Layout>
@@ -90,7 +115,8 @@ const Cart = () => {
                                 <Button
                                   icon="DeleteIcon"
                                   buttonStyle="silent"
-                                  onClick={() => handleDelete(item)}
+                                  title="Delete Item"
+                                  onClick={() => handleDeleteItemClick(item)}
                                   className="py-0 md:py-3 flex flex-row w-26 flex-end justify-end"
                                 >
                                   <span className="ml-2 md:hidden text-xl font-normal">
@@ -114,17 +140,59 @@ const Cart = () => {
                   </div>
                 </>
               ) : (
-                <div className="w-full md:w-1/2 flex flex-col mx-auto">
-                  <p>Your cart is currently empty.</p>
-                  <Link
-                    className="font-bold hover:underline hover:text-blue-400"
-                    to="/"
-                  >
-                    Return to home
-                  </Link>
+                <div className="w-full md:w-1/2 my-6 md:my-32 flex flex-col mx-auto">
+                  <p className="my-12 text-gray-600">
+                    Your cart is currently empty. Here are some options for you:
+                  </p>
+                  <div>
+                    <Link
+                      className="font-bold hover:underline hover:text-blue-400 mr-4 "
+                      to="/"
+                    >
+                      Go Home
+                    </Link>
+                    <Link
+                      className="font-bold hover:underline hover:text-blue-400 ml-4"
+                      to="/products"
+                    >
+                      Add Products
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
+            {items.length > 0 && (
+              <>
+                <div className="w-full md:items-center md:flex">
+                  <div className="w-full flex flex-row justify-between">
+                    <div className="flex flex-col">
+                      <Button onClick={handleContinueShoppingBtnClick}>
+                        Continue Shopping
+                      </Button>
+                    </div>
+                    <div className="flex flex-col">
+                      <Button
+                        onClick={handleEmptyCartBtnClick}
+                        buttonStyle="custom"
+                        className="justify-end bg-red-500 hover:bg-red-900 focus:bg-red-900"
+                      >
+                        Empty Cart
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-1/3 flex flex-col items-center flex-grow flex-shrink">
+                    <div div className="flex flex-col">
+                      <Button
+                        onClick={handleCheckoutCartBtnClick}
+                        className="justify-center"
+                      >
+                        Checkout
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </main>
         </div>
       </section>

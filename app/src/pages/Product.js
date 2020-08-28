@@ -20,7 +20,7 @@ const Product = () => {
   const currencyObject = currency.reduce(function (prev, curr) {
     return curr.code === DEFAULT_CURRENCY ? curr : prev;
   }, null);
-  const { productName, productPrice, quantityAvailable, productDescription, imgUrl } = product;
+  const { productName, productPrice, quantityAvailable, quantity, productDescription, imgUrl } = product;
 
   const prevPage = {
     link: "/products",
@@ -56,14 +56,13 @@ const Product = () => {
 
                   <div className="my-12">
                     {quantityAvailable > 0 ? (
-                      itemsCount < quantityAvailable ? (
                         <>
-                          <div className="my-12">
-                            <ItemCounter maxAllowedLimit={quantityAvailable} onChange={(value) => {
-                              setQuantitySelected(value)
-                            }}/>
-                          </div>
-
+                        <div className="my-12 flex flex-row md:flex-col">
+                          <ItemCounter labelClass="my-5 mr-5 md:my-0 md:mr-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
+                            setQuantitySelected(value)
+                          }}/>
+                        </div>
+                        <div className="flex flex-col items-center">
                           <Button
                             icon="CartIcon"
                             onClick={(e) => {
@@ -73,10 +72,8 @@ const Product = () => {
                           >
                             Add to cart
                           </Button>
-                        </>
-                      ) : (
-                        <p className="text-gray-500">Sorry, Item out of stock</p>
-                      )
+                        </div>
+                      </>
                     ) : (
                       <p className="text-gray-500">Sorry, Item out of stock</p>
                     )}

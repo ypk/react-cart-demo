@@ -1,32 +1,59 @@
-import { LocalStorage } from "./index";
+import {
+  LocalStorage,
+  GetVATAmount,
+  GetVATRateObject
+} from "./index";
 
 const CartItemsCount = (items) => {
   const itemsCount = items.reduce(
-    (total, product) => total + product.quantity,
+    (total, product) => Number.parseInt(total + product.quantity),
     0
   );
   return itemsCount;
 };
 
-const CartTotalPrice = (items, VAT = null) => {
+const ItemsTotalPrice = (items) => {
+  items.forEach((item) => {
+    item.totalPrice = Number.parseFloat(item.productPrice * item.quantity);
+  });
+  return items;
+};
+
+const CartTotalPrice = (items, VAT = false) => {
   const cartTotal = items.reduce((total, product) => {
     if (VAT) {
-      return ((total + product.price * product.quantity) * VAT) / 100;
+      const vatRateObject = GetVATRateObject();
+      const vatAmount = GetVATAmount(
+        product.productPrice,
+        product.quantity,
+        vatRateObject.vatRate
+      );
+      return Number.parseFloat((total + (product.productPrice + vatAmount)) * product.quantity);
     } else {
-      return total + product.price * product.quantity;
+      return Number.parseFloat(total + product.productPrice * product.quantity);
     }
   }, 0);
   return cartTotal.toFixed(2);
 };
 
+const StoreCartItems = (items) => {
+  const STORAGE_KEY = "MMT-STORE-CART";
+  LocalStorage.SetItem(items, STORAGE_KEY);
+};
+
 const GetCartItemsCountAndTotal = (items) => {
-    LocalStorage.SetItem(items);
-    let itemsCount = CartItemsCount(items);
-    let totalPrice = CartTotalPrice(items);
-    return {
-        itemsCount,
-        totalPrice
-    };
-}
+  StoreCartItems(items);
+  let itemsCount = CartItemsCount(items);
+  let itemsTotalPrice = ItemsTotalPrice(items);
+  let totalPrice = CartTotalPrice(items);
+  let totalPriceVAT = CartTotalPrice(items, true);
+
+  return {
+    itemsCount,
+    itemsTotalPrice,
+    totalPrice,
+    totalPriceVAT,
+  };
+};
 
 export default GetCartItemsCountAndTotal;

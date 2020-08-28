@@ -1,14 +1,14 @@
 import React from "react";
 import { Icons } from "../common";
 
-const Button = ({ icon, children, className, disabled, buttonStyle="button", ...rest}) => {
+const Button = ({ icon, children, className, disabled, buttonStyle, ...rest}) => {
   const ButtonIcon = icon ? Icons[icon] : null;
-  let customClasses = buttonStyle === "silent" ? "px-2 text-gray-700" : buttonStyle !== "custom" ? "px-5 bg-black hover:bg-blue-500 focus:bg-blue-500 text-white" : `px-5 text-white ${className}`;
+  let styleClasses = (buttonStyle === "silent") ? "text-gray-700": (buttonStyle !== "button") ? "bg-black hover:bg-blue-400 focus:bg-blue-400" : "";
   return (
-    <button type="button" {...rest} className={`py-3 flex ${ButtonIcon ? 'justify-between' : ''} items-center text-sm font-bold rounded focus:outline-none ${customClasses}`}>
-    { ButtonIcon ? <ButtonIcon disabled={disabled} /> : null }
-    {children}
-  </button>
+    <button type="button" {...rest}  className={`px-5 py-3 flex items-center text-white text-sm font-bold rounded focus:outline-none ${ButtonIcon ? 'justify-between' : ''} ${styleClasses} ${className ? className : ""}`}>
+      { ButtonIcon ? <ButtonIcon disabled={disabled}/> : null }
+      {children}
+    </button>
   );
 };
 

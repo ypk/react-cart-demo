@@ -2,8 +2,11 @@ import React, { useReducer } from "react";
 import { CartContext } from "../contexts";
 import { CartReducer, LocalStorage, GetCartItemsCountAndTotal } from "../helpers";
 
+const STORAGE_KEY = "MMT-STORE-CART";
+
 const CartContextProvider = ({ children }) => {
-  const storedItems = LocalStorage.GetItems();
+
+  const storedItems = LocalStorage.GetItems(STORAGE_KEY);
 
   const initialState = {
     items: storedItems,

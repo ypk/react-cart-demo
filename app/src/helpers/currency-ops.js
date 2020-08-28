@@ -12,8 +12,8 @@ const GetVATRateObject = () => {
     return VATObject;
 };
 
-const GetVATAmount = (price, quantity, rate) => {
-    return ((price * quantity) *  rate) /100;
+const GetVATAmount = (price, rate) => {
+    return (price * rate) /100;
 }
 
 const FormatPrice = (price) => {

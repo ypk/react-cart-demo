@@ -18,22 +18,20 @@ const ItemsTotalPrice = (items) => {
   });
   return items;
 };
+const CartTotalPriceWithVAT = (price) => {
+  const {vatRate} = GetVATRateObject(); 
+  const vatAmount = GetVATAmount(
+    price,
+    vatRate
+  );
+  return Number.parseFloat(price + vatAmount);
+};
 
-const CartTotalPrice = (items, VAT = false) => {
+const CartTotalPrice = (items) => {
   const cartTotal = items.reduce((total, product) => {
-    if (VAT) {
-      const vatRateObject = GetVATRateObject();
-      const vatAmount = GetVATAmount(
-        product.productPrice,
-        product.quantity,
-        vatRateObject.vatRate
-      );
-      return Number.parseFloat((total + (product.productPrice + vatAmount)) * product.quantity);
-    } else {
-      return Number.parseFloat(total + product.productPrice * product.quantity);
-    }
+    return total + (product.productPrice * product.quantity);
   }, 0);
-  return cartTotal.toFixed(2);
+  return Number.parseFloat(cartTotal.toFixed(2));
 };
 
 const StoreCartItems = (items) => {
@@ -46,7 +44,7 @@ const GetCartItemsCountAndTotal = (items) => {
   let itemsCount = CartItemsCount(items);
   let itemsTotalPrice = ItemsTotalPrice(items);
   let totalPrice = CartTotalPrice(items);
-  let totalPriceVAT = CartTotalPrice(items, true);
+  let totalPriceVAT = CartTotalPriceWithVAT(totalPrice);
 
   return {
     itemsCount,

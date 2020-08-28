@@ -70,11 +70,12 @@ const Cart = () => {
                   </div>
                   <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
                     <CartSummary 
-                      itemsCount={itemsCount}
+                      itemsForGrid={items.length}
                       totalPrice={totalPrice}
                       itemsTotalPrice={itemsTotalPrice}
                       totalPriceVAT={totalPriceVAT}
                       currencyObject={currencyObject}
+                      vatObject= {{ vatRate: 20}}
                     />
                   </div>
                 </>

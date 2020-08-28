@@ -10,13 +10,13 @@ const Breadcrumb = (props) => {
       <Link className="font-cinzel  hover:text-blue-400" to="/">
         Home
       </Link>
-      <ChevronIcon />
+      <ChevronIcon className="h-4 w-3 m-2" />
       {prevPage && (
         <>
           <Link className="font-cinzel  hover:text-blue-400" to={prevPage.link}>
             {prevPage.title}
           </Link>
-          <ChevronIcon />
+          <ChevronIcon className="h-4 w-3 m-2" />
         </>
       )}
       <span className="font-cinzel">{currPage}</span>

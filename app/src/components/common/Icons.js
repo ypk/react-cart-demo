@@ -1,14 +1,37 @@
 import React from "react";
 
-const iconHeight = "20pt";
-const iconWidth = "20pt";
+const iconHeight = "h-6";
+const iconWidth = "w-6";
 
+const BulletIcon = ({ className, disabled, w, h }) => {
+  const disabledStyles = `cursor-not-allowed text-gray-500 ${h ? "h-"+h : iconHeight} ${w ? "w-"+w : iconWidth}`;
+  return (
+    <svg
+      className={`fill-current ${disabled ? disabledStyles : className ? className : "" }`}
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+    >
+      <g>
+        <path d="M437.004,74.819C388.654,26.571,324.372,0,256,0S123.346,26.571,74.996,74.819C26.634,123.079,0,187.246,0,255.501v0.998
+          c0,68.255,26.634,132.422,74.996,180.682C123.346,485.429,187.628,512,256,512s132.654-26.571,181.004-74.819
+          C485.366,388.921,512,324.754,512,256.499v-0.998C512,187.246,485.366,123.079,437.004,74.819z M472,256.499
+          C472,375.327,375.103,472,256,472S40,375.327,40,256.499v-0.998C40,136.673,136.897,40,256,40s216,96.673,216,215.501V256.499z"
+          />
+        <path d="M256,130c-68.925,0-125,56.075-125,125s56.075,125,125,125s125-56.075,125-125S324.925,130,256,130z M256,340
+          c-46.869,0-85-38.131-85-85s38.131-85,85-85s85,38.131,85,85C341,301.869,302.869,340,256,340z"/>
+      </g>
+    </svg>
+  );
+};
 
-const DeleteIcon = ({disabled}) => {
+const DeleteIcon = ({ disabled }) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      className={`fill-current ${
+        disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -16,17 +39,19 @@ const DeleteIcon = ({disabled}) => {
       version="1.1"
     >
       <g id="surface1">
-        <path d="M 11.179688 10 L 19.753906 1.421875 C 20.082031 1.097656 20.082031 0.570312 19.753906 0.246094 C 19.429688 -0.0820312 18.902344 -0.0820312 18.578125 0.246094 L 10 8.820312 L 1.421875 0.246094 C 1.097656 -0.0820312 0.570312 -0.0820312 0.246094 0.246094 C -0.0820312 0.570312 -0.0820312 1.097656 0.246094 1.421875 L 8.820312 10 L 0.246094 18.578125 C -0.0820312 18.902344 -0.0820312 19.429688 0.246094 19.753906 C 0.40625 19.917969 0.621094 20 0.832031 20 C 1.046875 20 1.261719 19.917969 1.421875 19.753906 L 10 11.179688 L 18.578125 19.753906 C 18.738281 19.917969 18.953125 20 19.167969 20 C 19.378906 20 19.59375 19.917969 19.753906 19.753906 C 20.082031 19.429688 20.082031 18.902344 19.753906 18.578125 Z M 11.179688 10 "/>
+        <path d="M 11.179688 10 L 19.753906 1.421875 C 20.082031 1.097656 20.082031 0.570312 19.753906 0.246094 C 19.429688 -0.0820312 18.902344 -0.0820312 18.578125 0.246094 L 10 8.820312 L 1.421875 0.246094 C 1.097656 -0.0820312 0.570312 -0.0820312 0.246094 0.246094 C -0.0820312 0.570312 -0.0820312 1.097656 0.246094 1.421875 L 8.820312 10 L 0.246094 18.578125 C -0.0820312 18.902344 -0.0820312 19.429688 0.246094 19.753906 C 0.40625 19.917969 0.621094 20 0.832031 20 C 1.046875 20 1.261719 19.917969 1.421875 19.753906 L 10 11.179688 L 18.578125 19.753906 C 18.738281 19.917969 18.953125 20 19.167969 20 C 19.378906 20 19.59375 19.917969 19.753906 19.753906 C 20.082031 19.429688 20.082031 18.902344 19.753906 18.578125 Z M 11.179688 10 " />
       </g>
-  </svg>
+    </svg>
   );
 };
 
-const IncreaseIcon = ({disabled}) => {
+const IncreaseIcon = ({ disabled }) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      className={`fill-current ${
+        disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -41,11 +66,13 @@ const IncreaseIcon = ({disabled}) => {
   );
 };
 
-const DecreaseIcon = ({disabled}) => {
+const DecreaseIcon = ({ disabled }) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      className={`fill-current ${
+        disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -53,18 +80,14 @@ const DecreaseIcon = ({disabled}) => {
       version="1.1"
     >
       <g id="surface1">
-        <path
-          d="M 12.5 0 C 5.609375 0 0 5.605469 0 12.5 C 0 19.394531 5.609375 25 12.5 25 C 19.394531 25 25 19.394531 25 12.5 C 25 5.605469 19.390625 0 12.5 0 Z M 12.5 23.0625 C 6.675781 23.0625 1.9375 18.324219 1.9375 12.5 C 1.9375 6.675781 6.675781 1.9375 12.5 1.9375 C 18.324219 1.9375 23.0625 6.675781 23.0625 12.5 C 23.0625 18.324219 18.324219 23.0625 12.5 23.0625 Z M 12.5 23.0625 "
-        />
-        <path
-          d="M 17.339844 11.445312 L 7.660156 11.445312 C 7.125 11.445312 6.691406 11.878906 6.691406 12.414062 C 6.691406 12.949219 7.125 13.382812 7.660156 13.382812 L 17.339844 13.382812 C 17.875 13.382812 18.308594 12.949219 18.308594 12.414062 C 18.308594 11.878906 17.875 11.445312 17.339844 11.445312 Z M 17.339844 11.445312 "
-        />
+        <path d="M 12.5 0 C 5.609375 0 0 5.605469 0 12.5 C 0 19.394531 5.609375 25 12.5 25 C 19.394531 25 25 19.394531 25 12.5 C 25 5.605469 19.390625 0 12.5 0 Z M 12.5 23.0625 C 6.675781 23.0625 1.9375 18.324219 1.9375 12.5 C 1.9375 6.675781 6.675781 1.9375 12.5 1.9375 C 18.324219 1.9375 23.0625 6.675781 23.0625 12.5 C 23.0625 18.324219 18.324219 23.0625 12.5 23.0625 Z M 12.5 23.0625 " />
+        <path d="M 17.339844 11.445312 L 7.660156 11.445312 C 7.125 11.445312 6.691406 11.878906 6.691406 12.414062 C 6.691406 12.949219 7.125 13.382812 7.660156 13.382812 L 17.339844 13.382812 C 17.875 13.382812 18.308594 12.949219 18.308594 12.414062 C 18.308594 11.878906 17.875 11.445312 17.339844 11.445312 Z M 17.339844 11.445312 " />
       </g>
     </svg>
   );
 };
 
-const CartIcon = ({disabled}) => {
+const CartIcon = ({ disabled }) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
@@ -82,29 +105,47 @@ const CartIcon = ({disabled}) => {
   );
 };
 
-const ChevronIcon = ({disabled}) => {
-  const disabledStyles = "cursor-not-allowed text-gray-400";
+const ChevronReverseIcon = ({ className, disabled, w, h }) => {
+  const disabledStyles = `cursor-not-allowed text-gray-500 ${h ? "h-"+h : iconHeight} ${w ? "w-"+w : iconWidth}`;
   return (
     <svg
-      className={`fill-current mx-1 ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
-      xmlns="http://www.w3.org/2000/svg"
-      width="15pt"
-      height="25pt"
-      viewBox="0 0 18 18"
+      className={`fill-current ${disabled ? disabledStyles : className ? className : "" }`}
       version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 511.641 511.641"
     >
-      <g id="surface1">
-        <path d="M 4.152344 0 L 3.371094 0.78125 L 10.070312 7.5 L 3.371094 14.21875 L 4.152344 15 L 11.628906 7.5 Z M 4.152344 0 " />
+      <g>
+        <path d="M148.32,255.76L386.08,18c4.053-4.267,3.947-10.987-0.213-15.04c-4.16-3.947-10.667-3.947-14.827,0L125.707,248.293
+          c-4.16,4.16-4.16,10.88,0,15.04L371.04,508.667c4.267,4.053,10.987,3.947,15.04-0.213c3.947-4.16,3.947-10.667,0-14.827
+          L148.32,255.76z"/>
       </g>
+    </svg>
+  )
+}
+const ChevronIcon = ({ className, disabled, w, h }) => {
+  const disabledStyles = `cursor-not-allowed text-gray-500 ${h ? "h-"+h : iconHeight} ${w ? "w-"+w : iconWidth}`;
+  return (
+    <svg
+      className={`fill-current ${disabled ? disabledStyles : className ? className : "" }`}
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 511.949 511.949">
+        <g>
+          <path d="M386.235,248.308L140.902,2.975c-4.267-4.053-10.987-3.947-15.04,0.213c-3.947,4.16-3.947,10.667,0,14.827l237.76,237.76
+            l-237.76,237.867c-4.267,4.053-4.373,10.88-0.213,15.04c4.053,4.267,10.88,4.373,15.04,0.213c0.107-0.107,0.213-0.213,0.213-0.213
+            l245.333-245.333C390.395,259.188,390.395,252.468,386.235,248.308z"/>
+        </g>
     </svg>
   );
 };
 
-const HidePasswordIcon = ({disabled}) => {
+const HidePasswordIcon = ({ disabled }) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400 "}`}
+      className={`fill-current ${
+        disabled ? disabledStyles : "text-gray-700 hover:text-blue-400 "
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -122,11 +163,13 @@ const HidePasswordIcon = ({disabled}) => {
   );
 };
 
-const ShowPasswordIcon = ({disabled}) => {
+const ShowPasswordIcon = ({ disabled }) => {
   const disabledStyles = "cursor-not-allowed text-gray-400";
   return (
     <svg
-      className={`fill-current ${disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"}`}
+      className={`fill-current ${
+        disabled ? disabledStyles : "text-gray-700 hover:text-blue-400"
+      }`}
       xmlns="http://www.w3.org/2000/svg"
       width={iconWidth}
       height={iconHeight}
@@ -145,11 +188,13 @@ const ShowPasswordIcon = ({disabled}) => {
 };
 
 const Icons = {
+  BulletIcon,
   CartIcon,
   IncreaseIcon,
   DecreaseIcon,
   DeleteIcon,
   ChevronIcon,
+  ChevronReverseIcon,
   HidePasswordIcon,
   ShowPasswordIcon,
 };

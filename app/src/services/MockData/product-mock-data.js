@@ -8,7 +8,7 @@ const ProductMockData = [
     productPrice: 175.0,
     quantityAvailable: 6,
     isFeatured: true,
-    imgUrl: "img/hakushu-12-year-old-whisky.jpg",
+    imgUrl: "img/products/hakushu-12-year-old-whisky.jpg",
   },
   {
     id: "Tanqueray-Flor-de-Sevilla",
@@ -18,7 +18,7 @@ const ProductMockData = [
     productPrice: 28.95,
     quantityAvailable: 0,
     isFeatured: false,
-    imgUrl: "img/tanqueray-flor-de-sevilla-gin.jpg",
+    imgUrl: "img/products/tanqueray-flor-de-sevilla-gin.jpg",
   },
   {
     id: "Smuggled-Cornwall-Vodka",
@@ -28,7 +28,7 @@ const ProductMockData = [
     productPrice: 29.95,
     quantityAvailable: 47,
     isFeatured: false,
-    imgUrl: "img/smuggled-from-cornwall-vodka.jpg",
+    imgUrl: "img/products/smuggled-from-cornwall-vodka.jpg",
   },
   {
     id: "Fallen-Angel-Spiced-Rum",
@@ -38,7 +38,7 @@ const ProductMockData = [
     productPrice: 46.45,
     quantityAvailable: 34,
     isFeatured: true,
-    imgUrl: "img/fallen-angel-spiced-rum.jpg",
+    imgUrl: "img/products/fallen-angel-spiced-rum.jpg",
   },
   {
     id: "Paganini-Grappa",
@@ -48,7 +48,7 @@ const ProductMockData = [
     productPrice: 15.69,
     quantityAvailable: 12,
     isFeatured: false,
-    imgUrl: "img/paganini-grappa.jpg",
+    imgUrl: "img/products/paganini-grappa.jpg",
   },
   {
     id: "Lindisfarne-Mead",
@@ -58,7 +58,7 @@ const ProductMockData = [
     productPrice: 10.98,
     quantityAvailable: 0,
     isFeatured: false,
-    imgUrl: "img/lindisfarne-mead.jpg",
+    imgUrl: "img/products/lindisfarne-mead.jpg",
   },
   {
     id: "Armand-de-Brignac-Blanc-Ace-of-Spades-Gold",
@@ -68,7 +68,7 @@ const ProductMockData = [
     productPrice: 267.75,
     quantityAvailable: 25,
     isFeatured: true,
-    imgUrl: "img/armand-de-brignac-blanc-ace-of-spades-gold-champagne.jpg",
+    imgUrl: "img/products/armand-de-brignac-blanc-ace-of-spades-gold-champagne.jpg",
   },
   {
     id: "Asahi-Super-Dry-Can",
@@ -78,7 +78,7 @@ const ProductMockData = [
     productPrice: 1.95,
     quantityAvailable: 220,
     isFeatured: false,
-    imgUrl: "img/asahi-super-dry-can-beer.jpg",
+    imgUrl: "img/products/asahi-super-dry-can-beer.jpg",
   },
   {
     id: "Coca-Cola-Signature-Mixer-Spicy-Notes",
@@ -88,7 +88,7 @@ const ProductMockData = [
     productPrice: 1.75,
     quantityAvailable: 65,
     isFeatured: false,
-    imgUrl: "img/coca-cola-signature-mixer-spicy-notes-mixers.jpg",
+    imgUrl: "img/products/coca-cola-signature-mixer-spicy-notes-mixers.jpg",
   },
   {
     id: "1724-Tonic-Water",
@@ -98,7 +98,7 @@ const ProductMockData = [
     productPrice: 37.75,
     quantityAvailable: 5,
     isFeatured: false,
-    imgUrl: "img/1724-tonic-water-24-x-200ml-mixer.jpg",
+    imgUrl: "img/products/1724-tonic-water-24-x-200ml-mixer.jpg",
   },
   {
     id: "Ginking",
@@ -108,7 +108,7 @@ const ProductMockData = [
     productPrice: 12.99,
     quantityAvailable: 7,
     isFeatured: false,
-    imgUrl: "img/ginking-mixers.jpg",
+    imgUrl: "img/products/ginking-mixers.jpg",
   },
   {
     id: "Camden-Town-Week-Nite",
@@ -118,7 +118,7 @@ const ProductMockData = [
     productPrice: 20.0,
     quantityAvailable: 3,
     isFeatured: true,
-    imgUrl: "img/camden-town-week-nite-12-x-330ml-beer.jpg",
+    imgUrl: "img/products/camden-town-week-nite-12-x-330ml-beer.jpg",
   },
 ];
 export default ProductMockData;

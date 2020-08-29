@@ -46,7 +46,7 @@ const Header = () => {
               <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                 <li>
                   <Link
-                    className="inline-block no-underline hover:text-black py-2 pr-4 text-black hover:text-blue-400 focus:text-blue-400"
+                    className="inline-block font-bold no-underline hover:text-black py-2 pr-4 text-black hover:text-blue-400 focus:text-blue-400"
                     to="/about"
                     title="About"
                   >
@@ -55,7 +55,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    className="inline-block no-underline hover:text-black py-2 pr-4 text-black hover:text-blue-400 focus:text-blue-400"
+                    className="inline-block font-bold no-underline hover:text-black py-2 pr-4 text-black hover:text-blue-400 focus:text-blue-400"
                     to="/products"
                     title="Products"
                   >

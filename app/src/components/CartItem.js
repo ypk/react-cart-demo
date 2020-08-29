@@ -54,14 +54,14 @@ const CartItem = ({items, incrementProductCount, decrementProductCount, currency
               <Button
                 icon={{
                   name: "DeleteIcon",
-                  styleClass: "w-8 h-10 m-0 group-focus:text-blue-400 group-hover:text-blue-400",
+                  styleClass: "w-4 h-6 md:w-8 md:h-10 m-0 group-focus:text-blue-400 group-hover:text-blue-400",
                 }}
-                buttonStyle="silent"
                 onClick={() => handleDelete(item)}
+                buttonStyle="silent"
                 title="Delete Item"
-                className="md:py-0 md:px-0 flex flex-row w-26 flex-end justify-end"
+                className="group md:py-0 md:px-0 flex flex-row w-26 flex-end justify-end"
               >
-                <span className="ml-2 md:hidden text-xl font-normal">
+                <span className="ml-2 md:hidden text-xl font-normal group-focus:text-blue-400 group-hover:text-blue-400">
                   Delete
                 </span>
               </Button>

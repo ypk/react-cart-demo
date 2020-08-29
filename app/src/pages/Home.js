@@ -14,12 +14,7 @@ const Home = () => {
           <Carousel />
         </div>
         <div className="container py-8 px-6 mx-auto">
-          <h2 className="uppercase tracking-wide font-bold font-cinzel text-gray-800 text-xl mb-8">
-            Featured products
-          </h2>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-            <FeaturedProducts products={products} />
-          </div>
+          <FeaturedProducts products={products} />
           <div className="flex justify-end mt-8">
             <Link
               className="font-bold hover:underline hover:text-blue-400"

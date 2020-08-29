@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
-import { Breadcrumb, Button, ItemCounter, Icons } from "../components/common";
+import { Breadcrumb, Button, ItemCounter } from "../components/common";
 import { ProductContext, CurrencyContext, CartContext } from "../contexts";
 import { NormalizeSlug } from "../helpers";
 import { useParams } from "react-router-dom";
 
-const Product = () => {
+const ProductDescription = () => {
   let params = useParams();
   const DEFAULT_CURRENCY = "GBP";
 
@@ -26,20 +26,7 @@ const Product = () => {
     link: "/products",
     title: "Products",
   };
-  const currPage = productName;
-
-  const { FlagIcons } = Icons;
-  const {
-    UKFlagIcon,
-    USAFlagIcon,
-    EuroFlagIcon,
-    CanadaFlagIcon,
-    AustraliaFlagIcon,
-    JapanFlagIcon,
-    IndiaFlagIcon,
-    ChinaFlagIcon
-  } = FlagIcons;
-  
+  const currPage = productName;  
   return (
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2 md:mb-20">
@@ -94,19 +81,6 @@ const Product = () => {
                 </div>
               </div>
             </div>
-
-            <div className="my-12 flex flex-row">
-              <div className="flex flex-col">
-                <UKFlagIcon  className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
-                <USAFlagIcon  className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
-                <EuroFlagIcon className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400"  />
-                <CanadaFlagIcon className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400"  />
-                <AustraliaFlagIcon  className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
-                <JapanFlagIcon  className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
-                <IndiaFlagIcon  className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400"  />
-                <ChinaFlagIcon  className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
-              </div>
-            </div>
           </main>
         </div>
       </section>
@@ -114,4 +88,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDescription;

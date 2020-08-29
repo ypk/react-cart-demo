@@ -3,8 +3,8 @@ import Cart from "./Cart";
 import Home from "./Home";
 import Login from "./Login";
 import NotFound from "./NotFound";
-import Product from "./Product";
-import Products from "./Products";
+import ProductDescription from "./ProductDescription";
+import ProductsList from "./ProductsList";
 
 export {
     About,
@@ -12,6 +12,6 @@ export {
     Home,
     Login,
     NotFound,
-    Product,
-    Products
+    ProductDescription,
+    ProductsList
 };

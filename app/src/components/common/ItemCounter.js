@@ -83,6 +83,7 @@ const ItemCounter = ({
             h: "10",
           }}
           buttonStyle="silent"
+          className="group"
           disabled={counterValue === minAllowedLimit}
           onClick={handleCounterDecrease}
         />
@@ -96,6 +97,7 @@ const ItemCounter = ({
             h: "10",
           }}
           buttonStyle="silent"
+          className="group"
           disabled={counterValue === maxAllowedLimit}
           onClick={handleCounterIncrease}
         />

@@ -120,8 +120,8 @@ const Cart = () => {
                       </Button>
                     </div>
                   </div>
-                  <div className="w-full md:w-1/3 flex flex-col items-center flex-grow flex-shrink">
-                    <div className="w-full md:w-1/3  flex flex-col my-6 md:my-0">
+                  <div className="w-full md:w-1/3 flex flex-col items-end flex-grow flex-shrink">
+                    <div className="w-full md:w-1/3 flex flex-col my-6 md:my-0">
                       <Button
                         onClick={handleCheckoutCartBtnClick}
                         className="justify-center"

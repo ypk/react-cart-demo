@@ -75,14 +75,26 @@ const ItemCounter = ({
       </label>
       <div className="flex items-center my-2">
         <Button
-          icon="DecreaseIcon"
+          icon={{
+            name: "DecreaseIcon",
+            styleClass:
+              "w-8 h-10 group-focus:text-blue-400 group-hover:text-blue-400",
+            w: "8",
+            h: "10",
+          }}
           buttonStyle="silent"
           disabled={counterValue === minAllowedLimit}
           onClick={handleCounterDecrease}
         />
         <span className="text-gray-700 text-lg mx-2">{counterValue}</span>
         <Button
-          icon="IncreaseIcon"
+          icon={{
+            name: "IncreaseIcon",
+            styleClass:
+              "w-8 h-10 group-focus:text-blue-400 group-hover:text-blue-400",
+            w: "8",
+            h: "10",
+          }}
           buttonStyle="silent"
           disabled={counterValue === maxAllowedLimit}
           onClick={handleCounterIncrease}

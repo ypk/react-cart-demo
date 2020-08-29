@@ -17,14 +17,16 @@ const CartItem = ({items, incrementProductCount, decrementProductCount, currency
     handleDeleteItemClick(item);
   }
 
+  const itemsLength = items.length;
+
   return (
     items &&
-    items.map((item) => {
+    items.map((item, index) => {
       const { id, productName, productPrice, quantity, imgUrl } = item;
       return (
         <div
           key={id}
-          className="grid grid-flow-row grid-cols-5 p-4 my-4 border-gray-500 border-b border-gray-100"
+          className={`grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400 ${itemsLength > 1 ?  index  === itemsLength - 1 ?  "md:border-0" : "" : ""}`}
         >
           <div className="col-span-2 md:col-auto">
             <Link to={"/product"}>
@@ -38,7 +40,7 @@ const CartItem = ({items, incrementProductCount, decrementProductCount, currency
               </Link>
               <div className="flex flex-col md:flex-row">
                 <ItemCounter
-                  labelClass="text-md md:my-5 md:mr-3"
+                  labelClass="text-md md:my-8 md:mr-3"
                   defaultValue={quantity}
                   inCart={true}
                   onIncrement={() => handleCartItemIncrement(item)}
@@ -50,11 +52,14 @@ const CartItem = ({items, incrementProductCount, decrementProductCount, currency
           <div className="col-span-5 md:col-auto">
             <div className="flex flex-row flex-row-reverse py-6 md:py-0 md:flex-col justify-between h-full items-end flex-wrap">
               <Button
-                icon="DeleteIcon"
+                icon={{
+                  name: "DeleteIcon",
+                  styleClass: "w-8 h-10 m-0 group-focus:text-blue-400 group-hover:text-blue-400",
+                }}
                 buttonStyle="silent"
                 onClick={() => handleDelete(item)}
                 title="Delete Item"
-                className="py-0 md:py-3 md:px-0 flex flex-row w-26 flex-end justify-end"
+                className="md:py-0 md:px-0 flex flex-row w-26 flex-end justify-end"
               >
                 <span className="ml-2 md:hidden text-xl font-normal">
                   Delete

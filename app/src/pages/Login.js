@@ -70,6 +70,7 @@ const Login = () => {
       setControlType({ type: "password", icon: ShowPasswordIcon, label: "Show Password" });
     }
   };
+  console.log(controlType)
   return (
     <Layout>
       <section className="pt-8 pb-2">
@@ -106,11 +107,11 @@ const Login = () => {
                 <div className="relative w-full">
                   <div className="absolute inset-y-0 right-0 flex items-center py-2 p3-2 mt-1">
                     <span
-                      className="px-2 py-1 text-sm cursor-pointer"
+                      className="text-sm cursor-pointer"
                       onClick={toggleControlType}
                       title={controlType.label}
                     >
-                      <controlType.icon />
+                      <controlType.icon className="w-6 h-6 m-2 focus:text-blue-400 hover:text-blue-400" />
                     </span>
                   </div>
                   <input

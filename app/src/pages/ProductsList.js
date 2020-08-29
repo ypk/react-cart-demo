@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Layout from "../components/Layout";
-import { ProductContext, CurrencyContext } from "../contexts";
+import { ProductContext, StorePreferencesContext } from "../contexts";
 import { Breadcrumb } from "../components/common";
 import Product from "../components/Product";
 
@@ -8,7 +8,7 @@ const ProductsList = () => {
   const DEFAULT_CURRENCY = "GBP";
   const currPage = "Products";
   const { products } = useContext(ProductContext);
-  const { currency } = useContext(CurrencyContext);
+  const { currency } = useContext(StorePreferencesContext);
   const currencyObject = currency.reduce(function (prev, curr) {
     return curr.code === DEFAULT_CURRENCY ? curr : prev;
   }, null);

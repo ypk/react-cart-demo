@@ -6,7 +6,7 @@ const Breadcrumb = (props) => {
   const { ChevronIcon } = Icons;
   const { prevPage, currPage } = props;
   return (
-    <nav className="mb-8  w-full">
+    <nav className="mb-8 w-full">
       <ol className="list-reset flex flex-wrap md:flex-no-wrap">
         <li className="mb-4 md:mb-0">
           <Link className="hover:text-blue-400" to="/">

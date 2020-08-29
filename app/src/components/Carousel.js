@@ -3,7 +3,7 @@ import { Icons } from "../components/common";
 import { GenerateCarouselIndexes, GetCurrentSlide } from "../helpers";
 
 const Carousel = () => {
-  const { BulletIcon, ChevronIcon, ChevronReverseIcon } = Icons;
+  const { BulletIcon, ChevronIcons } = Icons;
   const carouselData = [
     {
       id: "carousel-0",
@@ -90,6 +90,7 @@ const Carousel = () => {
   };
 
   const { carousel } = carouselState;
+  const { ChevronRightIcon, ChevronLeftIcon} = ChevronIcons;
 
   return (
     <div className="overflow-hidden relative w-full">
@@ -124,13 +125,13 @@ const Carousel = () => {
           onClick={() => navigateToPrevSlide()}
           className="group cursor-pointer md:w-12 lg:w-16 md:h-12 lg:h-16 md:ml-6 rounded-full bg-black hover:bg-opacity-100 focus:bg-opacity-100 focus:bg-gray-500 bg-opacity-50 focus:outline-none"
         >
-          <ChevronReverseIcon className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
+          <ChevronLeftIcon className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
         </span>
         <span
           onClick={() => navigateToNextSlide()}
           className="group cursor-pointer md:w-12 lg:w-16 md:h-12 lg:h-16 md:mr-6 rounded-full bg-black hover:bg-opacity-100 focus:bg-opacity-100 focus:bg-gray-500 bg-opacity-50 focus:outline-none"
         >
-          <ChevronIcon className="w-10 h-10 my-3 ml-4 mr-2 group-focus:text-blue-400 group-hover:text-blue-400" />
+          <ChevronRightIcon className="w-10 h-10 my-3 ml-4 mr-2 group-focus:text-blue-400 group-hover:text-blue-400" />
         </span>
       </div>
       <ol className="bottom-5 flex rounded-lg bg-opacity-25 w-48 mx-auto bg-black list-none m-0 p-0 inset-x-0 z-10 text-center absolute">

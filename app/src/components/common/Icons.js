@@ -213,7 +213,7 @@ const CartIcon = ({ className, disabled, w, h }) => {
   );
 };
 
-const ChevronReverseIcon = ({ className, disabled, w, h }) => {
+const ChevronLeftIcon = ({ className, disabled, w, h }) => {
   const disabledStyles = `cursor-not-allowed text-gray-500 ${
     h ? "h-" + h : iconHeight
   } ${w ? "w-" + w : iconWidth}`;
@@ -224,20 +224,23 @@ const ChevronReverseIcon = ({ className, disabled, w, h }) => {
       }`}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 511.641 511.641"
-      style={{ enableBackground: "new 0 0 511.641 511.641" }}
+      viewBox="0 0 512 512"
+      style={{ enableBackground: "new 0 0 512 512" }}
     >
       <g>
-        <path
-          d="M148.32,255.76L386.08,18c4.053-4.267,3.947-10.987-0.213-15.04c-4.16-3.947-10.667-3.947-14.827,0L125.707,248.293
-          c-4.16,4.16-4.16,10.88,0,15.04L371.04,508.667c4.267,4.053,10.987,3.947,15.04-0.213c3.947-4.16,3.947-10.667,0-14.827
-          L148.32,255.76z"
-        />
+        <g>
+          <path
+            d="M379.644,477.872l-207.299-207.73c-7.798-7.798-7.798-20.486,0.015-28.299L379.643,34.128
+			c7.803-7.819,7.789-20.482-0.029-28.284c-7.819-7.803-20.482-7.79-28.284,0.029L144.061,213.574
+			c-23.394,23.394-23.394,61.459-0.015,84.838L351.33,506.127c3.907,3.915,9.031,5.873,14.157,5.873
+			c5.111,0,10.224-1.948,14.128-5.844C387.433,498.354,387.446,485.691,379.644,477.872z"
+          />
+        </g>
       </g>
     </svg>
   );
 };
-const ChevronIcon = ({ className, disabled, w, h }) => {
+const ChevronRightIcon = ({ className, disabled, w, h }) => {
   const disabledStyles = `cursor-not-allowed text-gray-500 ${
     h ? "h-" + h : iconHeight
   } ${w ? "w-" + w : iconWidth}`;
@@ -248,15 +251,74 @@ const ChevronIcon = ({ className, disabled, w, h }) => {
       }`}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 511.949 511.949"
-      style={{ enableBackground: "new 0 0 511.949 511.949" }}
+      viewBox="0 0 512 512"
+      style={{ enableBackground: "new 0 0 512 512" }}
     >
       <g>
-        <path
-          d="M386.235,248.308L140.902,2.975c-4.267-4.053-10.987-3.947-15.04,0.213c-3.947,4.16-3.947,10.667,0,14.827l237.76,237.76
-            l-237.76,237.867c-4.267,4.053-4.373,10.88-0.213,15.04c4.053,4.267,10.88,4.373,15.04,0.213c0.107-0.107,0.213-0.213,0.213-0.213
-            l245.333-245.333C390.395,259.188,390.395,252.468,386.235,248.308z"
-        />
+        <g>
+          <path
+            d="M367.954,213.588L160.67,5.872c-7.804-7.819-20.467-7.831-28.284-0.029c-7.819,7.802-7.832,20.465-0.03,28.284
+			l207.299,207.731c7.798,7.798,7.798,20.486-0.015,28.299L132.356,477.873c-7.802,7.819-7.789,20.482,0.03,28.284
+			c3.903,3.896,9.016,5.843,14.127,5.843c5.125,0,10.25-1.958,14.157-5.873l207.269-207.701
+			C391.333,275.032,391.333,236.967,367.954,213.588z"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+const ChevronUpIcon = ({ className, disabled, w, h }) => {
+  const disabledStyles = `cursor-not-allowed text-gray-500 ${
+    h ? "h-" + h : iconHeight
+  } ${w ? "w-" + w : iconWidth}`;
+  return (
+    <svg
+      className={`fill-current ${
+        disabled ? disabledStyles : className ? className : ""
+      }`}
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 511.999 511.999"
+      style={{ enableBackground: "new 0 0 511.999 511.999" }}
+    >
+      <g>
+        <g>
+          <path
+            d="M506.127,351.331l-207.701-207.27c-23.393-23.394-61.458-23.395-84.838-0.015L5.872,351.33
+			c-7.818,7.802-7.831,20.465-0.029,28.284c7.802,7.818,20.465,7.832,28.284,0.029l207.731-207.299
+			c7.798-7.797,20.486-7.798,28.299,0.015l207.716,207.285c3.904,3.896,9.015,5.843,14.127,5.843c5.125,0,10.25-1.958,14.156-5.872
+			C513.959,371.796,513.945,359.133,506.127,351.331z"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+const ChevronDownIcon = ({ className, disabled, w, h }) => {
+  const disabledStyles = `cursor-not-allowed text-gray-500 ${
+    h ? "h-" + h : iconHeight
+  } ${w ? "w-" + w : iconWidth}`;
+  return (
+    <svg
+      className={`fill-current ${
+        disabled ? disabledStyles : className ? className : ""
+      }`}
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      style={{ enableBackground: "new 0 0 512 512" }}
+    >
+      <g>
+        <g>
+          <path
+            d="M506.157,132.386c-7.803-7.819-20.465-7.831-28.285-0.029l-207.73,207.299c-7.799,7.798-20.486,7.797-28.299-0.015
+          L34.128,132.357c-7.819-7.803-20.481-7.79-28.285,0.029c-7.802,7.819-7.789,20.482,0.029,28.284l207.701,207.27
+          c11.701,11.699,27.066,17.547,42.433,17.547c15.358,0,30.719-5.846,42.405-17.533L506.128,160.67
+          C513.946,152.868,513.959,140.205,506.157,132.386z"
+          />
+        </g>
       </g>
     </svg>
   );
@@ -1259,6 +1321,12 @@ const SocialIcons = {
   FacebookIcon,
 };
 
+const ChevronIcons = {
+  ChevronRightIcon,
+  ChevronLeftIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+}
 const Icons = {
   BulletIcon,
   LoginIcon,
@@ -1267,8 +1335,7 @@ const Icons = {
   IncreaseIcon,
   DecreaseIcon,
   DeleteIcon,
-  ChevronIcon,
-  ChevronReverseIcon,
+  ChevronIcons,
   HidePasswordIcon,
   ShowPasswordIcon,
   SocialIcons,

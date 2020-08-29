@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import CartItem from "../components/CartItem";
 import CartSummary from "../components/CartSummary";
 import { Breadcrumb, Button } from "../components/common";
-import { CurrencyContext, CartContext } from "../contexts";
+import { StorePreferencesContext, CartContext } from "../contexts";
 
 const Cart = () => {
   const currPage = "Cart";
@@ -22,7 +22,7 @@ const Cart = () => {
     itemsTotalPrice,
     totalPriceVAT,
   } = useContext(CartContext);
-  const { currency } = useContext(CurrencyContext);
+  const { currency } = useContext(StorePreferencesContext);
   const currencyObject = currency.reduce(function (prev, curr) {
     return curr.code === DEFAULT_CURRENCY ? curr : prev;
   }, null);

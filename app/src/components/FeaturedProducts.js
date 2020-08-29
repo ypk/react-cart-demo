@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { CurrencyContext } from "../contexts";
 import Product from "../components/Product";
+import { CurrencyAndVATContext } from "../contexts";
 
 const FeaturedProducts = ({ products }) => {
-  const { currency } = useContext(CurrencyContext);
+  const { currency } = useContext(CurrencyAndVATContext);
+
   const DEFAULT_CURRENCY = "GBP";
 
   const currencyObject = currency.reduce(function (prev, curr) {

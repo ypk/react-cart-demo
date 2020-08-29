@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
 import { Breadcrumb, Button, ItemCounter } from "../components/common";
-import { ProductContext, CurrencyContext, CartContext } from "../contexts";
+import { ProductContext, StorePreferencesContext, CartContext } from "../contexts";
 import { NormalizeSlug } from "../helpers";
 import { useParams } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const ProductDescription = () => {
 
   const [quantitySelected, setQuantitySelected] = useState(1);
   const { products } = useContext(ProductContext);
-  const { currency } = useContext(CurrencyContext);
+  const { currency } = useContext(StorePreferencesContext);
   const { addProduct } = useContext(CartContext);
 
   const product = products.reduce(function (prev, curr) {

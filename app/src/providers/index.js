@@ -1,11 +1,11 @@
 import CartContextProvider from "./Cart";
-import CurrencyContextProvider from "./Currency";
+import StorePreferencesContextProvider from "./StorePreferences";
 import ProductContextProvider from "./Product";
-import VATContextProvider from "./VAT";
+import CurrencyAndVATContextProvider from "./CurrencyAndVAT";
 
 export {
     CartContextProvider,
-    CurrencyContextProvider,
+    StorePreferencesContextProvider,
     ProductContextProvider,
-    VATContextProvider
+    CurrencyAndVATContextProvider
 }

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import Routes from "./routes";
 import {
   ProductContextProvider,
-  CurrencyContextProvider,
-  VATContextProvider,
+  CurrencyAndVATContextProvider,
+  StorePreferencesContextProvider,
   CartContextProvider,
 } from "./providers";
 
@@ -15,11 +15,11 @@ import "./styles/style.css";
 ReactDOM.render(
     <ProductContextProvider>
       <CartContextProvider>
-        <CurrencyContextProvider>
-          <VATContextProvider>
+        <CurrencyAndVATContextProvider>
+          <StorePreferencesContextProvider>
             <Routes />
-          </VATContextProvider>
-        </CurrencyContextProvider>
+          </StorePreferencesContextProvider>
+        </CurrencyAndVATContextProvider>
       </CartContextProvider>
     </ProductContextProvider>,
   document.getElementById("app-root")

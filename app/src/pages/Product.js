@@ -12,7 +12,7 @@ const Product = () => {
   const [quantitySelected, setQuantitySelected] = useState(1);
   const { products } = useContext(ProductContext);
   const { currency } = useContext(CurrencyContext);
-  const { addProduct, itemsCount } = useContext(CartContext);
+  const { addProduct } = useContext(CartContext);
 
   const product = products.reduce(function (prev, curr) {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
@@ -20,7 +20,7 @@ const Product = () => {
   const currencyObject = currency.reduce(function (prev, curr) {
     return curr.code === DEFAULT_CURRENCY ? curr : prev;
   }, null);
-  const { productName, productPrice, quantityAvailable, quantity, productDescription, imgUrl } = product;
+  const { productName, productPrice, quantityAvailable, productDescription, imgUrl } = product;
 
   const prevPage = {
     link: "/products",
@@ -50,7 +50,7 @@ const Product = () => {
               <div className="md:flex md:items-center">
                 <div className="w-full mr-6 md:w-1/2">
                   <img
-                    className="w-3/4 max-h-1/2 rounded-md shadow-md object-cover mx-auto"
+                    className="w-4/2 md:w-3/4 max-h-1/2 rounded-md shadow-md object-cover mx-auto"
                     src={`/${imgUrl}`}
                     alt={productName}
                   />
@@ -70,7 +70,7 @@ const Product = () => {
                     {quantityAvailable > 0 ? (
                         <>
                         <div className="my-12 flex flex-row md:flex-col">
-                          <ItemCounter labelClass="my-5 mr-5 md:my-0 md:mr-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
+                          <ItemCounter labelClass="my-8 mr-5 md:my-0 md:mr-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
                             setQuantitySelected(value)
                           }}/>
                         </div>
@@ -81,6 +81,7 @@ const Product = () => {
                               e.preventDefault();
                               addProduct(product, quantitySelected);
                             }}
+                            className="w-full justify-center"
                           >
                             Add to cart
                           </Button>

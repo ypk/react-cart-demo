@@ -55,7 +55,7 @@ const Carousel = () => {
   }, [carouselState.currentSlide]);
 
   const navigateToSlide = (slideId) => {
-    const { carousel, currentSlide } = carouselState;
+    const { carousel } = carouselState;
     const updatedCarousel = carousel.map((c) => {
       c.current = c.id === slideId ? true : false;
       return c;
@@ -95,7 +95,6 @@ const Carousel = () => {
     <div className="overflow-hidden relative w-full">
       {carousel.map((c) => {
         const { id, current, imgurl, content } = c;
-        console.log(content)
         const { heading, description } = content;
         return (
           <div
@@ -107,30 +106,31 @@ const Carousel = () => {
             <img
               className="max-w-100 block min-h-full min-w-full p-64 bg-no-repeat bg-center bg-local bg-cover"
               style={{ backgroundImage: `url(${imgurl})` }}
+              alt={heading}
             />
-            <div className="absolute inset-x-50 top-1/6 z-10 w-3/4 px-32">
-              <h2 className="bg-black bg-opacity-75 text-gray-300 w-2/3 text-5xl px-5 py-3 mb-2">
+            <div className="absolute inset-x-50 top-1/6 z-10 w-full md:w-3/4 px-6 md:px-32">
+              <h2 className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 w-full md:w-2/3 text-2xl md:text-5xl px-5 py-3 mb-2">
                 {heading}
               </h2>
-              <p className="bg-black bg-opacity-75 text-gray-300 text-xl px-5 py-3 w-9/12 mb-3">
+              <p className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 text-xl px-5 py-3 w-full md:w-9/12 mb-3">
                 {description}
               </p>
             </div>
           </div>
         );
       })}
-      <div className="z-10 absolute flex justify-between w-full top-1/2">
+      <div className="z-10 absolute flex justify-between w-full top-1/4 md:top-1/2">
         <span
           onClick={() => navigateToPrevSlide()}
-          className="group cursor-pointer md:w-12 lg:w-16 md:h-12 lg:h-16 ml-6 rounded-full bg-black hover:bg-opacity-100 focus:bg-opacity-100 focus:bg-gray-500 bg-opacity-50 focus:outline-none"
+          className="group cursor-pointer md:w-12 lg:w-16 md:h-12 lg:h-16 md:ml-6 rounded-full bg-black hover:bg-opacity-100 focus:bg-opacity-100 focus:bg-gray-500 bg-opacity-50 focus:outline-none"
         >
           <ChevronReverseIcon className="w-8 h-10 my-3 m-4 group-focus:text-blue-400 group-hover:text-blue-400" />
         </span>
         <span
           onClick={() => navigateToNextSlide()}
-          className="group cursor-pointer md:w-12 lg:w-16 md:h-12 lg:h-16 mr-6 rounded-full bg-black hover:bg-opacity-100 focus:bg-opacity-100 focus:bg-gray-500 bg-opacity-50 focus:outline-none"
+          className="group cursor-pointer md:w-12 lg:w-16 md:h-12 lg:h-16 md:mr-6 rounded-full bg-black hover:bg-opacity-100 focus:bg-opacity-100 focus:bg-gray-500 bg-opacity-50 focus:outline-none"
         >
-          <ChevronIcon className="w-10 h-10 my-3 ml-4 group-focus:text-blue-400 group-hover:text-blue-400" />
+          <ChevronIcon className="w-10 h-10 my-3 ml-4 mr-2 group-focus:text-blue-400 group-hover:text-blue-400" />
         </span>
       </div>
       <ol className="bottom-5 flex rounded-lg bg-opacity-25 w-48 mx-auto bg-black list-none m-0 p-0 inset-x-0 z-10 text-center absolute">

@@ -1,19 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Layout from "../components/Layout";
+import FeaturedProducts from "../components/FeaturedProducts";
 import Carousel from "../components/Carousel";
 import { Link } from "react-router-dom";
-import { ProductContext, CurrencyContext } from "../contexts";
-import { NormalizeSlug } from "../helpers";
+import { ProductContext } from "../contexts";
 
 const Home = () => {
-  const DEFAULT_CURRENCY = "GBP";
   const { products } = useContext(ProductContext);
-  const { currency } = useContext(CurrencyContext);
-  const featured = products.filter((product) => product.isFeatured === true);
-  const currencyObject = currency.reduce(function (prev, curr) {
-    return curr.code === DEFAULT_CURRENCY ? curr : prev;
-  }, null);
-
   return (
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2 md:mb-20">
@@ -25,29 +18,7 @@ const Home = () => {
             Featured products
           </h2>
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-            {featured.map((product) => {
-              const { id, productName, productPrice, imgUrl } = product;
-              return (
-                <div
-                  className="w-full max-w-sm mx-auto bg-white rounded-md shadow-md  cursor-pointer overflow-hidden hover:shadow-lg"
-                  key={id}
-                >
-                  <Link to={`/product/${NormalizeSlug(id)}`}>
-                    <div
-                      className="flex items-end justify-end h-56 w-full bg-cover bg-no-repeat bg-center"
-                      style={{ backgroundImage: `url(${imgUrl})` }}
-                    />
-                    <div className="px-5 py-3">
-                      <h3 className="text-gray-700 uppercase">{productName}</h3>
-                      <span className="text-gray-500 mt-2">
-                        {currencyObject.symbol}
-                        {productPrice}
-                      </span>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
+            <FeaturedProducts products={products} />
           </div>
           <div className="flex justify-end mt-8">
             <Link

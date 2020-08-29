@@ -98,14 +98,14 @@ const Header = () => {
 
             <Link
               title="Cart"
-              className="group flex flex-row no-underline mx-4"
+              className="group flex flex-row no-underline md:mx-4"
               to="/cart"
             >
               <CartIcon className="w-8 h-10 group-focus:text-blue-400 group-hover:text-blue-400 mx-2" />
               {itemsCount > 0 ? (
-                <button className="bg-black group-hover:bg-blue-400 group-focus:bg-blue-400 text-white font-bold py-2 px-4 rounded-full text-sm px-2 ml-2">
+                <button className="bg-black group-hover:bg-blue-400 group-focus:bg-blue-400 text-white font-bold py-2 px-4 rounded-full text-sm px-2 md:ml-2">
                   <span className="mx-1">{itemsCount}</span>
-                  {itemsCount < 2 ? "Item" : "Items"} in cart
+                  <span className="hidden md:inline">{itemsCount < 2 ? "Item" : "Items"} in cart</span>
                 </button>
               ) : null}
             </Link>

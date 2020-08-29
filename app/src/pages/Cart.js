@@ -18,7 +18,6 @@ const Cart = () => {
     removeProduct,
     checkOut,
     clearCart,
-    itemsCount,
     totalPrice,
     itemsTotalPrice,
     totalPriceVAT,
@@ -36,10 +35,8 @@ const Cart = () => {
   };
 
   const handleCheckoutCartBtnClick = () => {
-    let purchased = "";
-    items.reduce((curr, prev) => {
-      purchased += `> ${prev.productName} - Qty: ${prev.quantity}\n`;
-    }, 0);
+    let purchased = items.reduce((curr, prev) => curr += `> ${prev.productName} - Qty: ${prev.quantity}\n`, "");
+    console.log(purchased)
     const confirmAction = window.confirm(`Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nDo you wish to continue?`);
     if (confirmAction) {
       checkOut();

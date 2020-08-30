@@ -4,7 +4,7 @@ import Routes from "./routes";
 import {
   ProductContextProvider,
   CurrencyAndVATContextProvider,
-  StorePreferencesContextProvider,
+  PreferencesContextProvider,
   CartContextProvider,
 } from "./providers";
 
@@ -16,9 +16,9 @@ ReactDOM.render(
     <ProductContextProvider>
       <CartContextProvider>
         <CurrencyAndVATContextProvider>
-          <StorePreferencesContextProvider>
+          <PreferencesContextProvider>
             <Routes />
-          </StorePreferencesContextProvider>
+          </PreferencesContextProvider>
         </CurrencyAndVATContextProvider>
       </CartContextProvider>
     </ProductContextProvider>,

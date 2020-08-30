@@ -14,15 +14,15 @@ const GetCountryFlagByCode = (code) => {
   return flagCode[code] || null;
 };
 
-const GetStorePreferences = () => {
+const GetPreferences = () => {
   const STORAGE_KEY = "MMT-STORE-CURRENCY";
   const storePreferences = LocalStorage.GetItem(STORAGE_KEY);
   return storePreferences;
 };
 
-const SetStorePreferences = (item) => {
+const SetPreferences = (item) => {
   const STORAGE_KEY = "MMT-STORE-CURRENCY";
   LocalStorage.SetItem(item, STORAGE_KEY);
 };
 
-export { GetCountryFlagByCode, GetStorePreferences, SetStorePreferences };
+export { GetCountryFlagByCode, GetPreferences, SetPreferences };

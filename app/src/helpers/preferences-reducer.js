@@ -1,20 +1,20 @@
-import { GetCurrencyData, SetStorePreferences } from "../helpers";
+import { GetCurrencyData, SetPreferences } from "../helpers";
 
-const StorePreferencesReducer = (state, trigger) => {
+const PreferencesReducer = (state, trigger) => {
   const { action, data } = trigger;
   switch (action) {
-    case "setCountryPreference":
+    case "setPreferences":
       const currencyAndVATData = GetCurrencyData(data);
       const {selectedCurrency} = data;
       const newPreferences = {
         selectedCurrency,
         ...currencyAndVATData
       };
-      SetStorePreferences(newPreferences);
+      SetPreferences(newPreferences);
       return state;
     default:
       return state;
   }
 };
 
-export default StorePreferencesReducer;
+export default PreferencesReducer;

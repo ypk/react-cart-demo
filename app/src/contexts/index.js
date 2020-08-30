@@ -1,11 +1,11 @@
 import CartContext from "./Cart";
-import StorePreferencesContext from "./StorePreferences";
+import PreferencesContext from "./Preferences";
 import ProductContext from "./Product";
 import CurrencyAndVATContext from "./CurrencyAndVAT";
 
 export {
     CartContext,
-    StorePreferencesContext,
+    PreferencesContext,
     ProductContext,
     CurrencyAndVATContext
 }

@@ -3,16 +3,15 @@ import { Icons } from "../common";
 import {
   GetYear,
   GetCountryFlagByCode,
-  SetStorePreferences,
+  SetPreferences,
   GetCurrencyData,
 } from "../../helpers";
-import { StorePreferencesContext } from "../../contexts";
+import { PreferencesContext } from "../../contexts";
 
 const Footer = () => {
-  const storePreferencesContext = useContext(StorePreferencesContext);
-  const { userPreferences } = storePreferencesContext;
+  const preferencesContext = useContext(PreferencesContext);
+  const { userPreferences } = preferencesContext;
   const { currencyAndVATContext } = userPreferences;
-
   const currentYear = GetYear();
   const { FlagIcons, SocialIcons, ChevronIcons } = Icons;
 
@@ -50,7 +49,7 @@ const Footer = () => {
       currencyAndVATContext: currencyAndVATContext,
     });
 
-    SetStorePreferences({
+    SetPreferences({
       selectedCurrency: code,
       ...CurrencyAndVATData 
     });

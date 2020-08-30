@@ -107,7 +107,6 @@ const Carousel = () => {
             <img
               className="max-w-100 block min-h-full min-w-full p-64 bg-no-repeat bg-center bg-local bg-cover"
               style={{ backgroundImage: `url(${imgurl})` }}
-              alt={heading}
             />
             <div className="absolute inset-x-50 top-1/6 z-10 w-full md:w-3/4 px-6 md:px-32">
               <h2 className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 w-full md:w-2/3 text-2xl md:text-5xl px-5 py-3 mb-2">

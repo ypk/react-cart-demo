@@ -6,14 +6,13 @@ const STORAGE_KEY = "MMT-STORE-CART";
 
 const CartContextProvider = ({ children }) => {
 
-  const storedItems = LocalStorage.GetItems(STORAGE_KEY);
+  const storedItems = LocalStorage.GetItem(STORAGE_KEY);
 
   const initialState = {
     items: storedItems,
     ...GetCartItemsCountAndTotal(storedItems),
     checkout: false
   };
-  
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   const addProduct = (data, quantity=1) => {

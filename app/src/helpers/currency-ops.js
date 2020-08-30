@@ -1,15 +1,13 @@
-import { LocalStorage } from "./index";
-
-const GetCurrencyObject = () => {
-  const STORAGE_KEY = "MMT-STORE-CURRENCY";
-  const currencyObject = LocalStorage.GetItems(STORAGE_KEY);
-  return currencyObject;
-};
-
-const GetVATRateObject = () => {
-  const STORAGE_KEY = "MMT-STORE-VAT";
-  const VATObject = LocalStorage.GetItems(STORAGE_KEY);
-  return VATObject;
+const GetCurrencyData = (currencyData) => {
+  const { selectedCurrency, currencyAndVATContext } = currencyData;
+  const { currency, vat } = currencyAndVATContext;
+  const selectedCurrencyObject = currency.find(
+    (ctx) => ctx.code === selectedCurrency
+  );
+  const selectedVatObject = vat.find(
+    (ctx) => ctx.currency === selectedCurrency
+  );
+  return { currencyData: selectedCurrencyObject, VATData: selectedVatObject };
 };
 
 const GetVATAmount = (price, rate) => {
@@ -20,18 +18,8 @@ const FormatPrice = (price) => {
   return Number.parseFloat(price).toFixed(2).toString();
 };
 
-const GetCountryFlagByCode = (code) => {
-  const flagCode = {
-    GBP: "UKFlagIcon",
-    USD: "USAFlagIcon",
-    EUR: "EuroFlagIcon",
-    CAD: "CanadaFlagIcon",
-    AUD: "AustraliaFlagIcon",
-    JPY: "JapanFlagIcon",
-    INR: "IndiaFlagIcon",
-    CHY: "ChinaFlagIcon",
-  };
-  return flagCode[code] || null;
+export {
+  GetCurrencyData,
+  GetVATAmount,
+  FormatPrice,
 };
-
-export { GetCountryFlagByCode, GetCurrencyObject, GetVATRateObject, GetVATAmount, FormatPrice };

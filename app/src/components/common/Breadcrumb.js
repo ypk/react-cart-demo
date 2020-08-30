@@ -3,7 +3,8 @@ import { Icons } from "../common";
 import { Link } from "react-router-dom";
 
 const Breadcrumb = (props) => {
-  const { ChevronIcon } = Icons;
+  const { ChevronIcons } = Icons;
+  const { ChevronRightIcon } = ChevronIcons;
   const { prevPage, currPage } = props;
   return (
     <nav className="mb-8 w-full">
@@ -14,9 +15,10 @@ const Breadcrumb = (props) => {
               Home
             </h2>
           </Link>
-          
         </li>
-        <li className="mb-4 md:mb-0"><ChevronIcon className="h-5 w-4 m-2 my-0 md:my-1" /></li>
+        <li className="mb-4 md:mb-0">
+          <ChevronRightIcon className="h-5 w-4 m-2 my-0 md:my-1" />
+        </li>
         {prevPage && (
           <>
             <li className="mb-4 md:mb-0">
@@ -27,7 +29,7 @@ const Breadcrumb = (props) => {
               </Link>
             </li>
             <li className="mb-4 md:mb-0">
-              <ChevronIcon className="h-5 w-4 m-2 my-0 md:my-1" />
+              <ChevronRightIcon className="h-5 w-4 m-2 my-0 md:my-1" />
             </li>
           </>
         )}

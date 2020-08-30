@@ -1,17 +1,32 @@
-import React, { useReducer } from "react";
-import { StorePreferencesContext } from "../contexts";
-import { StorePreferencesReducer, LocalStorage } from "../helpers";
+import React, { useContext, useReducer } from "react";
+import { CurrencyAndVATContext, StorePreferencesContext } from "../contexts";
+import { StorePreferencesReducer, GetCurrencyData, SetStorePreferences, GetStorePreferences } from "../helpers";
 
-const STORAGE_KEY = "MMT-STORE-CURRENCY";
+const DEFAULT_COUNTRY = "GBP";
 
 const StorePreferencesContextProvider = ({ children }) => {
+
+  const currencyAndVATContext = useContext(CurrencyAndVATContext);
+  const defaultPreferences = {
+    selectedCurrency: DEFAULT_COUNTRY,
+    currencyAndVATContext
+  }
   
-  const storedItems = LocalStorage.GetItems(STORAGE_KEY);
+  const storedPreferences = GetStorePreferences();
   const initialState = {
-    userPreference: storedItems,
+    userPreferences: storedPreferences.length > 0 ? storedPreferences : defaultPreferences
   };
+
+  if(storedPreferences.length === 0) {
+    const currencyAndVATData = GetCurrencyData(defaultPreferences);
+    SetStorePreferences({
+      selectedCurrency: defaultPreferences.selectedCurrency,
+      ...currencyAndVATData
+    });
+  }
+
   const [state, dispatch] = useReducer(StorePreferencesReducer, initialState);
-  
+
   const setCountryPreference = (data) => {
     console.info("Country Selected");
     dispatch({ action: "setCountryPreference", data });

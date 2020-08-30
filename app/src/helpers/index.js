@@ -6,13 +6,12 @@ import { GenerateCarouselIndexes, GetCurrentSlide } from "./carousel-ops";
 import GetCartItemsCountAndTotal from "./cart-ops";
 import GetYear from "./date-ops";
 import Preflight from "./preflight-ops";
+import { GetCurrencyData, GetVATAmount, FormatPrice } from "./currency-ops";
 import {
   GetCountryFlagByCode,
-  GetCurrencyObject,
-  GetVATRateObject,
-  GetVATAmount,
-  FormatPrice,
-} from "./currency-ops";
+  GetStorePreferences,
+  SetStorePreferences,
+} from "./store-preferences-ops";
 
 export {
   Preflight,
@@ -25,8 +24,9 @@ export {
   GenerateCarouselIndexes,
   GetCountryFlagByCode,
   GetCurrentSlide,
-  GetCurrencyObject,
-  GetVATRateObject,
+  GetCurrencyData,
+  GetStorePreferences,
+  SetStorePreferences,
   GetVATAmount,
   FormatPrice,
 };

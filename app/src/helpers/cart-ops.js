@@ -19,10 +19,10 @@ const ItemsTotalPrice = (items) => {
   return items;
 };
 const CartTotalPriceWithVAT = (price) => {
-  const {vatRate} = GetVATRateObject(); 
+ // const {vatRate} = GetVATRateObject(); 
   const vatAmount = GetVATAmount(
     price,
-    vatRate
+    1
   );
   return Number.parseFloat(price + vatAmount);
 };

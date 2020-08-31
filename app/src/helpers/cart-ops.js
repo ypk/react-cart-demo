@@ -1,8 +1,6 @@
-import {
-  LocalStorage,
-  GetVATAmount,
-  GetVATRateObject
-} from "./index";
+import { LocalStorage, GetVATAmount, GetPreferences} from "./index";
+
+const STORAGE_KEY = "MMT-STORE-CART";
 
 const CartItemsCount = (items) => {
   const itemsCount = items.reduce(
@@ -12,46 +10,41 @@ const CartItemsCount = (items) => {
   return itemsCount;
 };
 
-const ItemsTotalPrice = (items) => {
-  items.forEach((item) => {
-    item.totalPrice = Number.parseFloat(item.productPrice * item.quantity);
-  });
-  return items;
-};
 const CartTotalPriceWithVAT = (price) => {
- // const {vatRate} = GetVATRateObject(); 
-  const vatAmount = GetVATAmount(
-    price,
-    1
-  );
+  const { userPreferences } = GetPreferences();
+  const {VATData}= userPreferences;
+  const {vatRate} = VATData;
+  const vatAmount = GetVATAmount(price, vatRate);
   return Number.parseFloat(price + vatAmount);
 };
 
 const CartTotalPrice = (items) => {
   const cartTotal = items.reduce((total, product) => {
-    return total + (product.productPrice * product.quantity);
+    return total + product.productPrice * product.quantity;
   }, 0);
   return Number.parseFloat(cartTotal.toFixed(2));
 };
 
-const StoreCartItems = (items) => {
-  const STORAGE_KEY = "MMT-STORE-CART";
+const SetCartItems = (items) => {
   LocalStorage.SetItem(items, STORAGE_KEY);
 };
 
+const GetCartItems = () => {
+  const storePreferences = LocalStorage.GetItem(STORAGE_KEY);
+  return storePreferences;
+};
+
 const GetCartItemsCountAndTotal = (items) => {
-  StoreCartItems(items);
+  SetCartItems(items);
   let itemsCount = CartItemsCount(items);
-  let itemsTotalPrice = ItemsTotalPrice(items);
   let totalPrice = CartTotalPrice(items);
   let totalPriceVAT = CartTotalPriceWithVAT(totalPrice);
 
   return {
     itemsCount,
-    itemsTotalPrice,
     totalPrice,
     totalPriceVAT,
   };
 };
 
-export default GetCartItemsCountAndTotal;
+export { GetCartItems, SetCartItems, GetCartItemsCountAndTotal };

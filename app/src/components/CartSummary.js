@@ -5,7 +5,9 @@ import { FormatPrice } from "../helpers";
 const CartSummary = () => {
   const preferencesContext = useContext(PreferencesContext);
   const cartContext = useContext(CartContext);
-  const { items, totalPrice, totalPriceVAT } = cartContext;
+  const { items, cartSummary } = cartContext;
+  const { totalPrice, totalPriceVAT } = cartSummary;
+
   const { userPreferences } = preferencesContext;
   const { currencyData, VATData } = userPreferences;
   const cartSize = items.length;

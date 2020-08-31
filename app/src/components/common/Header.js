@@ -6,7 +6,8 @@ import { Icons } from "../common";
 const Header = () => {
   const [isMenuHidden, setIsMenuHidden] = useState(true);
   const { LoginIcon, CartIcon } = Icons;
-  const { itemsCount } = useContext(CartContext);
+  const { cartSummary } = useContext(CartContext);
+  const { itemsCount } = cartSummary;
 
   const toggleMenu = (e) => {
     e.preventDefault();
@@ -105,7 +106,9 @@ const Header = () => {
               {itemsCount > 0 ? (
                 <button className="bg-black group-hover:bg-blue-400 group-focus:bg-blue-400 text-white font-bold py-2 px-4 rounded-full text-sm px-2 md:ml-2">
                   <span className="mx-1">{itemsCount}</span>
-                  <span className="hidden md:inline">{itemsCount < 2 ? "Item" : "Items"} in cart</span>
+                  <span className="hidden md:inline">
+                    {itemsCount < 2 ? "Item" : "Items"} in cart
+                  </span>
                 </button>
               ) : null}
             </Link>

@@ -3,7 +3,7 @@ import LocalStorage from "./storage-ops";
 import CartReducer from "./cart-reducer";
 import PreferencesReducer from "./preferences-reducer";
 import { GenerateCarouselIndexes, GetCurrentSlide } from "./carousel-ops";
-import GetCartItemsCountAndTotal from "./cart-ops";
+import {GetCartItemsCountAndTotal, GetCartItems, SetCartItems} from "./cart-ops";
 import GetYear from "./date-ops";
 import { GetCurrencyData, GetVATAmount, FormatPrice } from "./currency-ops";
 import {
@@ -15,6 +15,8 @@ import {
 export {
   LocalStorage,
   NormalizeSlug,
+  GetCartItems,
+  SetCartItems,
   GetCartItemsCountAndTotal,
   GetYear,
   CartReducer,

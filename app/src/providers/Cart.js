@@ -1,26 +1,29 @@
 import React, { useReducer } from "react";
 import { CartContext } from "../contexts";
-import { CartReducer, LocalStorage, GetCartItemsCountAndTotal } from "../helpers";
-
-const STORAGE_KEY = "MMT-STORE-CART";
+import {
+  CartReducer,
+  GetCartItems,
+  GetCartItemsCountAndTotal,
+} from "../helpers";
 
 const CartContextProvider = ({ children }) => {
 
-  const storedItems = LocalStorage.GetItem(STORAGE_KEY);
+  const storedItems = GetCartItems();
 
   const initialState = {
     items: storedItems,
-    ...GetCartItemsCountAndTotal(storedItems),
-    checkout: false
+    checkout: false,
+    cartSummary: { ...GetCartItemsCountAndTotal(storedItems) },
   };
+
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
-  const addProduct = (data, quantity=1) => {
+  const addProduct = (data, quantity = 1) => {
     console.info("Product added to Cart");
     dispatch({ action: "addItem", data, quantity });
   };
 
-  const removeProduct = (data, quantity=1) => {
+  const removeProduct = (data, quantity = 1) => {
     console.info("Product removed from Cart");
     dispatch({ action: "removeItem", data, quantity });
   };

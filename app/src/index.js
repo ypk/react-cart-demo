@@ -14,13 +14,13 @@ import "./styles/style.css";
 
 ReactDOM.render(
     <ProductContextProvider>
-      <CartContextProvider>
-        <CurrencyAndVATContextProvider>
-          <PreferencesContextProvider>
+      <CurrencyAndVATContextProvider>
+        <PreferencesContextProvider>
+          <CartContextProvider>
             <Routes />
+            </CartContextProvider>
           </PreferencesContextProvider>
         </CurrencyAndVATContextProvider>
-      </CartContextProvider>
     </ProductContextProvider>,
   document.getElementById("app-root")
 );

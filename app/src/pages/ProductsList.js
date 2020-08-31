@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Layout from "../components/Layout";
-import { ProductContext, CurrencyAndVATContext } from "../contexts";
+import { ProductContext } from "../contexts";
 import { Breadcrumb } from "../components/common";
 import Product from "../components/Product";
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
-import CartItems from "../components/CartItems";
+import CartItemsContainer from "../components/CartItemsContainer";
 import CartSummary from "../components/CartSummary";
 import { Breadcrumb, Button } from "../components/common";
 import { PreferencesContext, CartContext } from "../contexts";
@@ -11,10 +11,7 @@ const Cart = () => {
   const history = useHistory();
 
   const {
-    incrementProductCount,
-    decrementProductCount,
     items,
-    removeProduct,
     checkOut,
     clearCart,
     totalPrice,
@@ -50,7 +47,6 @@ const Cart = () => {
     history.push("/products");
   };
 
-
   const { currencyData } = userPreferences;
 
   return (
@@ -60,11 +56,11 @@ const Cart = () => {
           <Breadcrumb currPage={currPage} />
           <main className="my-8">
             <div className="md:flex md:items-center">
-              {items.length > 0 ? (
+              <div className="w-full mr-6">
+                <CartItemsContainer />
+              </div>
+              {/* {items.length > 0 ? (
                 <>
-                  <div className="w-full mr-6">
-                    <CartItems items={items}/>
-                  </div>
                   <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
                     <CartSummary
                       itemsForGrid={items.length}
@@ -77,26 +73,8 @@ const Cart = () => {
                   </div>
                 </>
               ) : (
-                <div className="w-full md:w-1/2 my-6 md:my-32 flex flex-col mx-auto">
-                  <p className="my-12 text-gray-600">
-                    Your cart is currently empty. Here are some options for you:
-                  </p>
-                  <div>
-                    <Link
-                      className="font-bold hover:underline hover:text-blue-400 mr-4 "
-                      to="/"
-                    >
-                      Go Home
-                    </Link>
-                    <Link
-                      className="font-bold hover:underline hover:text-blue-400 ml-4"
-                      to="/products"
-                    >
-                      Add Products
-                    </Link>
-                  </div>
-                </div>
-              )}
+
+              )} */}
             </div>
             {items.length > 0 && (
               <>

@@ -26,7 +26,7 @@ const PreferencesContextProvider = ({ children }) => {
       
   const storedPreferences = GetPreferences();
 
-  const initialState = storedPreferences.length == 0 ? defaultPreferences : storedPreferences;
+  const initialState = storedPreferences.length === 0 ? defaultPreferences : storedPreferences;
 
 
   if(storedPreferences.length === 0) {

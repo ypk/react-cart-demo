@@ -16,14 +16,14 @@ const CartReducer = (state, trigger) => {
                 items: [...state.items]
             }
         case "removeItem": 
-            const removedItem = [...state.items.filter(item => item.id !== data.id)];
+            const removedItem = [...state.items.filter(item => item.id !== data)];
             return {
                 ...state,
                 ...GetCartItemsCountAndTotal(removedItem),
                 items: [...removedItem]
             }
         case "incrementItem": 
-            const itemToIncrement = state.items.findIndex(item => item.id === data.id);
+            const itemToIncrement = state.items.findIndex(item => item.id === data);
             state.items[itemToIncrement].quantity++;
             return {
                 ...state,                
@@ -31,7 +31,7 @@ const CartReducer = (state, trigger) => {
                 items: [...state.items]
             } 
         case "decrementItem":
-            const itemToDecrement = state.items.findIndex(item => item.id === data.id);
+            const itemToDecrement = state.items.findIndex(item => item.id === data);
             state.items[itemToDecrement].quantity--;
             return {
                 ...state,

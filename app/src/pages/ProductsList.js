@@ -5,13 +5,8 @@ import { Breadcrumb } from "../components/common";
 import Product from "../components/Product";
 
 const ProductsList = () => {
-  const DEFAULT_CURRENCY = "GBP";
   const currPage = "Products";
   const { products } = useContext(ProductContext);
-  const { currency } = useContext(CurrencyAndVATContext);
-  const currencyObject = currency.reduce(function (prev, curr) {
-    return curr.code === DEFAULT_CURRENCY ? curr : prev;
-  }, null);
 
   return (
     <Layout>
@@ -30,7 +25,7 @@ const ProductsList = () => {
                     className="w-full max-w-sm mx-auto bg-white h-64 md:h-full rounded-md shadow-md cursor-pointer overflow-hidden hover:shadow-lg"
                     key={id}
                   >
-                    <Product product={product} currency={currencyObject} />
+                    <Product product={product} />
                   </div>
                 );
               })}

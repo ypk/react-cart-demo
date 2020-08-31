@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { NormalizeSlug } from "../helpers";
+import { PreferencesContext } from "../contexts";
 
-const Product = ({ product, currency }) => {
+const Product = ({ product }) => {
   const { id, productName, productPrice, imgUrl } = product;
+  const preferencesContext = useContext(PreferencesContext);
+  const { userPreferences } = preferencesContext;
+  const { currencyData } = userPreferences;
+
   return (
     <Link to={`/product/${NormalizeSlug(id)}`}>
       <div
@@ -16,7 +21,7 @@ const Product = ({ product, currency }) => {
         </div>
         <div className="px-5 py-3">
           <span className="text-gray-500 mt-2">
-            {currency.symbol}
+            {currencyData.symbol}
             {productPrice}
           </span>
         </div>

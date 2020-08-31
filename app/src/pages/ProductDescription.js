@@ -11,8 +11,7 @@ const ProductDescription = () => {
 
   const preferencesContext = useContext(PreferencesContext);
   const { userPreferences } = preferencesContext;
-
-  const { currency } = useContext(PreferencesContext);
+  const { currencyData } = userPreferences;
   
   const { products } = useContext(ProductContext);
 
@@ -22,10 +21,6 @@ const ProductDescription = () => {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
   }, null);
 
-  // const currencyObject = currency.reduce(function (prev, curr) {
-  //   return curr.code === DEFAULT_CURRENCY ? curr : prev;
-  // }, null);
-const  currencyObject = []
   const { productName, productPrice, quantityAvailable, productDescription, imgUrl } = product;
 
   const prevPage = {
@@ -53,7 +48,7 @@ const  currencyObject = []
                     {productName}
                   </h3>
                   <span className="text-black-500 font-poppins text-3xl my-3">
-                    {currencyObject.symbol}
+                    {currencyData.symbol}
                     {productPrice}
                   </span>
 

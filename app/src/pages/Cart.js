@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
-import CartItem from "../components/CartItem";
+import CartItems from "../components/CartItems";
 import CartSummary from "../components/CartSummary";
 import { Breadcrumb, Button } from "../components/common";
 import { PreferencesContext, CartContext } from "../contexts";
 
 const Cart = () => {
   const currPage = "Cart";
-  const DEFAULT_CURRENCY = "GBP";
   const history = useHistory();
 
   const {
@@ -39,7 +38,6 @@ const Cart = () => {
         (curr += `> ${prev.productName} - Qty: ${prev.quantity}\n`),
       ""
     );
-    console.log(purchased);
     const confirmAction = window.confirm(
       `Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nDo you wish to continue?`
     );
@@ -52,7 +50,6 @@ const Cart = () => {
     history.push("/products");
   };
 
-  console.log();
 
   const { currencyData } = userPreferences;
 
@@ -66,13 +63,7 @@ const Cart = () => {
               {items.length > 0 ? (
                 <>
                   <div className="w-full mr-6">
-                    <CartItem
-                      incrementProductCount={incrementProductCount}
-                      decrementProductCount={decrementProductCount}
-                      currencyObject={currencyData}
-                      handleDeleteItemClick={removeProduct}
-                      items={items}
-                    />
+                    <CartItems items={items}/>
                   </div>
                   <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
                     <CartSummary

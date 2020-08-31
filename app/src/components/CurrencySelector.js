@@ -8,7 +8,7 @@ const CurrencySelector = () => {
   const {
     setPreferences,
     storePreferences,
-    userPreferences,
+    userPreferences
   } = preferencesContext;
 
   const { currencyAndVATContext: StoreCurrencyAndVATData } = storePreferences;

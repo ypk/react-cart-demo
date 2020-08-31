@@ -6,6 +6,7 @@ import Breadcrumb from "./Breadcrumb";
 import Button from "./Button";
 import ItemCounter from "./ItemCounter";
 import SocialLinks from "./SocialLinks";
+import CurrencySelector from "./CurrencySelector";
 
 export {
     Button,
@@ -15,5 +16,6 @@ export {
     Icons,
     ItemCounter,
     Loading,
-    SocialLinks
+    SocialLinks,
+    CurrencySelector
 };

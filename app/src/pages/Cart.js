@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link,  useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
 import CartItem from "../components/CartItem";
 import CartSummary from "../components/CartSummary";
@@ -22,22 +22,27 @@ const Cart = () => {
     itemsTotalPrice,
     totalPriceVAT,
   } = useContext(CartContext);
-  const { currency } = useContext(PreferencesContext);
-  const currencyObject = currency.reduce(function (prev, curr) {
-    return curr.code === DEFAULT_CURRENCY ? curr : prev;
-  }, null);
+  const { userPreferences } = useContext(PreferencesContext);
 
   const handleEmptyCartBtnClick = () => {
-    const confirmAction = window.confirm("This will clear the cart.\n\nDo you wish to continue?");
+    const confirmAction = window.confirm(
+      "This will clear the cart.\n\nDo you wish to continue?"
+    );
     if (confirmAction) {
       clearCart();
     }
   };
 
   const handleCheckoutCartBtnClick = () => {
-    let purchased = items.reduce((curr, prev) => curr += `> ${prev.productName} - Qty: ${prev.quantity}\n`, "");
-    console.log(purchased)
-    const confirmAction = window.confirm(`Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nDo you wish to continue?`);
+    let purchased = items.reduce(
+      (curr, prev) =>
+        (curr += `> ${prev.productName} - Qty: ${prev.quantity}\n`),
+      ""
+    );
+    console.log(purchased);
+    const confirmAction = window.confirm(
+      `Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nDo you wish to continue?`
+    );
     if (confirmAction) {
       checkOut();
     }
@@ -46,6 +51,10 @@ const Cart = () => {
   const handleContinueShoppingBtnClick = () => {
     history.push("/products");
   };
+
+  console.log();
+
+  const { currencyData } = userPreferences;
 
   return (
     <Layout>
@@ -57,22 +66,22 @@ const Cart = () => {
               {items.length > 0 ? (
                 <>
                   <div className="w-full mr-6">
-                    <CartItem 
+                    <CartItem
                       incrementProductCount={incrementProductCount}
                       decrementProductCount={decrementProductCount}
-                      currencyObject={currencyObject}
+                      currencyObject={currencyData}
                       handleDeleteItemClick={removeProduct}
                       items={items}
                     />
                   </div>
                   <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
-                    <CartSummary 
+                    <CartSummary
                       itemsForGrid={items.length}
                       totalPrice={totalPrice}
                       itemsTotalPrice={itemsTotalPrice}
                       totalPriceVAT={totalPriceVAT}
-                      currencyObject={currencyObject}
-                      vatObject= {{ vatRate: 20}}
+                      currencyObject={currencyData}
+                      vatObject={{ vatRate: 20 }}
                     />
                   </div>
                 </>
@@ -103,8 +112,10 @@ const Cart = () => {
                 <div className="w-full md:items-center md:flex my-12 md:my-8">
                   <div className="w-full flex flex-col md:flex-row md:justify-between">
                     <div className="flex flex-col my-3 md:my-0">
-                      <Button 
-                        className="justify-center" onClick={handleContinueShoppingBtnClick}>
+                      <Button
+                        className="justify-center"
+                        onClick={handleContinueShoppingBtnClick}
+                      >
                         Continue Shopping
                       </Button>
                     </div>

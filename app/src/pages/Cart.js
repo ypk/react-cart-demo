@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Layout from "../components/Layout";
 import CartItemsContainer from "../components/CartItemsContainer";
 import CartSummary from "../components/CartSummary";
 import { Breadcrumb, Button } from "../components/common";
-import { PreferencesContext, CartContext } from "../contexts";
+import { CartContext } from "../contexts";
 
 const Cart = () => {
   const currPage = "Cart";
@@ -13,9 +13,11 @@ const Cart = () => {
   const {
     items,
     checkOut,
-    clearCart
+    clearCart,
+    cartSummary
   } = useContext(CartContext);
-  const { userPreferences } = useContext(PreferencesContext);
+
+  const { itemsCount, totalPriceVAT } = cartSummary;
 
   const handleEmptyCartBtnClick = () => {
     const confirmAction = window.confirm(
@@ -32,8 +34,9 @@ const Cart = () => {
         (curr += `> ${prev.productName} - Qty: ${prev.quantity}\n`),
       ""
     );
+
     const confirmAction = window.confirm(
-      `Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nDo you wish to continue?`
+      `Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nA total of ${itemsCount} item(s) for a Grand Total of ${Number.parseFloat(totalPriceVAT).toFixed(2)} including VAT.\n\nDo you wish to continue?`
     );
     if (confirmAction) {
       checkOut();

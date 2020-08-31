@@ -35,15 +35,15 @@ const CartItemsContainer = () => {
       <p className="my-12 text-gray-600">
         Your cart is currently empty. Here are some options for you:
       </p>
-      <div>
+      <div className="flex flex-col md:flex-row h-24 justify-between md:justify-start">
         <Link
-          className="font-bold hover:underline hover:text-blue-400 mr-4 "
+          className="font-bold hover:underline hover:text-blue-400 md:mr-4 "
           to="/"
         >
           Go Home
         </Link>
         <Link
-          className="font-bold hover:underline hover:text-blue-400 ml-4"
+          className="font-bold hover:underline hover:text-blue-400 md:ml-4"
           to="/products"
         >
           Add Products

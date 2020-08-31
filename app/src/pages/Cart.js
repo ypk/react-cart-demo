@@ -13,10 +13,7 @@ const Cart = () => {
   const {
     items,
     checkOut,
-    clearCart,
-    totalPrice,
-    itemsTotalPrice,
-    totalPriceVAT,
+    clearCart
   } = useContext(CartContext);
   const { userPreferences } = useContext(PreferencesContext);
 
@@ -46,8 +43,6 @@ const Cart = () => {
   const handleContinueShoppingBtnClick = () => {
     history.push("/products");
   };
-
-  const { currencyData } = userPreferences;
 
   return (
     <Layout>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
 import { PreferencesContext, CartContext } from "../contexts";
-import CartSummary from "./CartSummary";
 
 const CartItemsContainer = () => {
   const preferencesContext = useContext(PreferencesContext);

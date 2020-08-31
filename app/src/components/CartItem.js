@@ -8,9 +8,7 @@ const CartItem = ({
   decrementCount,
   currencyObject,
   handleDeleteItemClick,
-  cartData,
-  cartSize,
-  hasBorder
+  cartData
 }) => {
 
   const handleCartItemDecrement = (id) => {
@@ -25,10 +23,9 @@ const CartItem = ({
   };
 
   const { id, productName, productPrice, quantity, imgUrl } = cartData;
-
   return (
     <div
-      className={`grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400 ${cartSize > 1 ?  hasBorder ?  "md:border-0" : "" : ""}`}
+      className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400"
     >
       <div className="col-span-2 md:col-auto">
         <Link to={"/product"}>
@@ -68,7 +65,7 @@ const CartItem = ({
             </span>
           </Button>
           <div className="flex text-xl md:mb-4 pb-3 md:pb-0 flex-row">
-            <span className="mr-1">{currencyObject.symbol}</span>
+            <span>{currencyObject.symbol}</span>
             <span>{FormatPrice(productPrice)}</span>
           </div>
         </div>

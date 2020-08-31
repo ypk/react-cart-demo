@@ -59,22 +59,9 @@ const Cart = () => {
               <div className="w-full mr-6">
                 <CartItemsContainer />
               </div>
-              {/* {items.length > 0 ? (
-                <>
-                  <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
-                    <CartSummary
-                      itemsForGrid={items.length}
-                      totalPrice={totalPrice}
-                      itemsTotalPrice={itemsTotalPrice}
-                      totalPriceVAT={totalPriceVAT}
-                      currencyObject={currencyData}
-                      vatObject={{ vatRate: 20 }}
-                    />
-                  </div>
-                </>
-              ) : (
-
-              )} */}
+              <div className="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
+                <CartSummary />
+              </div>
             </div>
             {items.length > 0 && (
               <>

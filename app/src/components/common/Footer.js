@@ -1,6 +1,6 @@
 import React from "react";
-import { CurrencySelector } from "../common";
-import SocialLinks from "./SocialLinks";
+import CurrencySelector from "../CurrencySelector";
+import SocialLinks from "../SocialLinks";
 import {
   GetYear
 } from "../../helpers";

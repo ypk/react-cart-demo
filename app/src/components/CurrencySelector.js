@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Icons, CurrencySelector } from "../common";
-import { GetCountryFlagByCode } from "../../helpers";
-import { PreferencesContext } from "../../contexts";
+import { Icons } from "./common";
+import { GetCountryFlagByCode } from "../helpers";
+import { PreferencesContext } from "../contexts";
 
-const StorePreferences = () => {
+const CurrencySelector = () => {
   const preferencesContext = useContext(PreferencesContext);
   const {
     setPreferences,
@@ -121,4 +121,4 @@ const StorePreferences = () => {
   );
 };
 
-export default StorePreferences;
+export default CurrencySelector;

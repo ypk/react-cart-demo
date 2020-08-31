@@ -1,34 +1,30 @@
 import React, { useState, useContext } from "react";
 import { Icons } from "../common";
+import SocialLinks from "./SocialLinks";
 import {
   GetYear,
-  GetCountryFlagByCode,
-  SetPreferences,
-  GetCurrencyData,
+  GetCountryFlagByCode
 } from "../../helpers";
 import { PreferencesContext } from "../../contexts";
 
 const Footer = () => {
   const preferencesContext = useContext(PreferencesContext);
-  const { userPreferences } = preferencesContext;
-  const { currencyAndVATContext } = userPreferences;
-  const currentYear = GetYear();
-  const { FlagIcons, SocialIcons, ChevronIcons } = Icons;
+  const { setPreferences, storePreferences, userPreferences } = preferencesContext;
 
-  const {
-    WhatsAppIcon,
-    TwitterIcon,
-    InstagramIcon,
-    FacebookIcon,
-  } = SocialIcons;
+  const { currencyAndVATContext: StoreCurrencyAndVATData } = storePreferences;
+  const { selectedCurrency: UserPreferredCurrency } = userPreferences;
+
+  const currentYear = GetYear();
+  const { FlagIcons, ChevronIcons } = Icons;
+
   const { ChevronDownIcon } = ChevronIcons;
 
   const [currencyPreferences, setCurrencyPreferences] = useState({
     preferences: {
-      selectedCurrency: userPreferences.selectedCurrency,
-      currency: userPreferences.currencyAndVATContext.currency,
+      selectedCurrency: UserPreferredCurrency,
+      currency: StoreCurrencyAndVATData.currency,
       SelectedCurrencyFlag:
-        FlagIcons[GetCountryFlagByCode(userPreferences.selectedCurrency)],
+        FlagIcons[GetCountryFlagByCode(UserPreferredCurrency)],
     },
     currencySelectorOpen: false,
   });
@@ -44,26 +40,19 @@ const Footer = () => {
   };
 
   const handleCountryChangeBtnClick = (code) => {
-    const CurrencyAndVATData = GetCurrencyData({
-      selectedCurrency: code,
-      currencyAndVATContext: currencyAndVATContext,
-    });
-
-    SetPreferences({
-      selectedCurrency: code,
-      ...CurrencyAndVATData 
-    });
-
     setCurrencyPreferences(() => {
       return {
-        ...currencyPreferences,
-        currencySelectorOpen: !currencyPreferences.currencySelectorOpen,
         preferences: {
-          ...currencyPreferences.preferences,
           selectedCurrency: code,
+          currency: StoreCurrencyAndVATData.currency,
           SelectedCurrencyFlag: FlagIcons[GetCountryFlagByCode(code)],
         },
+        currencySelectorOpen: false,
       };
+    });
+
+    setPreferences({
+      selectedCurrency: code
     });
   };
 
@@ -96,47 +85,10 @@ const Footer = () => {
           </div>
           <div className="flex flex-col md:flex-row w-full my-4 md:my-0 md:w-1/2 items-center md:justify-end">
             <div className="flex px-3 py-2 md:px-0 md:py-0 md:mr-8">
-              <ol className="list-reset flex flex-wrap md:flex-no-wrap">
-                <li>
-                  <a
-                    className="inline-block no-underline hover:text-blue-400 hover:underline py-1"
-                    href="https://www.facebook.com/"
-                    title="Facebook"
-                  >
-                    <FacebookIcon className="w-10 h-12 md:w-8 md:h-10 group-focus:text-blue-400 group-hover:text-blue-400 mx-2" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="inline-block no-underline hover:text-blue-400 hover:underline py-1"
-                    href="https://www.twitter.com/"
-                    title="Twitter"
-                  >
-                    <TwitterIcon className="w-10 h-12 md:w-8 md:h-10 group-focus:text-blue-400 group-hover:text-blue-400 mx-2" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="inline-block no-underline hover:text-blue-400 hover:underline py-1"
-                    href="https://www.instagram.com/"
-                    title="Instagram"
-                  >
-                    <InstagramIcon className="w-10 h-12 md:w-8 md:h-10 group-focus:text-blue-400 group-hover:text-blue-400 mx-2" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="inline-block no-underline hover:text-blue-400 hover:underline py-1"
-                    href="https://www.whatsapp.com/"
-                    title="WhatsApp"
-                  >
-                    <WhatsAppIcon className="w-10 h-12 md:w-8 md:h-10 group-focus:text-blue-400 group-hover:text-blue-400 mx-2" />
-                  </a>
-                </li>
-              </ol>
+              <SocialLinks />
             </div>
             {currency && (
-              <div className="flex px-3 py-2 md:px-0 w-full">
+              <div className="flex px-3 py-2 md:px-0 w-full md:w-1/4">
                 <div className="relative flex w-full lg:justify-end m-1">
                   <div
                     className={`${
@@ -157,6 +109,7 @@ const Footer = () => {
                           return (
                             CountryIcon && (
                               <li
+                                className="flex self-center"
                                 key={id}
                                 onClick={() =>
                                   handleCountryChangeBtnClick(code)

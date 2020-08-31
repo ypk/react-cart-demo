@@ -1,5 +1,7 @@
 import { LocalStorage } from "./index";
 
+const STORAGE_KEY = "MMT-STORE-PREFERENCES";
+
 const GetCountryFlagByCode = (code) => {
   const flagCode = {
     GBP: "UKFlagIcon",
@@ -15,13 +17,11 @@ const GetCountryFlagByCode = (code) => {
 };
 
 const GetPreferences = () => {
-  const STORAGE_KEY = "MMT-STORE-CURRENCY";
   const storePreferences = LocalStorage.GetItem(STORAGE_KEY);
   return storePreferences;
 };
 
 const SetPreferences = (item) => {
-  const STORAGE_KEY = "MMT-STORE-CURRENCY";
   LocalStorage.SetItem(item, STORAGE_KEY);
 };
 

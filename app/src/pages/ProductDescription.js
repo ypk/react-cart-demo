@@ -6,20 +6,26 @@ import { NormalizeSlug } from "../helpers";
 import { useParams } from "react-router-dom";
 
 const ProductDescription = () => {
-  let params = useParams();
-  const DEFAULT_CURRENCY = "GBP";
-
+  const params = useParams();
   const [quantitySelected, setQuantitySelected] = useState(1);
-  const { products } = useContext(ProductContext);
+
+  const preferencesContext = useContext(PreferencesContext);
+  const { userPreferences } = preferencesContext;
+
   const { currency } = useContext(PreferencesContext);
+  
+  const { products } = useContext(ProductContext);
+
   const { addProduct } = useContext(CartContext);
 
   const product = products.reduce(function (prev, curr) {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
   }, null);
-  const currencyObject = currency.reduce(function (prev, curr) {
-    return curr.code === DEFAULT_CURRENCY ? curr : prev;
-  }, null);
+
+  // const currencyObject = currency.reduce(function (prev, curr) {
+  //   return curr.code === DEFAULT_CURRENCY ? curr : prev;
+  // }, null);
+const  currencyObject = []
   const { productName, productPrice, quantityAvailable, productDescription, imgUrl } = product;
 
   const prevPage = {

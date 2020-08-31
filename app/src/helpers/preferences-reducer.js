@@ -4,14 +4,28 @@ const PreferencesReducer = (state, trigger) => {
   const { action, data } = trigger;
   switch (action) {
     case "setPreferences":
-      const currencyAndVATData = GetCurrencyData(data);
-      const {selectedCurrency} = data;
-      const newPreferences = {
+      const { storePreferences } = state;
+      const { currencyAndVATContext } = storePreferences;
+      const { selectedCurrency } = data;
+
+      const currencyAndVATData = GetCurrencyData({
         selectedCurrency,
-        ...currencyAndVATData
+        currencyAndVATContext,
+      });
+
+      const newPreferences = {
+        selectedCurrency: selectedCurrency,
+        ...currencyAndVATData,
       };
-      SetPreferences(newPreferences);
-      return state;
+
+      const updatedState = {
+        ...state,
+        userPreferences: newPreferences
+      };
+
+      SetPreferences(updatedState);
+
+      return updatedState;
     default:
       return state;
   }

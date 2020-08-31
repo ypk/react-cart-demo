@@ -7,22 +7,30 @@ const DEFAULT_COUNTRY = "GBP";
 const PreferencesContextProvider = ({ children }) => {
 
   const currencyAndVATContext = useContext(CurrencyAndVATContext);
-  const defaultPreferences = {
+
+  const defaultCurrencyAndVATData = GetCurrencyData({
     selectedCurrency: DEFAULT_COUNTRY,
     currencyAndVATContext
-  }
-  
-  const storedPreferences = GetPreferences();
-  const initialState = {
-    userPreferences: storedPreferences.length > 0 ? storedPreferences : defaultPreferences
+  });
+
+  const defaultPreferences = {
+    storePreferences: {
+      selectedCurrency: DEFAULT_COUNTRY,
+      currencyAndVATContext
+    },
+    userPreferences: {
+      selectedCurrency: DEFAULT_COUNTRY,
+      ...defaultCurrencyAndVATData
+    }
   };
+      
+  const storedPreferences = GetPreferences();
+
+  const initialState = storedPreferences.length == 0 ? defaultPreferences : storedPreferences;
+
 
   if(storedPreferences.length === 0) {
-    const currencyAndVATData = GetCurrencyData(defaultPreferences);
-    SetPreferences({
-      selectedCurrency: defaultPreferences.selectedCurrency,
-      ...currencyAndVATData
-    });
+    SetPreferences(initialState);
   }
 
   const [state, dispatch] = useReducer(PreferencesReducer, initialState);

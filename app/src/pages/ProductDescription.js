@@ -58,12 +58,12 @@ const ProductDescription = () => {
                     {productPrice}
                   </span>
 
-                  <div className="my-12">{productDescription}</div>
+                  <div className="my-12 md:my-6">{productDescription}</div>
 
-                  <div className="my-12">
+                  <div className="my-12 md:my-6">
                     {quantityAvailable > 0 ? (
                         <>
-                        <p>Quantity available: {quantityAvailable}</p>
+                        <p className="md:mb-6">Quantity available: {quantityAvailable}</p>
                         <div className="mb-6 flex flex-col">
                           <ItemCounter labelClass="my-6 mr-0 md:my-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
                             setQuantitySelected(value)

@@ -2,41 +2,43 @@ import { GetCartItemsCountAndTotal } from "./index";
 
 const CartReducer = (state, trigger) => {
   const { action, data, quantity } = trigger;
+  const {items} = state;
+  const {id} = data;
   switch (action) {
     case "addItem":
-      if (!state.items.find((item) => item.id === data)) {
-        state.items.push({
+      if (!(items.some(item => item.id === id))) {
+        items.push({
           ...data,
           quantity,
         });
       }
       return {
         ...state,
-        cartSummary: { ...GetCartItemsCountAndTotal(state.items) },
-        items: [...state.items],
+        cartSummary: { ...GetCartItemsCountAndTotal(items) },
+        items: [...items],
       };
     case "removeItem":
-      const removedItem = [...state.items.filter((item) => item.id !== data)];
+      const removedItem = [...items.filter((item) => item.id !== id)];
       return {
         ...state,
         cartSummary: { ...GetCartItemsCountAndTotal(removedItem) },
         items: [...removedItem],
       };
     case "incrementItem":
-      const itemToIncrement = state.items.findIndex((item) => item.id === data);
-      state.items[itemToIncrement].quantity++;
+      const itemToIncrement = items.findIndex((item) => item.id === id);
+      items[itemToIncrement].quantity++;
       return {
         ...state,
-        cartSummary: { ...GetCartItemsCountAndTotal(state.items) },
-        items: [...state.items],
+        cartSummary: { ...GetCartItemsCountAndTotal(items) },
+        items: [...items],
       };
     case "decrementItem":
-      const itemToDecrement = state.items.findIndex((item) => item.id === data);
-      state.items[itemToDecrement].quantity--;
+      const itemToDecrement = items.findIndex((item) => item.id === id);
+      items[itemToDecrement].quantity--;
       return {
         ...state,
-        cartSummary: { ...GetCartItemsCountAndTotal(state.items) },
-        items: [...state.items],
+        cartSummary: { ...GetCartItemsCountAndTotal(items) },
+        items: [...items],
       };
     case "checkOut":
       return {

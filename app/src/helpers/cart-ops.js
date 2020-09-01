@@ -1,4 +1,4 @@
-import { LocalStorage, GetVATAmount, GetPreferences} from "./index";
+import { LocalStorage, GetVATAmount, GetPreferences } from "./index";
 
 const STORAGE_KEY = "MMT-STORE-CART";
 
@@ -12,8 +12,8 @@ const CartItemsCount = (items) => {
 
 const CartTotalPriceWithVAT = (price) => {
   const { userPreferences } = GetPreferences();
-  const {VATData}= userPreferences;
-  const {vatRate} = VATData;
+  const { VATData } = userPreferences;
+  const { vatRate } = VATData;
   const vatAmount = GetVATAmount(price, vatRate);
   return Number.parseFloat(price + vatAmount);
 };

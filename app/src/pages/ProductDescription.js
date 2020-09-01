@@ -27,7 +27,13 @@ const ProductDescription = () => {
     link: "/products",
     title: "Products",
   };
-  const currPage = productName;  
+
+  const currPage = productName;
+  
+  const handleAddToCartButtonClick = () => {
+    addProduct(product, quantitySelected);
+  }
+
   return (
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2 md:mb-20">
@@ -57,19 +63,18 @@ const ProductDescription = () => {
                   <div className="my-12">
                     {quantityAvailable > 0 ? (
                         <>
-                        <div className="my-12 flex flex-row md:flex-col">
-                          <ItemCounter labelClass="my-8 mr-5 md:my-0 md:mr-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
+                        <p>Quantity available: {quantityAvailable}</p>
+                        <div className="mb-6 flex flex-col">
+                          <ItemCounter labelClass="my-6 mr-0 md:my-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
                             setQuantitySelected(value)
                           }}/>
                         </div>
                         <div className="flex flex-col items-center">
                           <Button
                             icon="CartIcon"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              addProduct(product, quantitySelected);
-                            }}
+                            onClick={handleAddToCartButtonClick}
                             className="w-full justify-center"
+                            disabled={quantitySelected > quantityAvailable}
                           >
                             Add to cart
                           </Button>

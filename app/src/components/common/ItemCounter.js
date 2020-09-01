@@ -96,6 +96,7 @@ const ItemCounter = ({
     }else {
       setInvalidQuantityErrorMessage(null);
     }
+    updateParentState();
   }
 
   return (
@@ -116,10 +117,9 @@ const ItemCounter = ({
           className="group px-0"
           disabled={counterValue === minAllowedLimit}
           onClick={handleCounterDecrease}
-          onBlur={handleCounterValidation}
         />
         <input
-          className="text-gray-700 text-lg md:w-20 p-3 text-center md:h-12 mx-2 rounded-md border border-gray-400 hover:shadow-outline active:shadow-outline focus:shadow-outline appearance-number"
+          className="text-gray-700 text-lg w-1/2 md:w-20 p-3 text-center md:h-12 md:mx-2 rounded-md border border-gray-400 hover:shadow-outline active:shadow-outline focus:shadow-outline appearance-number"
           type="number"
           min={minAllowedLimit}
           max="999"
@@ -141,7 +141,7 @@ const ItemCounter = ({
           onClick={handleCounterIncrease}
         />
       </div>
-        {invalidQuantityErrorMessage && <p className={`text-red-500 h-6`}>{invalidQuantityErrorMessage}</p>}
+        {invalidQuantityErrorMessage && <p className={`text-red-500 h-12 md:h-6`}>{invalidQuantityErrorMessage}</p>}
     </>
   );
 };

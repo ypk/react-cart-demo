@@ -9,6 +9,7 @@ const ItemCounter = ({
   onDecrement,
   maxAllowedLimit,
   defaultValue = 1,
+  disabled
 }) => {
   let [counterValue, setCounterValue] = useState(defaultValue);
   const [invalidQuantityErrorMessage, setInvalidQuantityErrorMessage] = useState(null);
@@ -115,17 +116,18 @@ const ItemCounter = ({
           }}
           buttonStyle="silent"
           className="group px-0"
-          disabled={counterValue === minAllowedLimit}
+          disabled={disabled || counterValue === minAllowedLimit}
           onClick={handleCounterDecrease}
         />
         <input
-          className="text-gray-700 text-lg w-1/2 md:w-20 p-3 text-center md:h-12 md:mx-2 rounded-md border border-gray-400 hover:shadow-outline active:shadow-outline focus:shadow-outline appearance-number"
+          className={`text-gray-700 text-lg w-1/2 md:w-20 p-3 text-center md:h-12 md:mx-2 rounded-md border border-gray-400 appearance-number ${disabled ? "" : "hover:shadow-outline active:shadow-outline focus:shadow-outline"}`}
           type="number"
           min={minAllowedLimit}
           max="999"
           value={counterValue}
           onChange={handleQuantityChange}
           onBlur={handleCounterValidation}
+          disabled={disabled}
         />
         <Button
           icon={{
@@ -137,7 +139,7 @@ const ItemCounter = ({
           }}
           buttonStyle="silent"
           className="group"
-          disabled={counterValue === maxAllowedLimit}
+          disabled={disabled || counterValue === maxAllowedLimit}
           onClick={handleCounterIncrease}
         />
       </div>

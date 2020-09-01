@@ -2,37 +2,46 @@ import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
 import { Breadcrumb, Button, ItemCounter } from "../components/common";
 import { ProductContext, PreferencesContext, CartContext } from "../contexts";
-import { NormalizeSlug } from "../helpers";
+import { CanProductBeBought, NormalizeSlug } from "../helpers";
 import { useParams } from "react-router-dom";
 
 const ProductDescription = () => {
   const params = useParams();
-  const [quantitySelected, setQuantitySelected] = useState(1);
-
-  const preferencesContext = useContext(PreferencesContext);
-  const { userPreferences } = preferencesContext;
-  const { currencyData } = userPreferences;
-  
-  const { products } = useContext(ProductContext);
-
-  const { addProduct } = useContext(CartContext);
-
-  const product = products.reduce(function (prev, curr) {
-    return NormalizeSlug(curr.id) === params.id ? curr : prev;
-  }, null);
-
-  const { productName, productPrice, quantityAvailable, productDescription, imgUrl } = product;
 
   const prevPage = {
     link: "/products",
     title: "Products",
   };
 
+  const [quantitySelected, setQuantitySelected] = useState(1);
+
+  const preferencesContext = useContext(PreferencesContext);
+  const { userPreferences } = preferencesContext;
+  const { currencyData } = userPreferences;
+  const { products } = useContext(ProductContext);
+
+  const { addProduct, items: cartItems } = useContext(CartContext);
+
+  const product = products.reduce(function (prev, curr) {
+    return NormalizeSlug(curr.id) === params.id ? curr : prev;
+  }, null);
+
+  const {
+    productName,
+    productPrice,
+    quantityAvailable,
+    productDescription,
+    imgUrl,
+  } = product;
+
   const currPage = productName;
-  
+
+  const canBuyProduct = CanProductBeBought(cartItems, product);
+
+  console.log(canBuyProduct)
   const handleAddToCartButtonClick = () => {
     addProduct(product, quantitySelected);
-  }
+  };
 
   return (
     <Layout>
@@ -62,22 +71,33 @@ const ProductDescription = () => {
 
                   <div className="my-12 md:my-6">
                     {quantityAvailable > 0 ? (
-                        <>
-                        <p className="md:mb-6">Quantity available: {quantityAvailable}</p>
+                      <>
+                        <p className="md:mb-6">
+                          Quantity available: {quantityAvailable}
+                        </p>
                         <div className="mb-6 flex flex-col">
-                          <ItemCounter labelClass="my-6 mr-0 md:my-0" maxAllowedLimit={quantityAvailable} onChange={(value) => {
-                            setQuantitySelected(value)
-                          }}/>
+                          <ItemCounter
+                            labelClass="my-6 mr-0 md:my-0"
+                            maxAllowedLimit={quantityAvailable}
+                            disabled={canBuyProduct === null}
+                            onChange={(value) => {
+                              setQuantitySelected(value);
+                            }}
+                          />
                         </div>
                         <div className="flex flex-col items-center">
-                          <Button
-                            icon="CartIcon"
-                            onClick={handleAddToCartButtonClick}
-                            className="w-full justify-center"
-                            disabled={quantitySelected > quantityAvailable}
-                          >
-                            Add to cart
-                          </Button>
+                          {canBuyProduct ? (
+                            <Button
+                              icon="CartIcon"
+                              onClick={handleAddToCartButtonClick}
+                              className="w-full justify-center"
+                              disabled={quantitySelected > quantityAvailable}
+                            >
+                              Add to cart
+                            </Button>
+                          ) : (
+                            <p className="text">Item already in cart</p>
+                          )}
                         </div>
                       </>
                     ) : (

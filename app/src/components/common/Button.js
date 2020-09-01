@@ -9,7 +9,7 @@ const Button = ({ icon, children, className, disabled, buttonStyle, ...rest}) =>
     const ButtonIcon = icon && Icons[name];
     return (
       <button type="button" {...rest}  className={`px-5 py-3 flex items-center text-white text-sm font-bold rounded focus:outline-none ${ButtonIcon ? 'justify-between' : ''} ${styleClasses} ${className ? className : ""} ${disabled ? "opacity-50 cursor-not-allowed": ""}`} disabled={disabled}>
-        { ButtonIcon ? <ButtonIcon className={iconStyleClass} w={ disabled ? w : null } h={ disabled ? h : null } /> : null }
+        { ButtonIcon ? <ButtonIcon disabled={disabled} className={iconStyleClass} w={ disabled ? w : null } h={ disabled ? h : null } /> : null }
         {children}
       </button>
     )

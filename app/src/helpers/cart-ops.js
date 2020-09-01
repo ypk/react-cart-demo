@@ -34,6 +34,29 @@ const GetCartItems = () => {
   return storePreferences;
 };
 
+const FindProductInCart = (cart, product) => {
+  return cart.find((item) => item.id === product.id);
+};
+
+const CanProductBeBought = (cart, product) => {
+  const inCart = FindProductInCart(cart, product);
+  if(inCart) {
+    const metQuantityLimit = cart.find(
+      (item) =>
+        item.id === product.id &&
+        product.quantity === product.quantityAvailable
+    );
+    if(metQuantityLimit) {
+      return true;
+    } else {
+      return false;
+    }
+    
+  } else {
+    return true;
+  }
+};
+
 const GetCartItemsCountAndTotal = (items) => {
   SetCartItems(items);
   let itemsCount = CartItemsCount(items);
@@ -47,4 +70,10 @@ const GetCartItemsCountAndTotal = (items) => {
   };
 };
 
-export { GetCartItems, SetCartItems, GetCartItemsCountAndTotal };
+export {
+  CanProductBeBought,
+  FindProductInCart,
+  GetCartItems,
+  SetCartItems,
+  GetCartItemsCountAndTotal,
+};

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, ItemCounter } from "../components/common";
-import { FormatPrice } from "../helpers";
+import { NormalizeSlug, FormatPrice } from "../helpers";
 
 const CartItem = ({
   incrementCount,
@@ -28,13 +28,13 @@ const CartItem = ({
       className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400"
     >
       <div className="col-span-2 md:col-auto">
-        <Link to={"/product"}>
+        <Link to={`/product/${NormalizeSlug(id)}`}>
           <img width="100" height="100" src={imgUrl} alt={productName} />
         </Link>
       </div>
       <div className="col-span-3">
         <div className="flex flex-col justify-between h-full flex-wrap">
-          <Link className="font-bold text-xl" to={`/product/${id}`}>
+          <Link className="font-bold text-xl" to={`/product/${NormalizeSlug(id)}`}>
             {productName}
           </Link>
           <div className="flex flex-col md:flex-row">

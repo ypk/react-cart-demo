@@ -13,7 +13,7 @@ const ItemCounter = ({
 }) => {
   let [counterValue, setCounterValue] = useState(defaultValue);
   const [invalidQuantityErrorMessage, setInvalidQuantityErrorMessage] = useState(null);
-  const minAllowedLimit = 1;
+  const minAllowedLimit = defaultValue;
 
   const updateParentState = () => {
     onChange(counterValue);
@@ -82,7 +82,7 @@ const ItemCounter = ({
     e.preventDefault();
     const { value } = e.currentTarget;
     const parsedValue = !isNaN(value) && Number.parseInt(value);
-    if (parsedValue && parsedValue > minAllowedLimit) {
+    if (parsedValue && parsedValue >= minAllowedLimit) {
       setInvalidQuantityErrorMessage(null);
       setCounterValue(parsedValue);
     }
@@ -139,11 +139,11 @@ const ItemCounter = ({
           }}
           buttonStyle="silent"
           className="group"
-          disabled={disabled || counterValue === maxAllowedLimit}
+          disabled={disabled || counterValue >= maxAllowedLimit}
           onClick={handleCounterIncrease}
         />
       </div>
-        {invalidQuantityErrorMessage && <p className={`text-red-500 h-12 md:h-6`}>{invalidQuantityErrorMessage}</p>}
+        {invalidQuantityErrorMessage && <p className={`text-red-500 h-12`}>{invalidQuantityErrorMessage}</p>}
     </>
   );
 };

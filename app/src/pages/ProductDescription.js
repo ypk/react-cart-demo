@@ -38,10 +38,10 @@ const ProductDescription = () => {
 
   const canBuyProduct = CanProductBeBought(cartItems, product);
 
-  console.log(canBuyProduct)
   const handleAddToCartButtonClick = () => {
     addProduct(product, quantitySelected);
   };
+
 
   return (
     <Layout>
@@ -79,7 +79,7 @@ const ProductDescription = () => {
                           <ItemCounter
                             labelClass="my-6 mr-0 md:my-0"
                             maxAllowedLimit={quantityAvailable}
-                            disabled={canBuyProduct === null}
+                            disabled={canBuyProduct === false}
                             onChange={(value) => {
                               setQuantitySelected(value);
                             }}
@@ -96,7 +96,7 @@ const ProductDescription = () => {
                               Add to cart
                             </Button>
                           ) : (
-                            <p className="text">Item already in cart</p>
+                            <p className="text text-gray-600">Sorry, you already have the maximum allowed items in your cart</p>
                           )}
                         </div>
                       </>

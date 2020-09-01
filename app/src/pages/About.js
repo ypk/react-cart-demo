@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Loading from "../components/common/Loading";
+import { Loading, Icons } from "../components/common";
 import Layout from "../components/Layout";
 import { Breadcrumb } from "../components/common";
 import APIService from "../services/api-service";
@@ -11,13 +11,47 @@ const About = () => {
   const [hasFacts, setHasFacts] = useState(false);
   const [failedLoading, setFailedLoading] = useState(false);
   const APIUrl = "https://catfact.ninja/facts?limit=5";
-
+  const { BulletIcon } = Icons;
   const currPage = "About";
 
   APIService.init(APIUrl);
 
+  const fallbackCatFacts = [
+    {
+      id: 0,
+      fact: "A house cat is genetically 95.6% tiger.",
+    },
+    {
+      id: 1,
+      fact:
+        "Cats can run around 48 kph (30 mph), but only over short distances. A house cat could beat superstar runner Usain Bolt in the 200 meter dash.",
+    },
+    {
+      id: 2,
+      fact:
+        "Cats have an extra organ that allows them to taste scents in the air",
+    },
+    {
+      id: 3,
+      fact: "Each cat’s nose is unique, much like human fingerprints.",
+    },
+    {
+      id: 4,
+      fact: "Cats can jump 5 times their height",
+    },
+    {
+      id: 5,
+      fact: "Cats can dream",
+    },
+    {
+      id: 6,
+      fact:
+        "An ailurophile is a person who loves cats. The word `ailuro` is the ancient Greek word for cat.",
+    },
+  ];
+
   useEffect(() => {
-    const content = APIService.get((e)=> {
+    const content = APIService.get((e) => {
       setFailedLoading(true);
     });
     content.then((d) => {
@@ -41,10 +75,9 @@ const About = () => {
             <div className="mt-8 mb-8 text-xl">
               <p>
                 The page informs the user about the store. It may include
-                information such as when the store was started, How has the store
-                grown until now, and how many people are working behind the scenes
-                to make it happen. How has the store grown until now, and how many
-                people are working behind the scenes to make it happen.
+                information such as when the store was started, How has the
+                store grown until now, and how many people are working behind
+                the scenes to make it happen.
               </p>
               <p className="my-4">
                 This is another long line of string to go with the one written
@@ -91,44 +124,45 @@ const About = () => {
               </p>
               <p className="mb-6">
                 Anyways, here's a list of cat facts I've pulled from the
-                internet for your enjoyment.
+                internet using the magic of javascript and XMLHTTP for your
+                enjoyment.
               </p>
               <h4 className="my-8 underline font-bold">Cat Facts</h4>
-              {!hasFacts && !failedLoading ? <Loading /> : null}
-              <ul>
-                {hasFacts &&
-                  Object.keys(catFacts).map((factObj) => {
-                    const { id, fact } = catFacts[factObj];
-                    return (
-                      <li className="custom-styled" key={id}>
-                        {fact}
-                      </li>
-                    );
-                  })}
-                {failedLoading && (
-                  <>
-                    <li className="custom-styled">A house cat is genetically 95.6% tiger.</li>
-                    <li className="custom-styled">
-                      Cats can run around 48 kph (30 mph), but only over short
-                      distances. A house cat could beat superstar runner Usain
-                      Bolt in the 200 meter dash.
-                    </li>
-                    <li className="custom-styled">
-                      Cats have an extra organ that allows them to taste scents
-                      in the air
-                    </li>
-                    <li className="custom-styled">
-                      Each cat’s nose is unique, much like human fingerprints.
-                    </li>
-                    <li className="custom-styled">Cats can jump 5 times their height</li>
-                    <li className="custom-styled">Cats can dream</li>
-                    <li className="custom-styled">
-                      An ailurophile is a person who loves cats. The word
-                      `ailuro` is the ancient Greek word for cat.
-                    </li>
-                  </>
-                )}
-              </ul>
+              {!hasFacts && !failedLoading ? (
+                <Loading />
+              ) : hasFacts && !failedLoading ? (
+                <ul className="py-4">
+                  {hasFacts &&
+                    Object.keys(catFacts).map((factObj) => {
+                      const { id, fact } = catFacts[factObj];
+                      return (
+                        <li className="flex py-2" key={id}>
+                          <BulletIcon className="w-4 h-4 group-focus:text-blue-400 group-hover:text-blue-400 mr-2 self-center" />
+                          <p className="w-11/12">{fact}</p>
+                        </li>
+                      );
+                    })}
+                </ul>
+              ) : failedLoading ? (
+                <>
+                  <p className="text-red-400 py-4">
+                    Darn! Looks like it failed getting the cat facts. No
+                    worries, here are some obscure facts of cats that you might
+                    not know.
+                  </p>
+                  <ul className="py-4">
+                    {fallbackCatFacts.map((factObj) => {
+                      const { id, fact } = factObj;
+                      return (
+                        <li className="flex py-2" key={id}>
+                          <BulletIcon className="w-4 h-4 group-focus:text-blue-400 group-hover:text-blue-400 mr-2 self-center" />
+                          <p className="w-11/12">{fact}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              ) : null}
             </div>
             <div className="w-full md:w-1/4 pl-3">
               <img

@@ -40,18 +40,20 @@ const FindProductInCart = (cart, product) => {
 
 const CanProductBeBought = (cart, product) => {
   const inCart = FindProductInCart(cart, product);
-  if(inCart) {
+
+  if (inCart) {
     const metQuantityLimit = cart.find(
-      (item) =>
-        item.id === product.id &&
-        product.quantity === product.quantityAvailable
+      (item) => {
+        if(item.id === product.id) {
+          return item.quantity === item.quantityAvailable;
+        }
+      }
     );
-    if(metQuantityLimit) {
-      return true;
-    } else {
+    if (metQuantityLimit) {
       return false;
+    } else {
+      return true;
     }
-    
   } else {
     return true;
   }

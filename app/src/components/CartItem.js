@@ -22,7 +22,8 @@ const CartItem = ({
     handleDeleteItemClick(id);
   };
 
-  const { id, productName, productPrice, quantity, imgUrl } = cartData;
+  const { id, productName, productPrice, quantity, imgUrl, quantityAvailable } = cartData;
+ 
   return (
     <div
       className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400"
@@ -44,6 +45,7 @@ const CartItem = ({
               inCart={true}
               onIncrement={() => handleCartItemIncrement(id)}
               onDecrement={() => handleCartItemDecrement(id)}
+              maxAllowedLimit={quantityAvailable}
             />
           </div>
         </div>

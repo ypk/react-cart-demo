@@ -8,12 +8,12 @@ const ItemCounter = ({
   onIncrement,
   onDecrement,
   maxAllowedLimit,
-  defaultValue = 1,
-  disabled
+  defaultValue,
+  disabled = false
 }) => {
   let [counterValue, setCounterValue] = useState(defaultValue);
   const [invalidQuantityErrorMessage, setInvalidQuantityErrorMessage] = useState(null);
-  const minAllowedLimit = defaultValue;
+  const minAllowedLimit = 1;
 
   const updateParentState = () => {
     onChange(counterValue);
@@ -99,7 +99,7 @@ const ItemCounter = ({
     }
     updateParentState();
   }
-
+  
   return (
     <>
       <label className={`${labelClass ? labelClass : "text-xl"}`}>

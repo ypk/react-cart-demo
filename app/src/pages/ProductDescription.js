@@ -2,7 +2,11 @@ import React, { useContext, useState } from "react";
 import Layout from "../components/Layout";
 import { Breadcrumb, Button, ItemCounter } from "../components/common";
 import { ProductContext, PreferencesContext, CartContext } from "../contexts";
-import { CanProductBeBought, NormalizeSlug } from "../helpers";
+import {
+  CanProductBeBought,
+  FindProductInCart,
+  NormalizeSlug,
+} from "../helpers";
 import { useParams } from "react-router-dom";
 
 const ProductDescription = () => {
@@ -26,22 +30,27 @@ const ProductDescription = () => {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
   }, null);
 
-  const {
-    productName,
-    productPrice,
-    quantityAvailable,
-    productDescription,
-    imgUrl,
-  } = product;
+  const productInCartAlready = cartItems.reduce(function (prev, curr) {
+    return curr.id === product.id ? curr : prev;
+  }, null);
+
+  const { productName, productPrice, productDescription, imgUrl } = product;
+
+  let { quantityAvailable } = product;
 
   const currPage = productName;
 
   const canBuyProduct = CanProductBeBought(cartItems, product);
 
+  if (productInCartAlready) {
+    const cartItem = FindProductInCart(cartItems, product);
+    const { quantity } = cartItem;
+    quantityAvailable = Number.parseInt(quantityAvailable) - Number.parseInt(quantity);
+  }
+
   const handleAddToCartButtonClick = () => {
     addProduct(product, quantitySelected);
   };
-
 
   return (
     <Layout>
@@ -83,6 +92,7 @@ const ProductDescription = () => {
                             onChange={(value) => {
                               setQuantitySelected(value);
                             }}
+                            defaultValue={1}
                           />
                         </div>
                         <div className="flex flex-col items-center">
@@ -96,7 +106,10 @@ const ProductDescription = () => {
                               Add to cart
                             </Button>
                           ) : (
-                            <p className="text text-gray-600">Sorry, you already have the maximum allowed items in your cart</p>
+                            <p className="text text-gray-600">
+                              Sorry, you already have the maximum allowed items
+                              in your cart
+                            </p>
                           )}
                         </div>
                       </>

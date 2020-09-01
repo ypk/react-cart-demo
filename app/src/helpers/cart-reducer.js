@@ -7,12 +7,16 @@ const CartReducer = (state, trigger) => {
   
   switch (action) {
     case "addItem":
-
       if (!foundItem) {
         items.push({
           ...data,
           quantity,
         });
+      } else {
+        const itemToUpdate = items.findIndex((item) => item.id === data.id);
+        const {quantity: quantityInCart} = items[itemToUpdate];
+        const updatedQuantity = Number.parseInt(quantity) + Number.parseInt(quantityInCart);
+        items[itemToUpdate].quantity = updatedQuantity;
       }
       return {
         ...state,

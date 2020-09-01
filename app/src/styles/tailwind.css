@@ -8,5 +8,9 @@
     @apply subpixel-antialiased;
 }
 
+input[type=number].appearance-number {
+    appearance: textfield;
+}
+
 @tailwind components;
 @tailwind utilities;

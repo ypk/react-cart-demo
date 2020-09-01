@@ -11,7 +11,8 @@ const ItemCounter = ({
   defaultValue = 1,
 }) => {
   let [counterValue, setCounterValue] = useState(defaultValue);
-  let minAllowedLimit = 1;
+  const [invalidQuantityErrorMessage, setInvalidQuantityErrorMessage] = useState(null);
+  const minAllowedLimit = 1;
 
   const updateParentState = () => {
     onChange(counterValue);
@@ -23,15 +24,17 @@ const ItemCounter = ({
   };
 
   const HandleCartItemIncrease = () => {
-    ItemCountIncrease();
-    onIncrement();
+    if (counterValue < maxAllowedLimit) {
+      ItemCountIncrease();
+      onIncrement();  
+    } 
   };
 
   const HandlePDPItemIncrease = () => {
     if (counterValue < maxAllowedLimit) {
       ItemCountIncrease();
       updateParentState();
-    }
+    } 
   };
 
   const HandlePDPItemDecrease = () => {
@@ -39,6 +42,9 @@ const ItemCounter = ({
       counterValue--;
       setCounterValue(counterValue);
       updateParentState();
+      if(counterValue <= maxAllowedLimit) {
+        setInvalidQuantityErrorMessage(null);
+      }
     }
   };
 
@@ -47,6 +53,9 @@ const ItemCounter = ({
       counterValue--;
       setCounterValue(counterValue);
       onDecrement();
+      if(counterValue <= maxAllowedLimit) {
+        setInvalidQuantityErrorMessage(null);
+      }
     }
   };
 
@@ -65,15 +74,36 @@ const ItemCounter = ({
       HandlePDPItemIncrease();
     } else {
       HandleCartItemIncrease();
+    } 
+  };
+
+  const handleQuantityChange = (e) => {
+    e.preventDefault();
+    const { value } = e.currentTarget;
+    const parsedValue = !isNaN(value) && Number.parseInt(value);
+    if (parsedValue && parsedValue > minAllowedLimit) {
+      setInvalidQuantityErrorMessage(null);
+      setCounterValue(parsedValue);
     }
   };
+
+  const handleCounterValidation = (e) => {
+    e.preventDefault();
+    const { value } = e.currentTarget;
+    const parsedValue = !isNaN(value) && Number.parseInt(value);
+    if (parsedValue > maxAllowedLimit) {
+      setInvalidQuantityErrorMessage("Sorry, that quantity exceeds the maximum allowed limit for this purchase.");
+    }else {
+      setInvalidQuantityErrorMessage(null);
+    }
+  }
 
   return (
     <>
       <label className={`${labelClass ? labelClass : "text-xl"}`}>
         Quantity:
       </label>
-      <div className="flex items-center my-2">
+      <div className="flex items-center my-3">
         <Button
           icon={{
             name: "DecreaseIcon",
@@ -83,11 +113,20 @@ const ItemCounter = ({
             h: "10",
           }}
           buttonStyle="silent"
-          className="group"
+          className="group px-0"
           disabled={counterValue === minAllowedLimit}
           onClick={handleCounterDecrease}
+          onBlur={handleCounterValidation}
         />
-        <span className="text-gray-700 text-lg mx-2">{counterValue}</span>
+        <input
+          className="text-gray-700 text-lg md:w-20 p-3 text-center md:h-12 mx-2 rounded-md border border-gray-400 hover:shadow-outline active:shadow-outline focus:shadow-outline appearance-number"
+          type="number"
+          min={minAllowedLimit}
+          max="999"
+          value={counterValue}
+          onChange={handleQuantityChange}
+          onBlur={handleCounterValidation}
+        />
         <Button
           icon={{
             name: "IncreaseIcon",
@@ -102,6 +141,7 @@ const ItemCounter = ({
           onClick={handleCounterIncrease}
         />
       </div>
+        {invalidQuantityErrorMessage && <p className={`text-red-500 h-6`}>{invalidQuantityErrorMessage}</p>}
     </>
   );
 };

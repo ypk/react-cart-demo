@@ -587,6 +587,12 @@ video {
   -moz-osx-font-smoothing: auto;
 }
 
+input[type=number].appearance-number {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+
 .container{
   width: 100%;
 }

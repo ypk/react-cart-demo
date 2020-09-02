@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Loading, Icons } from "../components/common";
 import Layout from "../components/Layout";
 import { Breadcrumb } from "../components/common";
 import APIService from "../services/api-service";
-
-import { v4 as uuidv4 } from "uuid";
+import { Logger } from "../helpers";
+import useToast from "../hooks/useToast";
 
 const About = () => {
+  const toast = useToast();
   const [catFacts, setCatFacts] = useState([]);
   const [hasFacts, setHasFacts] = useState(false);
   const [failedLoading, setFailedLoading] = useState(false);
@@ -62,7 +64,15 @@ const About = () => {
         });
         setCatFacts(serializedData);
         setHasFacts(true);
+        const message = "Fetched Cat Facts successfully";
+        toast.addToast(message);
+        Logger.info(message);
       }
+    });
+    content.error((e) => {
+      const { message } = e;
+      toast.addToast(message);
+      Logger.error(message);
     });
   }, []);
 

@@ -42,13 +42,9 @@ const CanProductBeBought = (cart, product) => {
   const inCart = FindProductInCart(cart, product);
 
   if (inCart) {
-    const metQuantityLimit = cart.find(
-      (item) => {
-        if(item.id === product.id) {
-          return item.quantity === item.quantityAvailable;
-        }
-      }
-    );
+    const metQuantityLimit = cart.find((item) => {
+      return item.id === product.id && item.quantity === item.quantityAvailable;
+    });
     if (metQuantityLimit) {
       return false;
     } else {

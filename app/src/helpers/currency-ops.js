@@ -18,8 +18,14 @@ const FormatPrice = (price) => {
   return Number.parseFloat(price).toFixed(2).toString();
 };
 
+const GetCountryByCode = (currencyData, code) => {
+  const currencyIndex = currencyData.findIndex(currency => currency.code === code);
+  return currencyData[currencyIndex];
+}
+
 export {
   GetCurrencyData,
   GetVATAmount,
   FormatPrice,
+  GetCountryByCode
 };

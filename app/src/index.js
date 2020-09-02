@@ -6,6 +6,7 @@ import {
   CurrencyAndVATContextProvider,
   PreferencesContextProvider,
   CartContextProvider,
+  ToastProvider,
 } from "./providers";
 
 import * as serviceWorker from "./serviceWorker";
@@ -13,15 +14,17 @@ import * as serviceWorker from "./serviceWorker";
 import "./styles/style.css";
 
 ReactDOM.render(
-    <ProductContextProvider>
-      <CurrencyAndVATContextProvider>
-        <PreferencesContextProvider>
-          <CartContextProvider>
+  <ProductContextProvider>
+    <CurrencyAndVATContextProvider>
+      <PreferencesContextProvider>
+        <CartContextProvider>
+          <ToastProvider>
             <Routes />
-            </CartContextProvider>
-          </PreferencesContextProvider>
-        </CurrencyAndVATContextProvider>
-    </ProductContextProvider>,
+          </ToastProvider>
+        </CartContextProvider>
+      </PreferencesContextProvider>
+    </CurrencyAndVATContextProvider>
+  </ProductContextProvider>,
   document.getElementById("app-root")
 );
 

@@ -11,12 +11,19 @@ import {
   SetCartItems,
 } from "./cart-ops";
 import GetYear from "./date-ops";
-import { GetCurrencyData, GetVATAmount, FormatPrice } from "./currency-ops";
+import {
+  GetCurrencyData,
+  GetVATAmount,
+  FormatPrice,
+  GetCountryByCode,
+} from "./currency-ops";
 import {
   GetCountryFlagByCode,
   GetPreferences,
   SetPreferences,
 } from "./preferences-ops";
+import { CanUseDOM, FilterToastById, GenerateUEID } from "./toast-ops";
+import Logger from "./logger-ops";
 
 export {
   LocalStorage,
@@ -35,6 +42,11 @@ export {
   GetCurrencyData,
   GetPreferences,
   SetPreferences,
+  GetCountryByCode,
   GetVATAmount,
   FormatPrice,
+  CanUseDOM,
+  FilterToastById,
+  Logger,
+  GenerateUEID
 };

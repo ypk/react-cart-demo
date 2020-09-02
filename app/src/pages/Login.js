@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Icons } from "../components/common";
 import Layout from "../components/Layout";
+import { Logger } from "../helpers";
+import useToast from "../hooks/useToast";
 
 const Login = () => {
+  const toast = useToast();
 
-  const {HidePasswordIcon, ShowPasswordIcon} = Icons; 
+  const { HidePasswordIcon, ShowPasswordIcon } = Icons;
 
   const [controlType, setControlType] = useState({
     type: "password",
@@ -16,7 +19,6 @@ const Login = () => {
   const [password, setPassword] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
 
-  
   const handleUserEmailChange = (e) => {
     e.preventDefault();
     const { value } = e.currentTarget;
@@ -26,7 +28,7 @@ const Login = () => {
 
   const handlePasswordChange = (e) => {
     e.preventDefault();
-    const { value } =  e.currentTarget;
+    const { value } = e.currentTarget;
     value && setPassword(value);
     passwordError && setPasswordError(null);
   };
@@ -47,7 +49,7 @@ const Login = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const isFormInValid = validateForm();
-    if(!isFormInValid){
+    if (!isFormInValid) {
       initiateLogin();
     }
     return false;
@@ -56,21 +58,32 @@ const Login = () => {
   const initiateLogin = () => {
     const payload = {
       userEmail,
-      password
+      password,
     };
-
-    alert(`This form will now serialize the data and try to send it to a server\n\nThe data being sent is: ${JSON.stringify(payload)}`)
+    const message = `This form will now serialize the data and try to send it to a server\n\nThe data being sent is: ${JSON.stringify(
+      payload
+    )}`;
+    Logger.info(message);
+    toast.addToast(message);
   };
 
   const toggleControlType = (e) => {
     e.preventDefault();
     if (controlType.type === "password") {
-      setControlType({ type: "text", icon:  HidePasswordIcon, label: "Hide Password" });
+      setControlType({
+        type: "text",
+        icon: HidePasswordIcon,
+        label: "Hide Password",
+      });
     } else if (controlType.type === "text") {
-      setControlType({ type: "password", icon: ShowPasswordIcon, label: "Show Password" });
+      setControlType({
+        type: "password",
+        icon: ShowPasswordIcon,
+        label: "Show Password",
+      });
     }
   };
-  console.log(controlType)
+
   return (
     <Layout>
       <section className="pt-8 pb-2">
@@ -79,7 +92,9 @@ const Login = () => {
             Login
           </h2>
           <div className="w-full md:w-1/2 flex flex-col mx-auto">
-            <h2 className="text-center w-full text-3xl font-poppins">Log into your account</h2>
+            <h2 className="text-center w-full text-3xl font-poppins">
+              Log into your account
+            </h2>
             <form
               className="flex flex-col my-6"
               onSubmit={handleFormSubmit}
@@ -91,16 +106,26 @@ const Login = () => {
                     Email
                   </label>
                   <input
-                      type="email"
-                      id="email"
-                      placeholder="john@doe.com"
-                      required
-                      onChange={handleUserEmailChange}
-                      className={`${userEmailError ? 'border-red-500' : ''} h-12 shadow appearance-none border rounded outline-none focus:outline-none w-full py-2 px-3 text-gray-700 mt-1 font-sans leading-tight focus:outline-none focus:shadow-outline`}
-                    />
-                    {userEmailError && <p className="text-red-500  ml-2 pt-1 italic">{userEmailError}</p>}
+                    type="email"
+                    id="email"
+                    placeholder="john@doe.com"
+                    required
+                    onChange={handleUserEmailChange}
+                    className={`${
+                      userEmailError ? "border-red-500" : ""
+                    } h-12 shadow appearance-none border rounded outline-none focus:outline-none w-full py-2 px-3 text-gray-700 mt-1 font-sans leading-tight focus:outline-none focus:shadow-outline`}
+                  />
+                  {userEmailError && (
+                    <p className="text-red-500  ml-2 pt-1 italic">
+                      {userEmailError}
+                    </p>
+                  )}
                 </div>
-                <div className={`flex flex-col ${userEmailError ? "-mt-3" :"mt-8"}`}>
+                <div
+                  className={`flex flex-col ${
+                    userEmailError ? "-mt-3" : "mt-8"
+                  }`}
+                >
                   <label htmlFor="password" className="text-lg text-gray-600">
                     Password
                   </label>
@@ -120,12 +145,22 @@ const Login = () => {
                       placeholder="Password"
                       required
                       onChange={handlePasswordChange}
-                      className={`${passwordError ? 'border-red-500' : ''} h-12 shadow appearance-none border rounded outline-none focus:outline-none w-full py-2 px-3 text-gray-700 mt-1 font-sans leading-tight focus:outline-none focus:shadow-outline`}
+                      className={`${
+                        passwordError ? "border-red-500" : ""
+                      } h-12 shadow appearance-none border rounded outline-none focus:outline-none w-full py-2 px-3 text-gray-700 mt-1 font-sans leading-tight focus:outline-none focus:shadow-outline`}
                     />
                   </div>
-                  {passwordError && <p className="text-red-500 pt-1 ml-2 italic">{passwordError}</p>}
+                  {passwordError && (
+                    <p className="text-red-500 pt-1 ml-2 italic">
+                      {passwordError}
+                    </p>
+                  )}
                 </div>
-                <div className={`flex flex-col ${passwordError ? "mt-5" : "mt-12"}`}>
+                <div
+                  className={`flex flex-col ${
+                    passwordError ? "mt-5" : "mt-12"
+                  }`}
+                >
                   <button
                     type="submit"
                     className="bg-black w-full text-white font-bold font-poppins rounded text-lg cursor-pointer hover:bg-blue-400 p-2"
@@ -140,7 +175,8 @@ const Login = () => {
                 Don't have an account?&nbsp;
                 <button className="underline cursor-pointer font-semibold hover:underline hover:text-blue-400">
                   Register here
-                </button>.
+                </button>
+                .
               </p>
             </div>
           </div>

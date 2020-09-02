@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
-import {
-  NormalizeSlug
-} from "../helpers";
 import { PreferencesContext, CartContext } from "../contexts";
 
 const CartItemsContainer = () => {
@@ -23,9 +20,7 @@ const CartItemsContainer = () => {
 
   const updateItemCount = (itemCount, id) => {
     const product = items.find(i => {
-      if(i.id === id){
-        return i;
-      }
+      return i.id === id && i;
     });
     updateProduct(product, itemCount, true);
   };

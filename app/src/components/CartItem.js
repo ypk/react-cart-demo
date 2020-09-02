@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, ItemCounter } from "../components/common";
-import { NormalizeSlug, FormatPrice } from "../helpers";
+import { NormalizeSlug, FormatPrice, Logger } from "../helpers";
+import useToast from "../hooks/useToast";
 
 const CartItem = ({
   incrementCount,
@@ -11,6 +12,7 @@ const CartItem = ({
   cartData,
   updateCount,
 }) => {
+  const toast = useToast();
   const [itemValue, setItemValue] = useState(null);
   const [itemValueChanged, setItemValueChanged] = useState(false);
   const handleCartItemDecrement = (id) => {
@@ -42,6 +44,9 @@ const CartItem = ({
       updateCount(itemValue, id);
       setItemValueChanged(false);
     }
+    const message = "Item updated";
+    toast.addToast(message);
+    Logger.info(message);
   };
   return (
     <div className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400">

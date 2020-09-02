@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Icons } from "./common";
-import { GetCountryFlagByCode } from "../helpers";
+import { Logger, GetCountryFlagByCode, GetCountryByCode } from "../helpers";
 import { PreferencesContext } from "../contexts";
+import useToast from "../hooks/useToast";
 
 const CurrencySelector = () => {
+  const toast = useToast();
   const preferencesContext = useContext(PreferencesContext);
   const {
     setPreferences,
     storePreferences,
-    userPreferences
+    userPreferences,
   } = preferencesContext;
 
   const { currencyAndVATContext: StoreCurrencyAndVATData } = storePreferences;
@@ -38,6 +40,13 @@ const CurrencySelector = () => {
     });
   };
 
+  const { preferences } = currencyPreferences;
+  const {
+    selectedCurrency: selectedCurrencyName,
+    currency,
+    SelectedCurrencyFlag,
+  } = preferences;
+
   const handleCountryChangeBtnClick = (code) => {
     setCurrencyPreferences(() => {
       return {
@@ -53,14 +62,11 @@ const CurrencySelector = () => {
     setPreferences({
       selectedCurrency: code,
     });
+    const {title} = GetCountryByCode(currency, code);
+    const message = `Currency preferences is now set to ${title} (${code})`;
+    toast.addToast(message);
+    Logger.info(message);
   };
-
-  const { preferences } = currencyPreferences;
-  const {
-    selectedCurrency: selectedCurrencyName,
-    currency,
-    SelectedCurrencyFlag,
-  } = preferences;
 
   return (
     currency && (
@@ -79,11 +85,12 @@ const CurrencySelector = () => {
                 aria-labelledby="options-menu"
               >
                 {currency.map((c) => {
-                  const { id, code } = c;
+                  const { id, code, title } = c;
                   const CountryIcon = FlagIcons[GetCountryFlagByCode(code)];
                   return (
                     CountryIcon && (
                       <li
+                        title={title}
                         className="flex self-center"
                         key={id}
                         onClick={() => handleCountryChangeBtnClick(code)}

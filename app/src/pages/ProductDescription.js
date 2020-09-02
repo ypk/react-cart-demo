@@ -5,12 +5,16 @@ import { ProductContext, PreferencesContext, CartContext } from "../contexts";
 import {
   CanProductBeBought,
   FindProductInCart,
-  NormalizeSlug
+  NormalizeSlug,
 } from "../helpers";
 import { useParams } from "react-router-dom";
+import { Logger } from "../helpers";
+import useToast from "../hooks/useToast";
 
 const ProductDescription = () => {
   const params = useParams();
+  const toast = useToast();
+
   let NotInStock = false;
 
   const prevPage = {
@@ -25,7 +29,9 @@ const ProductDescription = () => {
   const { currencyData } = userPreferences;
   const { products } = useContext(ProductContext);
 
-  const { addProduct, updateProduct, items: cartItems } = useContext(CartContext);
+  const { addProduct, updateProduct, items: cartItems } = useContext(
+    CartContext
+  );
 
   const product = products.reduce(function (prev, curr) {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
@@ -56,11 +62,16 @@ const ProductDescription = () => {
   }
 
   const handleAddToCartButtonClick = () => {
+    let message = null;
     if (productInCartAlready) {
+      message = "Product updated in cart";
       updateProduct(product, quantitySelected);
     } else {
+      message = "Product added to cart";
       addProduct(product, quantitySelected);
     }
+    toast.addToast(message);
+    Logger.log(message);
   };
 
   return (

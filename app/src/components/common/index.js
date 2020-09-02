@@ -5,6 +5,7 @@ import Icons from "./Icons";
 import Breadcrumb from "./Breadcrumb";
 import Button from "./Button";
 import ItemCounter from "./ItemCounter";
+import Toast from "./Toast";
 
 export {
     Button,
@@ -13,5 +14,6 @@ export {
     Footer,
     Icons,
     ItemCounter,
-    Loading
+    Loading,
+    Toast
 };

@@ -5,10 +5,13 @@ import CartItemsContainer from "../components/CartItemsContainer";
 import CartSummary from "../components/CartSummary";
 import { Breadcrumb, Button } from "../components/common";
 import { CartContext } from "../contexts";
+import { Logger } from "../helpers";
+import useToast from "../hooks/useToast";
 
 const Cart = () => {
   const currPage = "Cart";
   const history = useHistory();
+  const toast = useToast();
 
   const {
     items,
@@ -24,7 +27,10 @@ const Cart = () => {
       "This will clear the cart.\n\nDo you wish to continue?"
     );
     if (confirmAction) {
+      const message = "Cart cleared";
       clearCart();
+      toast.addToast(message);
+      Logger.info(message);
     }
   };
 
@@ -39,7 +45,10 @@ const Cart = () => {
       `Checkout Initiated.\n\nProducts purchased:\n\n${purchased}\n\nA total of ${itemsCount} item(s) for a Grand Total of ${Number.parseFloat(totalPriceVAT).toFixed(2)} including VAT.\n\nDo you wish to continue?`
     );
     if (confirmAction) {
+      const message = "Checkout Complete";
       checkOut();
+      toast.addToast(message);
+      Logger.info(message);
     }
   };
 

@@ -5,6 +5,7 @@ import { CurrencyAndVATContext } from "../contexts";
 const FeaturedProducts = ({ products }) => {
   const { currency } = useContext(CurrencyAndVATContext);
 
+  //TODO: Refactor this
   const DEFAULT_CURRENCY = "GBP";
 
   const currencyObject = currency.reduce(function (prev, curr) {

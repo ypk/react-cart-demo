@@ -23,9 +23,9 @@ const CartContextProvider = ({ children }) => {
     dispatch({ action: "addItem", data, quantity });
   };
 
-  const updateProduct = (data, quantity) => {
+  const updateProduct = (data, quantity, updateInCart = false) => {
     console.info("Product being updated in Cart");
-    dispatch({ action: "updateItem", data, quantity });
+    dispatch({ action: "updateItem", data, quantity, updateInCart });
   };
 
   const removeProduct = (data, quantity = 1) => {

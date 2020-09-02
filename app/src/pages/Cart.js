@@ -47,10 +47,6 @@ const Cart = () => {
     history.push("/products");
   };
 
-  const handleUpdateCartBtnClick = (val) => {
-    console.log(val)
-  }
-
   return (
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2 md:mb-20">

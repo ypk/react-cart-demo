@@ -1,7 +1,7 @@
 import { GetCartItemsCountAndTotal, FindProductInCart } from "./index";
 
 const CartReducer = (state, trigger) => {
-  const { action, data, quantity } = trigger;
+  const { action, data, quantity, updateInCart } = trigger;
   const {items} = state;
   const foundItem  = FindProductInCart(items, data);
   
@@ -18,9 +18,15 @@ const CartReducer = (state, trigger) => {
         cartSummary: { ...GetCartItemsCountAndTotal(items) },
         items: [...items],
       };
-    case "updateItem": 
+    case "updateItem":
+      console.log(trigger)
       const itemToUpdate = items.findIndex((item) => item.id === data.id);
-      items[itemToUpdate].quantity = quantity;
+      if(updateInCart) {
+        items[itemToUpdate].quantity = quantity;
+      } else {
+        const {quantity: quantityInCart} = items[itemToUpdate]; 
+        items[itemToUpdate].quantity = quantityInCart+quantity;
+      }
       return {
         ...state,
         cartSummary: { ...GetCartItemsCountAndTotal(items) },

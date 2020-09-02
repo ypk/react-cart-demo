@@ -25,7 +25,7 @@ const ProductDescription = () => {
   const { currencyData } = userPreferences;
   const { products } = useContext(ProductContext);
 
-  const { addProduct, items: cartItems } = useContext(CartContext);
+  const { addProduct, updateProduct, items: cartItems } = useContext(CartContext);
 
   const product = products.reduce(function (prev, curr) {
     return NormalizeSlug(curr.id) === params.id ? curr : prev;
@@ -56,7 +56,11 @@ const ProductDescription = () => {
   }
 
   const handleAddToCartButtonClick = () => {
-    addProduct(product, quantitySelected);
+    if (productInCartAlready) {
+      updateProduct(product, quantitySelected);
+    } else {
+      addProduct(product, quantitySelected);
+    }
   };
 
   return (

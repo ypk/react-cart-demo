@@ -1,31 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Routes from "./routes";
-import {
-  ProductContextProvider,
-  CurrencyAndVATContextProvider,
-  PreferencesContextProvider,
-  CartContextProvider,
-  ToastProvider,
-} from "./providers";
-
-import * as serviceWorker from "./serviceWorker";
-
-import "./styles/style.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <ProductContextProvider>
-    <CurrencyAndVATContextProvider>
-      <PreferencesContextProvider>
-        <CartContextProvider>
-          <ToastProvider>
-            <Routes />
-          </ToastProvider>
-        </CartContextProvider>
-      </PreferencesContextProvider>
-    </CurrencyAndVATContextProvider>
-  </ProductContextProvider>,
-  document.getElementById("app-root")
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

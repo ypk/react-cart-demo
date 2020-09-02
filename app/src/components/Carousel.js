@@ -109,10 +109,10 @@ const Carousel = () => {
               style={{ backgroundImage: `url(${imgurl})` }}
             />
             <div className="absolute inset-x-50 top-1/6 z-10 w-full md:w-3/4 px-6 md:px-32">
-              <h2 className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 w-full md:w-2/3 text-2xl md:text-5xl px-5 py-3 mb-2">
+              <h2 className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 w-full md:w-2/3 text-xl md:text-5xl px-5 py-3 mb-2">
                 {heading}
               </h2>
-              <p className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 text-xl px-5 py-3 w-full md:w-9/12 mb-3">
+              <p className="bg-black bg-opacity-25 md:bg-opacity-75 text-gray-300 text-sm md:text-xl px-5 py-3 w-full md:w-9/12 mb-3">
                 {description}
               </p>
             </div>

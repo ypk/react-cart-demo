@@ -1,23 +1,38 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
-
+import {
+  NormalizeSlug
+} from "../helpers";
 import { PreferencesContext, CartContext } from "../contexts";
 
 const CartItemsContainer = () => {
   const preferencesContext = useContext(PreferencesContext);
   const cartContext = useContext(CartContext);
+  
   const {
     items,
     incrementProductCount,
     decrementProductCount,
+    updateProduct,
     removeProduct,
   } = cartContext;
   const { userPreferences } = preferencesContext;
   const { currencyData } = userPreferences;
   const cartSize = items.length;
+
+  const updateItemCount = (itemCount, id) => {
+    const product = items.find(i => {
+      if(i.id === id){
+        return i;
+      }
+    });
+
+    updateProduct(product, itemCount);
+  };
+
   return items && cartSize > 0 ? (
-    items.map((item, index) => {
+    items.map((item) => {
       const { id } = item;
       return (
         <CartItem
@@ -27,6 +42,7 @@ const CartItemsContainer = () => {
           currencyObject={currencyData}
           handleDeleteItemClick={removeProduct}
           cartData={item}
+          updateCount={updateItemCount}
         />
       );
     })

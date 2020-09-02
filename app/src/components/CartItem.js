@@ -8,7 +8,8 @@ const CartItem = ({
   decrementCount,
   currencyObject,
   handleDeleteItemClick,
-  cartData
+  cartData,
+  updateCount
 }) => {
 
   const handleCartItemDecrement = (id) => {
@@ -22,20 +23,25 @@ const CartItem = ({
     handleDeleteItemClick(id);
   };
 
+
   const { id, productName, productPrice, quantity, imgUrl, quantityAvailable } = cartData;
- 
+  
+  const handleItemCounterValueUpdate = (itemCount) => {
+    updateCount(itemCount, id);
+  };
+  
   return (
     <div
       className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400"
     >
-      <div className="col-span-2 md:col-auto">
+      <div className="col-auto">
         <Link to={`/product/${NormalizeSlug(id)}`}>
-          <img width="100" height="100" src={imgUrl} alt={productName} />
+          <img className="w-3/4 h-1/2" src={imgUrl} alt={productName} />
         </Link>
       </div>
       <div className="col-span-3">
         <div className="flex flex-col justify-between h-full flex-wrap">
-          <Link className="font-bold text-xl" to={`/product/${NormalizeSlug(id)}`}>
+          <Link className="font-bold text-xl mb-8" to={`/product/${NormalizeSlug(id)}`}>
             {productName}
           </Link>
           <div className="flex flex-col md:flex-row">
@@ -46,6 +52,7 @@ const CartItem = ({
               onIncrement={() => handleCartItemIncrement(id)}
               onDecrement={() => handleCartItemDecrement(id)}
               maxAllowedLimit={quantityAvailable}
+              onChange={(id, itemCount) => handleItemCounterValueUpdate(id, itemCount)}
             />
           </div>
         </div>

@@ -12,17 +12,20 @@ const CartReducer = (state, trigger) => {
           ...data,
           quantity,
         });
-      } else {
-        const itemToUpdate = items.findIndex((item) => item.id === data.id);
-        const {quantity: quantityInCart} = items[itemToUpdate];
-        const updatedQuantity = Number.parseInt(quantity) + Number.parseInt(quantityInCart);
-        items[itemToUpdate].quantity = updatedQuantity;
       }
       return {
         ...state,
         cartSummary: { ...GetCartItemsCountAndTotal(items) },
         items: [...items],
       };
+    case "updateItem": 
+      const itemToUpdate = items.findIndex((item) => item.id === data.id);
+      items[itemToUpdate].quantity = quantity;
+      return {
+        ...state,
+        cartSummary: { ...GetCartItemsCountAndTotal(items) },
+        items: [...items],
+      }
     case "removeItem":
       const removedItem = [...items.filter((item) => item.id !== data)];
       return {

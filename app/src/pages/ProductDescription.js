@@ -5,12 +5,13 @@ import { ProductContext, PreferencesContext, CartContext } from "../contexts";
 import {
   CanProductBeBought,
   FindProductInCart,
-  NormalizeSlug,
+  NormalizeSlug
 } from "../helpers";
 import { useParams } from "react-router-dom";
 
 const ProductDescription = () => {
   const params = useParams();
+  let NotInStock = false;
 
   const prevPage = {
     link: "/products",
@@ -41,11 +42,17 @@ const ProductDescription = () => {
   const currPage = productName;
 
   const canBuyProduct = CanProductBeBought(cartItems, product);
+  const cartItem = FindProductInCart(cartItems, product);
 
-  if (productInCartAlready) {
-    const cartItem = FindProductInCart(cartItems, product);
+  if (cartItem) {
     const { quantity } = cartItem;
-    quantityAvailable = Number.parseInt(quantityAvailable) - Number.parseInt(quantity);
+
+    if (productInCartAlready) {
+      quantityAvailable =
+        Number.parseInt(quantityAvailable) - Number.parseInt(quantity);
+    }
+  } else {
+    NotInStock = true;
   }
 
   const handleAddToCartButtonClick = () => {
@@ -113,8 +120,13 @@ const ProductDescription = () => {
                           )}
                         </div>
                       </>
+                    ) : NotInStock ? (
+                      <p className="text-gray-600">Sorry, Item out of stock</p>
                     ) : (
-                      <p className="text-gray-500">Sorry, Item out of stock</p>
+                      <p className="text text-gray-600">
+                        Sorry, you already have the maximum allowed items in
+                        your cart
+                      </p>
                     )}
                   </div>
                 </div>

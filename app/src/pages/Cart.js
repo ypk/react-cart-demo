@@ -47,6 +47,10 @@ const Cart = () => {
     history.push("/products");
   };
 
+  const handleUpdateCartBtnClick = (val) => {
+    console.log(val)
+  }
+
   return (
     <Layout>
       <section className="bg-mmt-500 md:pt-8 md:pb-2 md:mb-20">
@@ -73,10 +77,10 @@ const Cart = () => {
                         Continue Shopping
                       </Button>
                     </div>
-                    <div className="flex flex-col my-3 md:my-0">
+                    <div className="flex flex-col md:flex-row my-3 md:my-0">
                       <Button
                         onClick={handleEmptyCartBtnClick}
-                        className="justify-center md:justify-end bg-red-500 hover:bg-red-900 focus:bg-red-900"
+                        className="justify-center md:justify-end bg-red-500 hover:bg-red-900 focus:bg-red-900 mx-3"
                       >
                         Empty Cart
                       </Button>

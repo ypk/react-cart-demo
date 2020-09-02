@@ -27,7 +27,6 @@ const CartItemsContainer = () => {
         return i;
       }
     });
-
     updateProduct(product, itemCount);
   };
 

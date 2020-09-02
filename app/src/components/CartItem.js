@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, ItemCounter } from "../components/common";
 import { NormalizeSlug, FormatPrice } from "../helpers";
@@ -9,31 +9,42 @@ const CartItem = ({
   currencyObject,
   handleDeleteItemClick,
   cartData,
-  updateCount
+  updateCount,
 }) => {
-
+  const [itemValue, setItemValue] = useState(null);
+  const [itemValueChanged, setItemValueChanged] = useState(false);
   const handleCartItemDecrement = (id) => {
     decrementCount(id);
   };
   const handleCartItemIncrement = (id) => {
     incrementCount(id);
   };
-
   const handleDelete = (id) => {
     handleDeleteItemClick(id);
   };
+  const {
+    id,
+    productName,
+    productPrice,
+    quantity,
+    imgUrl,
+    quantityAvailable,
+  } = cartData;
 
-
-  const { id, productName, productPrice, quantity, imgUrl, quantityAvailable } = cartData;
-  
   const handleItemCounterValueUpdate = (itemCount) => {
-    updateCount(itemCount, id);
+    setItemValue(itemCount);
+    setItemValueChanged(true);
   };
-  
+
+  const handleUpdateCartBtnClick = (e) => {
+    e.preventDefault();
+    if (itemValueChanged) {
+      updateCount(itemValue, id);
+      setItemValueChanged(false);
+    }
+  };
   return (
-    <div
-      className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400"
-    >
+    <div className="grid grid-flow-row grid-cols-5 p-4 my-4 border-b border-gray-400">
       <div className="col-auto">
         <Link to={`/product/${NormalizeSlug(id)}`}>
           <img className="w-3/4 h-1/2" src={imgUrl} alt={productName} />
@@ -41,19 +52,37 @@ const CartItem = ({
       </div>
       <div className="col-span-3">
         <div className="flex flex-col justify-between h-full flex-wrap">
-          <Link className="font-bold text-xl mb-8" to={`/product/${NormalizeSlug(id)}`}>
+          <Link
+            className="font-bold text-xl mb-8"
+            to={`/product/${NormalizeSlug(id)}`}
+          >
             {productName}
           </Link>
           <div className="flex flex-col md:flex-row">
-            <ItemCounter
-              labelClass="text-md md:my-8 md:mr-3"
-              defaultValue={quantity}
-              inCart={true}
-              onIncrement={() => handleCartItemIncrement(id)}
-              onDecrement={() => handleCartItemDecrement(id)}
-              maxAllowedLimit={quantityAvailable}
-              onChange={(id, itemCount) => handleItemCounterValueUpdate(id, itemCount)}
-            />
+            <div className="item-counter">
+              <ItemCounter
+                labelClass="text-md md:my-8 md:mr-3"
+                defaultValue={quantity}
+                inCart={true}
+                onIncrement={() => handleCartItemIncrement(id)}
+                onDecrement={() => handleCartItemDecrement(id)}
+                maxAllowedLimit={quantityAvailable}
+                onChange={handleItemCounterValueUpdate}
+              />
+            </div>
+            {itemValueChanged && (
+              <div className="self-center pb-8 pt-10 my-1  mx-4">
+                <Button
+                  onClick={(id, itemCount) =>
+                    handleUpdateCartBtnClick(id, itemCount, quantityAvailable)
+                  }
+                  className="h-12"
+                  disabled={itemValue > quantityAvailable}
+                >
+                  Update
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -62,7 +91,8 @@ const CartItem = ({
           <Button
             icon={{
               name: "DeleteIcon",
-              styleClass: "w-4 h-6 md:w-8 md:h-10 m-0 group-focus:text-blue-400 group-hover:text-blue-400",
+              styleClass:
+                "w-4 h-6 md:w-8 md:h-10 m-0 group-focus:text-blue-400 group-hover:text-blue-400",
             }}
             onClick={() => handleDelete(id)}
             buttonStyle="silent"
@@ -81,7 +111,6 @@ const CartItem = ({
       </div>
     </div>
   );
-  
 };
 
 export default CartItem;

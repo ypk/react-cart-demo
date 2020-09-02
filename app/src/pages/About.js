@@ -54,6 +54,9 @@ const About = () => {
 
   useEffect(() => {
     const content = APIService.get((e) => {
+      const { message } = e;
+      toast.addToast(message);
+      Logger.error(message);
       setFailedLoading(true);
     });
     content.then((d) => {
@@ -68,11 +71,6 @@ const About = () => {
         toast.addToast(message);
         Logger.info(message);
       }
-    });
-    content.error((e) => {
-      const { message } = e;
-      toast.addToast(message);
-      Logger.error(message);
     });
   }, []);
 

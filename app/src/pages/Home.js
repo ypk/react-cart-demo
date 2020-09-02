@@ -3,8 +3,8 @@ import Core from "../components/core";
 import DataContext from "../contexts";
 
 const Home = () => {
-  const { data } = useContext(DataContext);
-  return <Core {...data} />;
+  const dataContext = useContext(DataContext);
+  return <Core data={dataContext} />;
 };
 
 export default Home;

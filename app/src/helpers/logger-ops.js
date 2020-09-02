@@ -1,4 +1,4 @@
-const debug = false;
+const debug = true;
 
 const Logger = {
     log : (msg) => debug && console.log(msg),

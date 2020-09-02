@@ -85,7 +85,7 @@ const Cart = () => {
                     <div className="flex flex-col md:flex-row my-3 md:my-0">
                       <Button
                         onClick={handleEmptyCartBtnClick}
-                        className="justify-center md:justify-end bg-red-500 hover:bg-red-900 focus:bg-red-900 mx-3"
+                        className="justify-center md:justify-end bg-red-500 hover:bg-red-900 focus:bg-red-900 md:mx-3"
                       >
                         Empty Cart
                       </Button>

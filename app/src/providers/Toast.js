@@ -33,7 +33,7 @@ const ToastProvider = ({ children }) => {
     <ToastContext.Provider value={ToastsProviderValue}>
       {domTarget
         ? createPortal(
-            <div className="w-full fixed bottom-0 m-8 flex items-center flex-col">
+            <div className="w-11/12 md:w-full fixed bottom-2 md:bottom-0  m-4 md:m-8 flex items-center flex-col">
               {toasts.map((toast) => (
                 <Toast key={toast.id} removeToast={() => removeToast(toast.id)}>
                   {toast.content}

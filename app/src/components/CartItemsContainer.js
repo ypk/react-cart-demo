@@ -2,10 +2,13 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import { PreferencesContext, CartContext } from "../contexts";
+import { Logger } from "../helpers";
+import useToast from "../hooks/useToast";
 
 const CartItemsContainer = () => {
   const preferencesContext = useContext(PreferencesContext);
   const cartContext = useContext(CartContext);
+  const toast = useToast();
   
   const {
     items,
@@ -25,6 +28,12 @@ const CartItemsContainer = () => {
     updateProduct(product, itemCount, true);
   };
 
+  const handleDeleteItemClick = (productId) => {
+    const message = "Product deleted";
+    removeProduct(productId);
+    toast.addToast(message);
+    Logger.log(message);
+  }
   
   return items && cartSize > 0 ? (
     items.map((item) => {
@@ -35,7 +44,7 @@ const CartItemsContainer = () => {
           incrementCount={incrementProductCount}
           decrementCount={decrementProductCount}
           currencyObject={currencyData}
-          handleDeleteItemClick={removeProduct}
+          handleDeleteItemClick={handleDeleteItemClick}
           cartData={item}
           updateCount={updateItemCount}
         />

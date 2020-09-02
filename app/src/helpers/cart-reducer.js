@@ -35,8 +35,7 @@ const CartReducer = (state, trigger) => {
         items: [...items],
       };
     case "removeItem":
-      Logger.log("here")
-      const removedItem = [...items.filter((item) => item.id !== data)];
+      const removedItem = items.filter((item) => item.id !== data);
       Logger.info("Product removed!");
       return {
         ...state,

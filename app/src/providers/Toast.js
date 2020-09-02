@@ -2,13 +2,13 @@ import React, { useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { ToastContext } from "../contexts";
 import { Toast } from "../components/common";
-import { FilterToastById, CanUseDOM, GenerateUEID } from "../helpers";
+import { FilterToastById, CanUseDOM, GenerateUniqueId } from "../helpers";
 
 const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const addToast = (content) => {
-    const id = GenerateUEID();
+    const id = GenerateUniqueId();
     setToasts([
       ...toasts,
       {
@@ -19,7 +19,8 @@ const ToastProvider = ({ children }) => {
   };
 
   const removeToast = (id) => {
-    setToasts(toasts.filter(t => t.id !== id));
+    const removedToasts = FilterToastById(toasts, id);
+    setToasts(removedToasts);
   };
 
   const domTarget = CanUseDOM ? document.body : null;

@@ -25,6 +25,7 @@ const CartItemsContainer = () => {
     updateProduct(product, itemCount, true);
   };
 
+  
   return items && cartSize > 0 ? (
     items.map((item) => {
       const { id } = item;

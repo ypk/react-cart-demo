@@ -1,16 +1,11 @@
 import React, { useContext } from "react";
 import Product from "../components/Product";
-import { CurrencyAndVATContext } from "../contexts";
+import { PreferencesContext, CurrencyAndVATContext } from "../contexts";
 
 const FeaturedProducts = ({ products }) => {
-  const { currency } = useContext(CurrencyAndVATContext);
-
-  //TODO: Refactor this
-  const DEFAULT_CURRENCY = "GBP";
-
-  const currencyObject = currency.reduce(function (prev, curr) {
-    return curr.code === DEFAULT_CURRENCY ? curr : prev;
-  }, null);
+  const preferencesContext = useContext(PreferencesContext);
+  const { userPreferences } = preferencesContext;
+  const { currencyData } = userPreferences;
 
   const featured = products.filter((product) => product.isFeatured === true);
 
@@ -28,7 +23,7 @@ const FeaturedProducts = ({ products }) => {
               className="w-full max-w-sm mx-auto bg-white h-64 md:h-full rounded-md shadow-md cursor-pointer overflow-hidden hover:shadow-lg"
               key={id}
             >
-              <Product product={product} currency={currencyObject} />
+              <Product product={product} currency={currencyData} />
             </div>
           );
         })

@@ -22,7 +22,7 @@ import {
   GetPreferences,
   SetPreferences,
 } from "./preferences-ops";
-import { CanUseDOM, FilterToastById, GenerateUEID } from "./toast-ops";
+import { CanUseDOM, FilterToastById, GenerateUniqueId } from "./toast-ops";
 import Logger from "./logger-ops";
 
 export {
@@ -48,5 +48,5 @@ export {
   CanUseDOM,
   FilterToastById,
   Logger,
-  GenerateUEID
+  GenerateUniqueId
 };

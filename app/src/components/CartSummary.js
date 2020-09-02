@@ -39,7 +39,7 @@ const CartSummary = () => {
             <span>{VATData.vatRate}%</span>
           </div>
           <div className="flex text-xl md:mb-4 pb-3 md:pb-0 flex-row justify-end pr-3">
-            <span className="mr-1">{currencyData.symbol}</span>
+            <span>{currencyData.symbol}</span>
             <span>{FormatPrice(totalPriceVAT)}</span>
           </div>
         </div>

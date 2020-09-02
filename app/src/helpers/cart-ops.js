@@ -35,7 +35,7 @@ const GetCartItems = () => {
 };
 
 const FindProductInCart = (cart, product) => {
-  return cart.find((item) => item.id === product.id);
+  return product && cart.find((item) => item.id === product.id);  
 };
 
 const CanProductBeBought = (cart, product) => {

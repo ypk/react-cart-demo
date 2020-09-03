@@ -1,6 +1,16 @@
 import React from "react";
 import { Icons } from "../common";
 
+/**
+ * @desc returns a button element
+ *
+ * @param string buttonStyle - distinguishes button type
+ * @param object children - React children object
+ * @param string className - class names to impart styles
+ * @param boolean disabled - flag to disable the component
+ * @param object icon - icon settings (height, width, name , styles)
+ * @return object Button - a button React component
+ */
 const Button = ({
   buttonStyle,
   children,

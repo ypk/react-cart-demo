@@ -2,31 +2,43 @@ import React from "react";
 import { ItemCounter } from "../index";
 import { Button } from "../common";
 import { FormatPrice, Logger } from "../../helpers";
-
+/**
+ * @desc returns a cart component
+ *
+ * @return object cartContext - cart context
+ * @return object Cart - a cart React component
+ */
 const Cart = ({ cartContext }) => {
-  const { itemsTotalPrice, productCurrency, items, removeProduct, updateProduct, clearCart } = cartContext;
+  const {
+    itemsTotalPrice,
+    productCurrency,
+    items,
+    removeProduct,
+    updateProduct,
+    clearCart,
+  } = cartContext;
 
   const handleProductQuantityChange = (productId, event) => {
-      event.preventDefault();
-      const {value} = event.currentTarget;
-      if(!isNaN(value)){
-        Logger.log("updating item");
-        updateProduct(productId, value);
-      }
+    event.preventDefault();
+    const { value } = event.currentTarget;
+    if (!isNaN(value)) {
+      Logger.log("updating item");
+      updateProduct(productId, value);
+    }
   };
 
-  const handleItemDeleteBtnClick= (productId) => {
-    Logger.log("deleting item")
+  const handleItemDeleteBtnClick = (productId) => {
+    Logger.log("deleting item");
     removeProduct(productId);
   };
 
   const handleCartClearBtnClick = () => {
-    Logger.log("clearing cart")
+    Logger.log("clearing cart");
     clearCart();
   };
 
   const handleCartCheckoutBtnClick = () => {
-    Logger.log("cart checkout")
+    Logger.log("cart checkout");
     clearCart();
   };
 
@@ -57,7 +69,9 @@ const Cart = ({ cartContext }) => {
                   <ItemCounter
                     className="leading-none flex w-1/2 mx-3"
                     defaultValue={productQuantity}
-                    onChange={(value) => handleProductQuantityChange(productId, value)}
+                    onChange={(value) =>
+                      handleProductQuantityChange(productId, value)
+                    }
                   />
                 </td>
                 <td className="leading-none w-3/12 text-right mx-3 font-bold text-orange-500 py-4">
@@ -73,6 +87,7 @@ const Cart = ({ cartContext }) => {
                     }}
                     buttonStyle="silent"
                     onClick={() => handleItemDeleteBtnClick(productId)}
+                    title="Delete Item"
                   ></Button>
                 </td>
               </tr>
@@ -82,18 +97,24 @@ const Cart = ({ cartContext }) => {
       </table>
       <div className="grid grid-cols-3 p-6 bg-wildsand-300">
         <div className="text-timberwolf-900 font-bold text-4xl col-span-1">
-        <p className="text-2xl"><span>{productCurrency}</span><span>{itemsTotalPrice}</span></p>
+          <p className="text-2xl">
+            <span>{productCurrency}</span>
+            <span>{itemsTotalPrice}</span>
+          </p>
         </div>
         <div className="leading-none text-gray-400 text-4xl col-span-1 flex justify-end">
           <Button
+            title="Clear Cart"
             buttonStyle="silent"
             onClick={handleCartClearBtnClick}
-          >Clear</Button>
+          >
+            Clear
+          </Button>
         </div>
         <div className="leading-none text-gray-400 col-span-1">
-          <Button
-            onClick={handleCartCheckoutBtnClick}
-          >Check Out</Button>
+          <Button title="Checkout Cart" onClick={handleCartCheckoutBtnClick}>
+            Check Out
+          </Button>
         </div>
       </div>
     </div>

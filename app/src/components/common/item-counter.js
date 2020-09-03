@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-
+import React from "react";
+/**
+ * @desc renders an input element
+ *
+ * @param string|number defaultValue - value for the input element
+ * @param object onChange - function to handle a "change" event
+ * @param string className - class names to impart styles
+ * @param boolean disabled - flag to disable the component
+ * @return object ItemCounter - a item counter React component
+ */
 const ItemCounter = ({
   className,
   defaultValue,
@@ -17,6 +25,7 @@ const ItemCounter = ({
             ? ""
             : "hover:shadow-outline active:shadow-outline focus:shadow-outline"
         }`}
+        aria-label="Item Quantity"
         type="number"
         min={minAllowedLimit}
         max="999"

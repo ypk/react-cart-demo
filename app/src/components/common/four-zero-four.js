@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "./index";
 
-const NotFound = () => {
+/**
+ * @desc returns a not found component
+ *
+ * @return object FourZeroFour - a not found React component
+ */
+const FourZeroFour = () => {
   return (
     <Layout>
       <p>This isn't the page you're looking for. Click the link below to </p>
@@ -17,4 +22,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default FourZeroFour;

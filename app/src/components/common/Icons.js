@@ -2,7 +2,15 @@ import React from "react";
 
 const iconHeight = "h-6";
 const iconWidth = "w-6";
-
+/**
+ * @desc returns a delete icon
+ *
+ * @param string className - class names to impart styles
+ * @param boolean disabled - flag to disable the component
+ * @param string w - icon width
+ * @param string w - icon height
+ * @return object DeleteIcon - a delete icon React component
+ */
 const DeleteIcon = ({ className, disabled, w, h }) => {
   const disabledStyles = `cursor-not-allowed text-gray-500 ${
     h ? "h-" + h : iconHeight

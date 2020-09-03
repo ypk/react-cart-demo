@@ -1,4 +1,4 @@
-import { Button, Icons, ItemCounter, Layout, NotFound } from "./common";
+import { Button, FourZeroFour, Icons, ItemCounter, Layout } from "./common";
 import Cart from "./cart";
 
-export { Button, Cart, Icons, ItemCounter, Layout, NotFound };
+export { Button, Cart, FourZeroFour, Icons, ItemCounter, Layout };

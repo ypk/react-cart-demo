@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import Core from "../components/core";
-import DataContext from "../contexts";
+import Cart from "../components/cart";
+import { CartContext } from "../contexts";
 
 const Home = () => {
-  const dataContext = useContext(DataContext);
-  return <Core data={dataContext} />;
+  const cartContextObj = useContext(CartContext);
+  return <Cart cartContext={cartContextObj} />;
 };
 
 export default Home;

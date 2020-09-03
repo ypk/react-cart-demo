@@ -1,3 +1,4 @@
-import DataContext  from "./data-context";
+import DataContext from "./data-context";
+import CartContext from "./cart-context";
 
-export default DataContext;
+export { DataContext, CartContext };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DataContext from "../contexts";
+import { DataContext } from "../contexts";
 
 import MockData from "../data";
 

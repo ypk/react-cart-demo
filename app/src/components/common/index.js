@@ -1,6 +1,7 @@
 import Icons from "./icons";
-import Buttons from "./button";
+import Button from "./button";
 import ItemCounter from "./item-counter";
 import NotFound from "./not-found";
+import Layout from "./layout";
 
-export { Icons, Buttons, ItemCounter, NotFound };
+export { Button, Icons, ItemCounter, Layout, NotFound };

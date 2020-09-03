@@ -1,104 +1,40 @@
-# MMT Digital Front-end Test
+# React Cart Demo
 
-Welcome to the MMT Digital Front-end test. This test will hopefully give you a chance to showcase your skills as a developer. You have **24 hours** to complete the test. After the test, we will ask you to talk through your code and decisions. Alright, let's do this!
+This is a simple test to create a shopping cart app using React. As this is for demo purposes only this is not to be used for production. However as the code is available in this repo, its free to be re-used where ever it may be possible.
+
+![cart demo](https://i.imgur.com/AyZS7fw.png)
 
 ## The challenge
 
-We would like you to re-create the following basket:
+To create a shopping cart where one can view products, their descriptions and add to cart, adjust product quantities in the cart and check out
 
-![The basket](https://slack-imgs.com/?c=1&url=https%3A%2F%2Fcdn.dribbble.com%2Fusers%2F42384%2Fscreenshots%2F668649%2Fattachments%2F59014%2Fcart_update_large.png)
+## What's not working
 
-Here are some rough user stories for you to work to:
+* You may find that the components are very specific for the task at hand. You may need to modify to suit other purposes.
 
-*Basket-001*  
-**As a** user  
-**I want** to view my current basket  
-**So that** I can see what I've added  
+* Product data is being fetched from json files on local drive, that could be replaced by an API call in provider; But my doing so, it will break the cart, to fix it, the structure should be adjusted accordingly in context consumer and components depending on the provider.
 
-**Given** I am on the basket page  
-**When** I view the page  
-**Then** I can see all added items and their cost  
+* Checkout does nothing at the moment. It just mentions what data is being held.
 
-*Basket-002*  
-**As a** user  
-**I want** to change the quantity of a basket item  
-**So that** I can decide item totals before purchasing  
+* Logout/Register any kind of user management isn't present in the cart. Bummer.
 
-**Given** I am on the basket page  
-**When** I view the page  
-**Then** I can see an item quantity next to each item  
+* There's no Contact Us page, You should have one if you are plannning to start a e-commerce store.
 
-**Given** I am on the basket page  
-**When** I view the page  
-**Then** I can see each item's total cost (adjusted for quantity)  
-
-**Given** I am on the basket page  
-**When** I change an item quantity  
-**Then** the item's total cost is adjusted, in real-time  
-
-*Basket-003*  
-**As a** user  
-**I want** to view my current basket total  
-**So that** I can see what I'm going to have to pay  
-
-**Given** I am on the basket page  
-**When** I view the page  
-**Then** I can see a total cost, accounting for all items and quantities  
-
-*Basket-004*  
-**As a** user  
-**I want** to remove all items from my basket  
-**So that** I can start over  
-
-**Given** I am on the basket page  
-**When** I click the "clear" button  
-**Then** all items are reset to zero (but remain in the basket)  
-
-## Things we love
-
-* Use of modern JS frameworks (e.g. React)
-* Tip-top styling, using modern techniques beyond plain CSS
-* Well-linted, consistent code
-* A fully working non-perfect solution, over a beautiful broken one
-* Frequent Git use with clear commit messages
-
-## Bonus points
-
-* Accessibility considerations
-* Unit testing
-* Progressive enhancement considerations
-* Next gen JavaScript, ES6+
-* Use of types
-
-## Getting started
-
-You can use any boilerplate you're used to for getting started. A simple and recommended way is to use [Create React App (CRA)](https://github.com/facebook/create-react-app).
-
-To use this:
-- `npx create-react-app app`
-- `cd app`
-- `npm start`
-
-## FAQs
-
-#### Am I allowed to Google stuff
-It goes without saying. Please work as you normally would during the day.
+* Session management. Currently the data for the store is being stored in local storage, and that's not ideal.
 
 
-#### Shall I create branches?
-If you normally work with feature branches, we would love to see usage of them. No worries if not.
+## What's actually working
 
+* The app should be up and running out of the box.
 
-#### I'm finished early, what now?
+* You can view Home Page, Product Listing Page, Product Description Page and Cart 
 
-Firstly, great work. Here are some enhancements:
+* You can add items to cart and update items in cart or clear the cart altogether
 
-* Add VAT calculations
-* Add currency choice and conversion rates
-* Add a payment step
-* Add another theme
-* Add a product detail modal for each item
-* Find a live API and pull the item's content and title from that
-* Incorporate markdown to enable easier content editing
-* Optimise for ultimate performance
-* Incorporate PWA techniques
+* It is responsive. This webapp uses TailwindCSS unobtrusive library for styling and responsiveness
+
+* Carousel and Toasts are custom implementations, so they aren't that fancy like the ones you see online
+
+## Is this overkill for demo?
+
+Probably. I made this as part of a test. It IS overkill.

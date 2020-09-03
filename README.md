@@ -1,14 +1,16 @@
-# React Cart Demo
+# React Cart Demo 🛒🚶
 
 This is a simple test to create a shopping cart app using React. As this is for demo purposes only this is not to be used for production. However as the code is available in this repo, its free to be re-used where ever it may be possible.
 
+🚀 Here's a link for the demo : https://react-cart-demo.vercel.app/
+
 ![cart demo](https://i.imgur.com/AyZS7fw.png)
 
-## The challenge
+## The challenge 👨‍🔧
 
 To create a shopping cart where one can view products, their descriptions and add to cart, adjust product quantities in the cart and check out
 
-## What's not working
+## What's not working 😟
 
 * You may find that the components are very specific for the task at hand. You may need to modify to suit other purposes.
 
@@ -23,7 +25,7 @@ To create a shopping cart where one can view products, their descriptions and ad
 * Session management. Currently the data for the store is being stored in local storage, and that's not ideal.
 
 
-## What's actually working
+## What's actually working 😀
 
 * The app should be up and running out of the box.
 
@@ -35,6 +37,6 @@ To create a shopping cart where one can view products, their descriptions and ad
 
 * Carousel and Toasts are custom implementations, so they aren't that fancy like the ones you see online
 
-## Is this overkill for demo?
+## Is this overkill for a demo 🤔?
 
-Probably. I made this as part of a test. It IS overkill.
+Probably. I made this as part of a test. It IS overkill 😕.

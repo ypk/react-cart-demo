@@ -1,23 +1,12 @@
 import React, { useState } from "react";
 
 const ItemCounter = ({
+  className,
   defaultValue,
   disabled = false,
-  className,
   onChange,
 }) => {
-  let [counterValue, setCounterValue] = useState(defaultValue);
-
   const minAllowedLimit = 0;
-
-  const handleQuantityChange = (e) => {
-    e.preventDefault();
-    const { value } = e.currentTarget;
-    const parsedValue = !isNaN(value) && Number.parseInt(value);
-    setCounterValue(parsedValue);
-    onChange(counterValue);
-  };
-
   return (
     <>
       <input
@@ -31,8 +20,9 @@ const ItemCounter = ({
         type="number"
         min={minAllowedLimit}
         max="999"
-        value={counterValue}
-        onChange={handleQuantityChange}
+        value={defaultValue}
+        onChange={onChange}
+        disabled={disabled}
       />
     </>
   );

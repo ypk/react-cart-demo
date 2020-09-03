@@ -1,7 +1,14 @@
 import React from "react";
 import { Icons } from "../common";
 
-const Button = ({ icon, children, className, disabled, buttonStyle, ...rest }) => {
+const Button = ({
+  buttonStyle,
+  children,
+  className,
+  disabled,
+  icon,
+  ...rest
+}) => {
   let styleClasses =
     buttonStyle === "silent"
       ? "text-gray-700"

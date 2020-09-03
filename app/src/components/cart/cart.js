@@ -1,27 +1,33 @@
 import React from "react";
 import { ItemCounter } from "../index";
 import { Button } from "../common";
+import { FormatPrice, Logger } from "../../helpers";
 
 const Cart = ({ cartContext }) => {
-  const { items, removeProduct, updateProduct, clearCart } = cartContext;
+  const { itemsTotalPrice, productCurrency, items, removeProduct, updateProduct, clearCart } = cartContext;
 
-  const handleProductQuantityChange = (productId, updatedProductQuantity) => {
-      console.log("updating item")
-      updateProduct(productId, updatedProductQuantity);
+  const handleProductQuantityChange = (productId, event) => {
+      event.preventDefault();
+      const {value} = event.currentTarget;
+      if(!isNaN(value)){
+        Logger.log("updating item");
+        updateProduct(productId, value);
+      }
   };
 
   const handleItemDeleteBtnClick= (productId) => {
-    console.log("deleting item")
+    Logger.log("deleting item")
     removeProduct(productId);
   };
 
   const handleCartClearBtnClick = () => {
-    console.log("clearing cart")
+    Logger.log("clearing cart")
     clearCart();
   };
 
   const handleCartCheckoutBtnClick = () => {
-    console.log("cart checkout")
+    Logger.log("cart checkout")
+    clearCart();
   };
 
   const itemsLength = items.length;
@@ -34,7 +40,6 @@ const Cart = ({ cartContext }) => {
             const {
               productId,
               productName,
-              productCurrency,
               productPrice,
               productQuantity,
             } = item;
@@ -57,7 +62,7 @@ const Cart = ({ cartContext }) => {
                 </td>
                 <td className="leading-none w-3/12 text-right mx-3 font-bold text-orange-500 py-4">
                   {productCurrency}
-                  {productPrice}
+                  {FormatPrice(productPrice)}
                 </td>
                 <td className="leading-none w-6 text-gray-400 text-4xl p-4 items-end">
                   <Button
@@ -77,7 +82,7 @@ const Cart = ({ cartContext }) => {
       </table>
       <div className="grid grid-cols-3 p-6 bg-wildsand-300">
         <div className="text-timberwolf-900 font-bold text-4xl col-span-1">
-          <p className="text-2xl">$32.50</p>
+        <p className="text-2xl"><span>{productCurrency}</span><span>{itemsTotalPrice}</span></p>
         </div>
         <div className="leading-none text-gray-400 text-4xl col-span-1 flex justify-end">
           <Button

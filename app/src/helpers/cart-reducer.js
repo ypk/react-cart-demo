@@ -1,3 +1,5 @@
+import { GetItemsTotalPrice } from "../helpers";
+
 const CartReducer = (state, trigger) => {
   const { action, data, quantity } = trigger;
   const { items } = state;
@@ -5,16 +7,16 @@ const CartReducer = (state, trigger) => {
     case "updateItem":
       items[data].productQuantity = quantity;
       return {
+        ...state,
         items: [...items],
+        itemsTotalPrice: GetItemsTotalPrice(items)
       };
     case "removeItem":
       items[data].productQuantity = 0;
       return {
+        ...state,
         items: [...items],
-      };
-    case "checkOut":
-      return {
-        items: [],
+        itemsTotalPrice: GetItemsTotalPrice(items)
       };
     case "clearCart":
       const clearedCart = items.map((item) => {
@@ -22,7 +24,9 @@ const CartReducer = (state, trigger) => {
         return item;
       });
       return {
-        items: [...clearedCart]
+        ...state,
+        items: [...clearedCart],
+        itemsTotalPrice: GetItemsTotalPrice(items)
       };
     default:
       return state;

@@ -2,21 +2,18 @@
   {
     "productId": 0,
     "productName": "Mountain Dew",
-    "productCurrency": "$",
     "productPrice": 3.6,
     "productQuantity": 2
   },
   {
     "productId": 1,
     "productName": "Desperados",
-    "productCurrency": "$",
     "productPrice": 15.5,
     "productQuantity": 6
   },
   {
     "productId": 2,
     "productName": "Jack Daniels",
-    "productCurrency": "$",
     "productPrice": 13.4,
     "productQuantity": 4
   }

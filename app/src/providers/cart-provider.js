@@ -15,8 +15,8 @@ const CartProvider = ({ children }) => {
     dispatch({ action: "updateItem", data, quantity });
   };
 
-  const removeProduct = (data, quantity) => {
-    dispatch({ action: "removeItem", data, quantity });
+  const removeProduct = (data) => {
+    dispatch({ action: "removeItem", data });
   };
 
   const clearCart = () => {

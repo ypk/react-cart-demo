@@ -1,13 +1,11 @@
 module.exports = {
   theme: {
     fontFamily: {
-      cinzel: ["Cinzel", "serif"],
-      playfair: ["Playfair Display", "serif"],
-      poppins: ["Poppins", "sans-serif"],
+      quicksand: ['quicksand', 'sans-serif'],
     },
     extend: {
       colors: {
-        mmt: {
+        "wildsand": {
           50: "#FEFEFE",
           100: "#FDFDFD",
           200: "#FAF9F9",
@@ -19,6 +17,18 @@ module.exports = {
           800: "#696868",
           900: "#464645",
         },
+        'timberwolf': {
+          50: '#FDFDFD',
+          100: '#FBFBFB',
+          200: '#F6F5F4',
+          300: '#F0EFED',
+          400: '#E4E2E0',
+          500: '#D9D6D3',
+          600: '#C3C1BE',
+          700: '#82807F',
+          800: '#62605F',
+          900: '#41403F',
+          },
       },
       inset: {
         "1/2": "50%",

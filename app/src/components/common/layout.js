@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 const Layout = ({ children }) => {
   return (
     <>
-      <Helmet bodyAttributes={{ class: "bg-mmt-500" }} />
+      <Helmet bodyAttributes={{ class: "bg-wildsand-500" }} />
       <div className="flex h-screen">
         <div className="m-auto">
           <main>{children}</main>    

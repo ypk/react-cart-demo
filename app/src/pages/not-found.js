@@ -1,12 +1,12 @@
 import React from "react";
-import { Layout, NotFound } from "../components/common";
+import { Layout, FourZeroFour } from "../components/common";
 
 
 const Home = () => {
     return (
       <>
         <Layout>
-          <NotFound />
+          <FourZeroFour />
         </Layout>
       </>
     );

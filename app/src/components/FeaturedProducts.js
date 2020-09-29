@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Product from "../components/Product";
-import { PreferencesContext, CurrencyAndVATContext } from "../contexts";
+import { PreferencesContext } from "../contexts";
 
 const FeaturedProducts = ({ products }) => {
   const preferencesContext = useContext(PreferencesContext);
